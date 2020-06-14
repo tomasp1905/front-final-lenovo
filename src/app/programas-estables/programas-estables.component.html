@@ -1,0 +1,663 @@
+<div class="estilo divAlineado">
+
+  <div class="animated fadeIn card border-info mb-3" style="max-width: 900px;">
+    <div class="card-header bg-transparent border-info">
+      <h5 align="center">PRG - PROGRAMAS ESTABLES DE PROYECCIÓN SOCIAL </h5>
+    </div>
+    <div class="card-body">
+      <form autocomplete="off" #proyectoForm="ngForm">
+
+        <div class='form-group row'>
+          <label for="titulo" class="col-form-label">Título del Programa:</label>
+
+          <div class="col-9">
+            <input class="form-control" type="text" name="titulo" [class.is-invalid]="titulo.invalid && titulo.touched" [(ngModel)]="programaEstable.titulo" required #titulo="ngModel">
+            <small *ngIf="titulo.invalid && titulo.touched" class="form-text text-danger">Campo requerido
+            </small>
+          </div>
+
+        </div>
+
+
+        <div class='form-group row'>
+          <label for="anio" class="col-form-label">Año de Presentación:</label>
+
+          <div class="col-2">
+            <input class="form-control" type="number" name="anio" [class.is-invalid]="anio.invalid && anio.touched" [(ngModel)]="programaEstable.anioDePresentacion" required #anio="ngModel">
+            <small *ngIf="anio.invalid && anio.touched" class="form-text text-danger">Campo requerido
+            </small>
+          </div>
+
+        </div>
+
+        <div class="card border-info mb-3" *ngIf="mostrarAntecedente">
+          <div class="card-header text-center">
+            <h5>ANTECEDENTES</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Indique si es existen proyectos bianuales o especiales que sean antecedentes de la presente propuesta.</h6>
+            <textarea class="form-control" rows="4" cols="50" [(ngModel)]="programaEstable.antecedente" name="antecedentes"></textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div *ngIf="mostrarAntecedente" class="col-sm-6">
+            <button class="boton btn btn-primary" role="button" (click)=" mostrarAntecedente = !mostrarAntecedente " *ngIf="!programaEstable.id">No tiene antecedentes</button>
+          </div>
+          <div *ngIf="!mostrarAntecedente" class="col-sm-6">
+            <button class="boton btn btn-primary" role="button" (click)=" mostrarAntecedente = !mostrarAntecedente " *ngIf="!programaEstable.id">Si tiene antecedentes</button>
+          </div>
+        </div>
+
+
+        <!-- AUTOCOMPLETE PARA UNIDADES ACADEMICAS -->
+        <div class='form-group row'>
+          <div class="col-9">
+            <mat-form-field class="full-width">
+              <input type="text" placeholder="Añadir Unidad Académica" aria-label="listaDeUnidadesAcademicas" matInput [formControl]="autocompleteControlUnidadAcademica" [matAutocomplete]="autoUnidadAcademica">
+              <mat-autocomplete #autoUnidadAcademica="matAutocomplete" [displayWith]="mostrarNombreUnidadAcademica" (optionSelected)="seleccionarUnidadAcademica($event)">
+                <mat-option *ngFor="let unidad of unidadesAcademicasFiltradas | async" [value]="unidad">
+                  {{unidad.nombre}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class='form-group row'>
+          <div class="col-4">
+            <table class="table table-bordered" *ngIf="programaEstable.unidadesAcademicas?.length>0">
+              <thead>
+                <tr align="center">
+                  <th>Unidad Académica</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let unidad of programaEstable.unidadesAcademicas">
+                  <td>{{unidad.nombre}}</td>
+                  <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarUnidadAcademica(unidad.id)">X</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!--AUTOCOMPLETE PARA CARRERAS -->
+        <div class='form-group row'>
+          <div class="col-9">
+            <mat-form-field class="full-width">
+              <input type="text" placeholder="Añadir Carrera" aria-label="listaDeCarreras" matInput [formControl]="autocompleteControlCarrera" [matAutocomplete]="autoCarrera">
+              <mat-autocomplete #autoCarrera="matAutocomplete" [displayWith]="mostrarNombreCarrera" (optionSelected)="seleccionarCarrera($event)">
+                <mat-option *ngFor="let carrera of carrerasFiltradas | async" [value]="carrera">
+                  {{carrera.nombre}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class='form-group row'>
+          <div class="col-4">
+            <table class="table table-bordered" *ngIf="programaEstable.listaDeCarreras?.length>0">
+              <thead>
+                <tr align="center">
+                  <th>Carrera</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let carrera of programaEstable.listaDeCarreras">
+                  <td>{{carrera.nombre}}</td>
+                  <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarCarrera(carrera.id)">X</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class='form-group row'>
+          <label for="catedra" class="col-form-label">Cátedra:</label>
+
+          <div class="col-9">
+            <input class="form-control" type="text" name="catedra" [class.is-invalid]="catedra.invalid && catedra.touched" [(ngModel)]="programaEstable.catedra" required #catedra="ngModel">
+            <small *ngIf="catedra.invalid && catedra.touched" class="form-text text-danger">Campo requerido</small>
+          </div>
+
+        </div>
+
+        <!--AUTOCOMPLETE PARA PRIORIDADES -->
+        <div class='form-group row'>
+          <div class="col-9">
+            <mat-form-field class="full-width-prioridad">
+              <input type="text" placeholder="Añadir Prioridad" aria-label="listaDePrioridades" matInput [formControl]="autocompleteControlPrioridad" [matAutocomplete]="autoPrioridades">
+              <mat-autocomplete #autoPrioridades="matAutocomplete" [displayWith]="mostrarNombrePrioridad" (optionSelected)="seleccionarPrioridad($event)">
+                <mat-option *ngFor="let prioridad of prioridadesFiltradas | async" [value]="prioridad">
+                  {{prioridad.nombre}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class='form-group row'>
+          <div class="col-7">
+            <table class="table table-bordered" *ngIf="programaEstable.listaDePrioridades?.length>0">
+              <thead>
+                <tr align="center">
+                  <th>Prioridad</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let prioridad of programaEstable.listaDePrioridades">
+                  <td>{{prioridad.nombre}}</td>
+                  <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarPrioridad(prioridad.id)">X</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="card border-info mb-3">
+          <div class="card-header text-center">
+            <h5>DIRECTOR/A</h5>
+          </div>
+          <div class="card-body">
+
+
+            <div class="form-group row">
+              <label for="nombreDir" class="col-form-label">Nombre:</label>
+              <div class="col-sm-6">
+                <input class="form-control" type="text" name="nombreDir" [class.is-invalid]="nombreDir.invalid && nombreDir.touched" [(ngModel)]="programaEstable.director.nombre" required #nombreDir="ngModel">
+                <small *ngIf="nombreDir.invalid && nombreDir.touched" class="form-text text-danger">Campo requerido
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="apellidoDir" class="col-form-label">Apellido:</label>
+              <div class="col-sm-6">
+                <input class="form-control" type="text" name="apellidoDir" [class.is-invalid]="apellidoDir.invalid && apellidoDir.touched" [(ngModel)]="programaEstable.director.apellido" required #apellidoDir="ngModel">
+                <small *ngIf="apellidoDir.invalid && apellidoDir.touched" class="form-text text-danger">Campo requerido
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="claveDir" class="col-form-label">Clave UCC:</label>
+              <div class="col-sm-3">
+                <input type="number" class="form-control" [(ngModel)]="programaEstable.director.clave" name="claveDir">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="emailDir" class="col-form-label">Email:</label>
+              <div class="col-sm-6">
+                <input class="form-control" type="email" name="emailDir" [class.is-invalid]="emailDir.invalid && emailDir.touched" [(ngModel)]="programaEstable.director.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+                  #emailDir="ngModel" style="width:410px">
+                <small *ngIf="emailDir.invalid && emailDir.touched" class="form-text text-danger">Campo requerido
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="facultadDir" class="col-form-label">Facultad o Área:</label>
+              <div class="col-sm-5">
+                <input class="form-control" type="text" name="facultadDir" [class.is-invalid]="facultadDir.invalid && facultadDir.touched" [(ngModel)]="programaEstable.director.facultad" required #facultadDir="ngModel" style="width:340px">
+                <small *ngIf="facultadDir.invalid && facultadDir.touched" class="form-text text-danger">Campo requerido
+                </small>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="cargoDir" class="col-form-label">Cargo (Titular / Adjunto / JTP):</label>
+              <div class="col-sm-2">
+                <input class="form-control" type="text" name="cargoDir" [class.is-invalid]="cargoDir.invalid && cargoDir.touched" [(ngModel)]="programaEstable.director.cargo" required #cargoDir="ngModel">
+                <small *ngIf="cargoDir.invalid && cargoDir.touched" class="form-text text-danger">Campo requerido
+                </small>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+
+        <div class="card border-info mb-3">
+          <div class="card-header text-center">
+            <h5>MIEMBROS DEL EQUIPO</h5>
+          </div>
+          <div class="card-body">
+
+            <div class="form-group row">
+              <label for="nombreM" class="col-form-label">Nombre:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="nombreMiembroTexto" name="nombreM">
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label for="apellidoM" class="col-form-label">Apellido:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="apellidoMiembroTexto" name="apellidoM">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="claveM" class="col-form-label">Clave:</label>
+              <div class="col-sm-3">
+                <input type="number" class="form-control" [(ngModel)]="claveMiembroTexto" name="claveM">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="facultadM" class="col-form-label">Facultad o Área:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" [(ngModel)]="facultadMiembroTexto" name="facultadM" style="width:340px">
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-sm-6">
+                <button class="boton btn btn-primary" role="button" (click)='agregarMiembro()'>Agregar nuevo miembro</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class='form-group row'>
+          <div class="col-7">
+            <table class="table table-bordered" *ngIf="programaEstable.miembros?.length>0">
+              <thead>
+                <tr align="center">
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Clave</th>
+                  <th>Facultad</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let miembro of programaEstable.miembros">
+                  <td>{{miembro.nombre}}</td>
+                  <td>{{miembro.apellido}}</td>
+                  <td>{{miembro.clave}}</td>
+                  <td>{{miembro.facultad}}</td>
+                  <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarMiembro(miembro.id)">X</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card border-info mb-3">
+          <div class="card-header text-center">
+            <h5>SOCIO/S EXTERNO/S</h5>
+          </div>
+          <div class="card-body">
+
+            <div class="form-group row">
+              <label for="nombreIn" class="col-form-label">Nombre Institución:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="institucionSocioTexto" name="nombreIn" style="width:360px">
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label for="domicilioL" class="col-form-label">Domicilio Legal:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="domicilioSocioTexto" name="domicilioL" style="width:387px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-8">
+                <label for="descripcion" class="col-form-label">Descripcion breve de lo que hace:</label>
+                <textarea class="form-control" rows="4" cols="50" [(ngModel)]="descripcionSocioTexto" name="descripcion" style="width:492px"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="nombreS" class="col-form-label">Nombre contacto:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="nombreSocioTexto" name="nombreS" style="width:363px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="apellidoS" class="col-form-label">Apellido contacto:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="apellidoSocioTexto" name="apellidoS" style="width:363px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="telefono" class="col-form-label">Teléfono contacto:</label>
+              <div class="col-sm-3">
+                <input type="number" class="form-control" [(ngModel)]="telefonoSocioTexto" name="telefono">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="emails" class="col-form-label">Email contacto:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="emailSocioTexto" name="emails" style="width:380px">
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-sm-6">
+                <button class="boton btn btn-primary" role="button" (click)='agregarSocio()'>Agregar Socio</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class='form-group row'>
+          <div class="col-7">
+            <table class="table table-bordered" *ngIf="programaEstable.socios?.length>0">
+              <thead>
+                <tr align="center">
+                  <th>Institución</th>
+                  <th>Domicilio Legal</th>
+                  <th>Descripción</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Telefono</th>
+                  <th>Correo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let socio of programaEstable.socios">
+                  <td>{{socio.institucion}}</td>
+                  <td>{{socio.domicilioLegal}}</td>
+                  <td>{{socio.descripcion}}</td>
+                  <td>{{socio.nombre}}</td>
+                  <td>{{socio.apellido}}</td>
+                  <td>{{socio.telefono}}</td>
+                  <td>{{socio.email}}</td>
+                  <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarSocio(socio.id)">X</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- CAMPOS DE LLENADO CON TEXTO -->
+
+        <div class="card border-info mb-3">
+          <div class="card-header text-center">
+            <h5>PRESENTACIÓN</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Indique razones de orden académico y social que justifiquen la creación del Programa Estable.</h6>
+            <textarea class="form-control" rows="4" cols="50" name="razon" [class.is-invalid]="razon.invalid && razon.touched" [(ngModel)]="programaEstable.presentacion" required #razon="ngModel"></textarea>
+          </div>
+        </div>
+
+
+        <div class="card border-info mb-3">
+          <div class="card-header text-center">
+            <h5>OBJETIVO/S GENERAL/ES O META DEL PROYECTO</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Establezca que se pretende lograr con la propuesta como solución al o los problema/s identificado/s y como aporte a la formación académica de los estudiantes.</h6>
+            <textarea class="form-control" rows="4" cols="50" name="objetivoG" [class.is-invalid]="objetivoG.invalid && objetivoG.touched" [(ngModel)]="programaEstable.objetivoGeneral" required #objetivoG="ngModel"></textarea>
+            <small *ngIf="objetivoG.invalid && objetivoG.touched" class="form-text text-danger">Campo requerido
+            </small>
+          </div>
+        </div>
+
+
+        <div class="card border-info mb-3">
+          <div class="card-header text-center">
+            <h5>OBJETIVOS ESPECÍFICOS</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Describa que resultados se esperan alcanzar para dar cumplimiento a la meta u Objetivo General, incluya al menos un objetivo pedagógico.</h6>
+            <textarea class="form-control" rows="4" cols="50" name="objetivoE" [class.is-invalid]="objetivoE.invalid && objetivoE.touched" [(ngModel)]="programaEstable.objetivoEspecifico" required #objetivoE="ngModel"></textarea>
+            <small *ngIf="objetivoE.invalid && objetivoE.touched" class="form-text text-danger">Campo requerido
+            </small>
+          </div>
+        </div>
+
+        <div class="card border-info mb-3">
+          <div class="card-header text-center">
+            <h5>BENEFICIARIOS DE SU PROPUESTA</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Describa brevemente quienes serán los beneficiarios directos de las actividades que se desarrollarán en el marco del programa.</h6>
+            <textarea class="form-control" rows="4" cols="50" name="beneficiarios" [class.is-invalid]="beneficiarios.invalid && beneficiarios.touched" [(ngModel)]="programaEstable.beneficiarios" required #beneficiarios="ngModel"></textarea>
+            <small *ngIf="beneficiarios.invalid && beneficiarios.touched" class="form-text text-danger">Campo requerido
+            </small>
+          </div>
+
+          <div class='form-group row'>
+            <div class="col-9">
+            <label for="numBen" class="col-form-label">N° aproximado de beneficiarios directos que estima alcanzar con las
+              acciones propuestas:</label>
+              </div>
+
+            <div class="col-2">
+              <input class="form-control" type="number" name="numBen" [class.is-invalid]="numBen.invalid && numBen.touched" [(ngModel)]="programaEstable.numeroDeBeneficiarios" required #numBen="ngModel">
+              <small *ngIf="numBen.invalid && numBen.touched" class="form-text text-danger">Campo requerido</small>
+            </div>
+          </div>
+          <br>
+
+        </div>
+
+
+        <br>
+
+        <div class="card border-info mb-3">
+          <div class="card-header text-center">
+            <h5>ACTIVIDADES</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Detalle las actividades que desarrollará y le permitirán alcanzar los resultados esperados, elabore una planificación de acciones para un lapso de 2 años.</h6>
+
+            <div class="form-group row">
+              <label for="tipoAc" class="col-form-label">Tipo de actividad:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" [(ngModel)]="tipoDeActividadTexto" name="tipoAc" style="width:680px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="indAc" class="col-form-label">Indicador de resultado:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="indicadorDeResultadoTexto" name="indAc" style="width:640px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="medioAc" class="col-form-label">Medio de verificación:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="medioDeVerificacionTexto" name="medioAc" style="width:645px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="insAc" class="col-form-label">Insumos requeridos:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="insumoRequeridoTexto" name="insAc" style="width:657px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="fechaIn" class="col-form-label">Fecha de inicio:</label>
+              <div class="col-sm-6">
+                <input type="Date" class="form-control" [(ngModel)]="fechaInicioTexto" name="fechaIn" style="width:222px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="fechaFin" class="col-form-label">Fecha de finalización:</label>
+              <div class="col-sm-6">
+                <input type="Date" class="form-control" [(ngModel)]="fechaFinalizacionTexto" name="fechaFin" style="width:180px">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <button class="boton btn btn-primary" role="button" (click)='agregarActividad()'>Agregar Actividad</button>
+              </div>
+            </div>
+
+            <div class='form-group row'>
+              <div class="col-10">
+                <table class="table table-bordered" *ngIf="programaEstable.listaDeActividades?.length>0">
+                  <thead>
+                    <tr align="center">
+                      <th>Tipo de actividad</th>
+                      <th>Indicador de resultado</th>
+                      <th>Medio de verificación</th>
+                      <th>Insumos requeridos</th>
+                      <th>Fecha de inicio</th>
+                      <th>Fecha de finalización</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let actividad of programaEstable.listaDeActividades">
+                      <td>{{actividad.tipoDeActividad}}</td>
+                      <td>{{actividad.indicadorDeResultado}}</td>
+                      <td>{{actividad.medioDeVerificacion}}</td>
+                      <td>{{actividad.insumoRequerido}}</td>
+                      <td>{{actividad.fechaInicio | date:"longDate"}}</td>
+                      <td>{{actividad.fechaFinalizacion | date:"longDate"}}</td>
+                      <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad(actividad.id)">X</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="card border-info mb-3">
+          <div class="card-header text-center">
+            <h5>VINCULACION CURRICULAR Y PARTICIPACIÓN DE LOS ESTUDIANTES</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Detalle con que contenidos curriculares o competencias disciplinares se vinculan las actividades que desarrollarán los estudiantes.</h6>
+            <textarea class="form-control" rows="4" cols="50" name="vinculacion" [class.is-invalid]="vinculacion.invalid && vinculacion.touched" [(ngModel)]="programaEstable.vinculacionCurricular" required #vinculacion="ngModel">
+    </textarea>
+            <small *ngIf="vinculacion.invalid && vinculacion.touched" class="form-text text-danger">Campo requerido
+            </small>
+          </div>
+        </div>
+
+        <div class="card border-info mb-3" *ngIf="mostrarInvestigacion">
+          <div class="card-header text-center">
+            <h5>Vinculación con otros Proyectos de Investigación y/o Proyección Social</h5>
+          </div>
+          <div class="card-body">
+
+
+            <div class="form-group row">
+              <label for="titulo" class="col-form-label">Título del Proyecto:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="programaEstable.proyectoDeInvestigacion.nombre" name="tituloInvestigacion">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="directorInv" class="col-form-label">Nombre y Apellido Director:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="programaEstable.proyectoDeInvestigacion.director" name="directorInv">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="radicacion" class="col-form-label">Radicación:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="programaEstable.proyectoDeInvestigacion.radicacion" name="radicacion">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="organismo" class="col-form-label">Organismo que lo acredita:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="programaEstable.proyectoDeInvestigacion.organismoAcreditador" name="organismo">
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div *ngIf="mostrarInvestigacion" class="col-sm-6">
+            <button class="boton btn btn-primary" role="button" (click)=" mostrarInvestigacion = !mostrarInvestigacion " *ngIf="!programaEstable.id">No tiene vinculación con investigación</button>
+          </div>
+          <div *ngIf="!mostrarInvestigacion" class="col-sm-6">
+            <button class="boton btn btn-primary" role="button" (click)=" mostrarInvestigacion = !mostrarInvestigacion " *ngIf="!programaEstable.id">Si tiene vinculación con investigación</button>
+          </div>
+        </div>
+
+        <div class="card border-info mb-3">
+          <div class="card-header text-center">
+            <h5>SUPUESTOS</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Describa aquellas circunstancias que considere que pueden afectar el desarrollo del proyecto y el logro de los resultados esperados u objetivos específicos.</h6>
+            <textarea class="form-control" rows="4" cols="50" name="supuestos" [class.is-invalid]="supuestos.invalid && supuestos.touched" [(ngModel)]="programaEstable.supuestos" required #supuestos="ngModel"></textarea>
+            <small *ngIf="supuestos.invalid && supuestos.touched" class="form-text text-danger">Campo requerido
+            </small>
+          </div>
+        </div>
+
+        <div class="card border-info mb-3">
+          <div class="card-header text-center">
+            <h5>EVALUACIÓN</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Describa como se evaluará el desarrollo del programa y el logro de los resultados.</h6>
+            <textarea class="form-control" rows="4" cols="50" name="evaluacion" [class.is-invalid]="evaluacion.invalid && evaluacion.touched" [(ngModel)]="programaEstable.evaluacion" required #evaluacion="ngModel"></textarea>
+            <small *ngIf="evaluacion.invalid && evaluacion.touched" class="form-text text-danger">Campo requerido</small>
+          </div>
+        </div>
+
+
+        <br>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <button class="boton btn btn-primary" role="button" (click)='crearProyecto()' *ngIf="!programaEstable.id else elseBlock" [disabled]="!proyectoForm.form.valid">CREAR PROYECTO</button>
+
+            <ng-template #elseBlock>
+              <button class="boton btn btn-primary" role="button" (click)='updateEstable()' [disabled]="!proyectoForm.form.valid">EDITAR</button>
+            </ng-template>
+
+          </div>
+        </div>
+
+      </form>
+
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button">VOLVER ATRÁS</button>
+      <!-- <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button" *ngIf="!programaEstable.id else elseBlockV">VOLVER ATRÁS</button> -->
+      <!-- <ng-template #elseBlockV>
+        <button class="boton btn btn-primary" role="button" [routerLink]="['/ver-proyectos']">VOLVER ATRÁS</button>
+      </ng-template> -->
+    </div>
+  </div>
+
+</div>

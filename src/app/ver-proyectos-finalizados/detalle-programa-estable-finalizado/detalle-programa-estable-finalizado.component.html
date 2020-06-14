@@ -1,0 +1,241 @@
+<div class="abrir-modal animated fadeIn" *ngIf="modalProgramaEstableFinalizadoService.modal">
+  <div class="modal" tabindex="-1" role="dialog" style="display:block;">
+    <div class="modal-dialog modal-dialog-scrollable  modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-transparent border-info">
+          <h5 class="modal-title">PROGRAMA ESTABLE</h5>
+          <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+         <div class="modal-body">
+          <div class="container">
+
+              <div class="row">
+
+                <div class="col-6">
+                  <ul *ngIf=programaEstable class="list-group text-dark">
+                    <li class="list-group-item active" align="center">TÍTULO</li>
+                    <li class="list-group-item">{{programaEstable.titulo}}</li>
+                  </ul>
+                </div>
+
+                <div class="col-2">
+                  <ul *ngIf=programaEstable class="list-group text-dark">
+                    <li class="list-group-item active" align="center">AÑO</li>
+                    <li class="list-group-item">{{programaEstable.anioDePresentacion}}</li>
+                  </ul>
+                </div>
+
+                <div class="col-4">
+                  <ul *ngIf=programaEstable.antecedente class="list-group text-dark">
+                    <li class="list-group-item active" align="center">ANTECEDENTES</li>
+                    <li class="list-group-item">{{programaEstable.antecedente}}</li>
+                  </ul>
+                </div>
+
+              </div>
+
+            <br>
+
+            <div class="row">
+
+              <div class="col-3">
+                <li class="list-group-item active text-center">UNIDAD/ES ACADÉMICA/S</li>
+                <ul *ngFor="let pro of programaEstable.unidadesAcademicas" class="list-group text-dark">
+                  <li class="list-group-item">{{pro.nombre}}</li>
+                </ul>
+              </div>
+
+              <div class="col-3">
+                <li class="list-group-item active text-center">CARRERA/S</li>
+                <ul *ngFor="let pro of programaEstable.listaDeCarreras" class="list-group text-dark">
+                  <li class="list-group-item">{{pro.nombre}}</li>
+                </ul>
+              </div>
+
+              <div class="col-3">
+                <li class="list-group-item active text-center">CATEDRA/S</li>
+                <ul *ngFor="let pro of programaEstable.listaDeCatedras" class="list-group text-dark">
+                  <li class="list-group-item">{{pro.nombre}}</li>
+                </ul>
+              </div>
+
+              <div class="col-3">
+                <li class="list-group-item active text-center">PRIORIDADES</li>
+                <ul *ngFor="let pro of programaEstable.listaDePrioridades" class="list-group text-dark">
+                  <li class="list-group-item">{{pro.nombre}}</li>
+                </ul>
+              </div>
+
+            </div>
+
+           <br>
+
+            <div class="row">
+
+              <div class="col-6">
+                <ul *ngIf=programaEstable class="list-group text-dark">
+                  <li class="list-group-item active" align="center">DIRECTOR/A DEL PROGRAMA</li>
+                  <li class="list-group-item"><b>NOMBRE:</b>: {{programaEstable.director.nombre}}</li>
+                  <li class="list-group-item"><b>APELLIDO</b>: {{programaEstable.director.apellido}}</li>
+                  <li class="list-group-item"><b>CLAVE</b>: {{programaEstable.director.clave}}</li>
+                  <li class="list-group-item"><b>CORREO</b>: {{programaEstable.director.email}}</li>
+                  <li class="list-group-item"><b>FACULTAD O ÁREA</b>: {{programaEstable.director.facultad}}</li>
+                  <li class="list-group-item"><b>CARGO</b>: {{programaEstable.director.cargo}}</li>
+                </ul>
+              </div>
+
+
+
+              <div class="col-6">
+                <li class="list-group-item active text-center">SOCIO/S EXTERNO/S</li>
+                <ul *ngFor="let pro of programaEstable.socios" class="list-group text-dark">
+                  <li class="list-group-item"><b>INSTITUCIÓN</b>: {{pro.institucion}}</li>
+                  <li class="list-group-item"><b>DOMICILIO LEGAL</b>: {{pro.domicilioLegal}}</li>
+                  <li class="list-group-item"><b>DESCRIPCIÓN</b>: {{pro.descripcion}}</li>
+                  <li class="list-group-item"><b>NOMBRE</b>: {{pro.nombre}}</li>
+                  <li class="list-group-item"><b>APELLIDO</b>: {{pro.apellido}}</li>
+                  <li class="list-group-item"><b>TELÉFONO</b>: {{pro.telefono}}</li>
+                  <li class="list-group-item"><b>EMAIL</b>: {{pro.email}}</li>
+                  <br>
+                </ul>
+              </div>
+
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <li class="list-group-item active text-center">MIEMBROS DEL EQUIPO</li>
+                <ul *ngFor="let pro of programaEstable.miembros" class="list-group text-dark">
+                  <li class="list-group-item"><b>NOMBRE</b>: {{pro.nombre}}</li>
+                  <li class="list-group-item"><b>APELLIDO</b>: {{pro.apellido}}</li>
+                  <li class="list-group-item"><b>CLAVE</b>: {{pro.clave}}</li>
+                  <li class="list-group-item"><b>FACULTAD O ÁREA</b>: {{pro.facultad}}</li>
+                  <br>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <ul *ngIf=programaEstable class="list-group text-dark">
+                  <li class="list-group-item active" align="center">PRESENTACIÓN</li>
+                  <li class="list-group-item">{{programaEstable.presentacion}}</li>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <ul *ngIf=programaEstable class="list-group text-dark">
+                  <li class="list-group-item active" align="center">OBJETIVO/S GENERAL/ES</li>
+                  <li class="list-group-item">{{programaEstable.objetivoGeneral}}</li>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <ul *ngIf=programaEstable class="list-group text-dark">
+                  <li class="list-group-item active" align="center">OBJETIVO/S ESPECÍFICOS</li>
+                  <li class="list-group-item">{{programaEstable.objetivoEspecifico}}</li>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <ul *ngIf=programaEstable class="list-group text-dark">
+                  <li class="list-group-item active" align="center">BENEFICIAROS DE LA PROPUESTA</li>
+                  <li class="list-group-item">{{programaEstable.beneficiarios}}</li>
+                  <li class="list-group-item">NÚMERO APROXIMADO DE BENEFICIARIOS: {{programaEstable.numeroDeBeneficiarios}}</li>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <li class="list-group-item active text-center">ACTIVIDADES</li>
+                <ul *ngFor="let pro of programaEstable.listaDeActividades" class="list-group text-dark">
+                  <li class="list-group-item"><b>TIPO</b>: {{pro.tipoDeActividad}}</li>
+                  <li class="list-group-item"><b>INDICADOR DE RESULTADO</b>: {{pro.indicadorDeResultado}}</li>
+                  <li class="list-group-item"><b>MEDIO DE VERIFICACIÓN</b>: {{pro.medioDeVerificacion}}</li>
+                  <li class="list-group-item"><b>INSUMOS REQUERIDOS</b>: {{pro.insumoRequerido}}</li>
+                  <li class="list-group-item"><b>FECHA DE INICIO</b>: {{pro.fechaInicio | date:"longDate"}}</li>
+                  <li class="list-group-item"><b>FECHA DE FIN</b>: {{pro.fechaFinalizacion | date:"longDate"}}</li>
+                  <br>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <ul *ngIf=programaEstable class="list-group text-dark">
+                  <li class="list-group-item active" align="center">VINCULACION CURRICULAR Y PARTICIPACIÓN DE LOS ESTUDIANTES</li>
+                  <li class="list-group-item">{{programaEstable.vinculacionCurricular}}</li>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="col-6">
+              <ul *ngIf=programaEstable.proyectoDeInvestigacion class="list-group text-dark">
+                <li class="list-group-item active" align="center">VINCULACIÓN CON INVESTIGACIÓN</li>
+                <li class="list-group-item"><b>TÍTULO</b>: {{programaEstable.proyectoDeInvestigacion.nombre}}</li>
+                <li class="list-group-item"><b>DIRECTOR</b>: {{programaEstable.proyectoDeInvestigacion.director}}</li>
+                <li class="list-group-item"><b>RADICACIÓN</b>: {{programaEstable.proyectoDeInvestigacion.radicacion}}</li>
+                <li class="list-group-item"><b>ORGANISMO ACREDITADOR</b>: {{programaEstable.proyectoDeInvestigacion.organismoAcreditador}}</li>
+              </ul>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <ul *ngIf=programaEstable class="list-group text-dark">
+                  <li class="list-group-item active" align="center">SUPUESTOS</li>
+                  <li class="list-group-item">{{programaEstable.supuestos}}</li>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <ul *ngIf=programaEstable class="list-group text-dark">
+                  <li class="list-group-item active" align="center">EVALUACIÓN</li>
+                  <li class="list-group-item">{{programaEstable.evaluacion}}</li>
+                </ul>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button (click)="cerrarModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

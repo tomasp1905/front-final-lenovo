@@ -1,0 +1,293 @@
+<div class="estilo">
+
+<app-detalle-proyecto *ngIf="proyectoSeleccionadoBianual" [proyecto]="proyectoSeleccionadoBianual"></app-detalle-proyecto>
+
+<app-detalle-proyecto-sintetico *ngIf="proyectoSeleccionadoSinteticoBianual" [proyecto]="proyectoSeleccionadoSinteticoBianual"></app-detalle-proyecto-sintetico>
+
+<app-detalle-socio *ngIf="proyectoSeleccionadoSocioBianual" [proyecto]="proyectoSeleccionadoSocioBianual"></app-detalle-socio>
+
+<app-detalle-miembro *ngIf="proyectoSeleccionadoMiembroBianual" [proyecto]="proyectoSeleccionadoMiembroBianual"></app-detalle-miembro>
+
+
+<div class="animated fadeIn card border-primary" style="width: 75rem;">
+  <div class="card-header bg-transparent border-info">
+    <h5 align="center">LISTADO DE PROYECTOS BIANUALES ACTIVOS</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div *ngIf="proyectosBianuales?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos
+    </div>
+
+    <table class="table table-bordered table-striped text-center" *ngIf="proyectosBianuales?.length > 0">
+      <thead>
+        <tr>
+          <th>TÍTULO DEL PROYECTO</th>
+          <th>FECHA DE ACTIVACIÓN</th>
+          <th>VER DETALLE COMPLETO</th>
+          <th>VER DETALLE SINTÉTICO</th>
+          <th>VER SOCIOS</th>
+          <th>VER MIEMBROS</th>
+          <th>PRESUPUESTO <i class="far fa-file-excel"></i></th>
+          <!-- <th>RENDICIÓN CONTABLE</th> -->
+          <th>FORMATO PDF <i class="far fa-file-pdf"></i></th>
+          <th>EDITAR PROYECTO</th>
+          <th>FINALIZAR PROYECTO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proyecto of proyectosBianuales">
+          <td>{{proyecto.titulo}}</td>
+          <td>{{proyecto.fechaDeInicio | date:"longDate"}}</td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalBianual(proyecto) role="button">DETALLE</button>
+          </td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalSinteticoBianual(proyecto) role="button">DETALLE</button>
+          </td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalSocioBianual(proyecto) role="button">SOCIOS</button>
+          </td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalMiembroBianual(proyecto) role="button">MIEMBROS</button>
+          </td>
+          <!-- <td>
+            <button class="btn btn-outline-danger" (click)="generarPDFBianual(proyecto)" role="button">PDF</button>
+          </td> -->
+          <td>
+            <a href="http://localhost:8080/proyectoBianual/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">Presupuesto</a>
+          </td>
+          <td>
+            <a href="http://localhost:8080/proyectoBianual/generarPDF/{{proyecto.id}}" target='_blank' title="Ver archivo">Generar PDF</a>
+          </td>
+          <td>
+            <button class="btn btn-warning" [routerLink]="['/ver-proyecto-bianual', proyecto.id]" role="button">EDITAR</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)='finalizarBianual(proyecto)'  role="button">FINALIZAR</button>
+          </td>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<br>
+<br>
+
+<!-- -------------------PROGRAMAS ESTABLES--------------- -->
+
+<app-detalle-programa-estable *ngIf="programaEstableSeleccionado" [programaEstable]="programaEstableSeleccionado"></app-detalle-programa-estable>
+
+<app-detalle-programa-estable-sintetico *ngIf="programaEstableSeleccionadoSintetico" [programaEstable]="programaEstableSeleccionadoSintetico"></app-detalle-programa-estable-sintetico>
+
+<app-detalle-programa-estable-socio *ngIf="programaEstableSeleccionadoSocio" [programaEstable]="programaEstableSeleccionadoSocio"></app-detalle-programa-estable-socio>
+
+<app-detalle-programa-estable-miembro *ngIf="programaEstableSeleccionadoMiembro" [programaEstable]="programaEstableSeleccionadoMiembro"></app-detalle-programa-estable-miembro>
+
+<div class="animated fadeIn card border-primary mb-3" style="width: 75rem;">
+  <div class="card-header bg-transparent border-info">
+    <h5 align="center">LISTADO DE PROGRAMAS ESTABLES ACTIVOS</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div *ngIf="programasEstables?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos
+    </div>
+
+    <table class="table table-bordered table-striped text-center" *ngIf="programasEstables?.length > 0">
+      <thead>
+        <tr>
+          <th>TÍTULO DEL PROYECTO</th>
+          <th>FECHA DE ACTIVACIÓN</th>
+          <th>VER DETALLE COMPLETO</th>
+          <th>VER DETALLE SINTÉTICO</th>
+          <th>VER SOCIOS</th>
+          <th>VER MIEMBROS</th>
+          <th>PRESUPUESTO <i class="far fa-file-excel"></i></th>
+          <th>FORMATO PDF <i class="far fa-file-pdf"></i></th>
+          <th>MODIFICAR PROGRAMA</th>
+          <th>FINALIZAR PROGRAMA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let programa of programasEstables">
+          <td>{{programa.titulo}}</td>
+          <td>{{programa.fechaDeInicio | date:"longDate"}}</td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalProgramaEstable(programa) role="button">DETALLE</button>
+          </td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalProgramaEstableSintetico(programa) role="button">DETALLE</button>
+          </td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalProgramaEstableSocio(programa) role="button">SOCIOS</button>
+          </td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalProgramaEstableMiembro(programa) role="button">MIEMBROS</button>
+          </td>
+          <td>
+            <a href="http://localhost:8080/programaEstable/uploads/arch/{{programa.presupuesto}}" target='_blank' title="Ver archivo">PRESUPUESTO</a>
+          </td>
+          <td>
+            <a href="http://localhost:8080/programaEstable/generarPDF/{{programa.id}}" target='_blank' title="Ver archivo">GENERAR PDF</a>
+          </td>
+          <td>
+            <button class="btn btn-warning" [routerLink]="['/ver-programa-estable', programa.id]" role="button">EDITAR</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)='finalizarEstable(programa)'  role="button">FINALIZAR</button>
+          </td>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<br>
+<br>
+
+<!-- -------------------PROYECTOS BIENESTAR--------------- -->
+
+<app-detalle-proyecto-bienestar *ngIf="proyectoBienestarSeleccionado" [proyectoBienestar]="proyectoBienestarSeleccionado"></app-detalle-proyecto-bienestar>
+
+<app-detalle-proyecto-bienestar-miembro *ngIf="proyectoBienestarSeleccionadoMiembro" [proyectoBienestar]="proyectoBienestarSeleccionadoMiembro"></app-detalle-proyecto-bienestar-miembro>
+
+<app-detalle-proyecto-bienestar-sintetico *ngIf="proyectoBienestarSeleccionadoSintetico" [proyectoBienestar]="proyectoBienestarSeleccionadoSintetico"></app-detalle-proyecto-bienestar-sintetico>
+
+
+
+ <div class="animated fadeIn card border-primary mb-3" style="width: 75rem;">
+  <div class="card-header bg-transparent border-info">
+    <h5 align="center">LISTADO DE PROYECTOS DE BIENESTAR ACTIVOS</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div *ngIf="proyectosBienestar?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos
+    </div>
+
+    <table class="table table-bordered table-striped text-center" *ngIf="proyectosBienestar?.length > 0">
+      <thead>
+        <tr>
+          <th>TÍTULO DEL PROYECTO</th>
+          <th>FECHA DE ACTIVACIÓN</th>
+          <th>VER DETALLE COMPLETO</th>
+          <th>VER DETALLE SINTÉTICO</th>
+          <th>VER MIEMBROS</th>
+          <th>PRESUPUESTO <i class="far fa-file-excel"></i></th>
+          <th>FORMATO PDF <i class="far fa-file-pdf"></i></th>
+          <th>MODIFICAR PROYECTO</th>
+          <th>FINALIZAR PROYECTO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proyecto of proyectosBienestar">
+          <td>{{proyecto.titulo}}</td>
+          <td>{{proyecto.fechaDeInicio | date:"longDate"}}</td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalProyectoBienestar(proyecto) role="button">DETALLE</button>
+          </td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalProyectoBienestarSintetico(proyecto) role="button">DETALLE</button>
+          </td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalProyectoBienestarMiembro(proyecto) role="button">MIEMBROS</button>
+          </td>
+          <td>
+            <a href="http://localhost:8080/proyectoBienestar/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">Presupuesto</a>
+          </td>
+          <td>
+            <a href="http://localhost:8080/proyectoBienestar/generarPDF/{{proyecto.id}}" target='_blank' title="Ver archivo">Generar PDF</a>
+          </td>
+          <td>
+            <button class="btn btn-warning" [routerLink]="['/ver-proyecto-bienestar', proyecto.id]" role="button">EDITAR</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)='finalizarBienestar(proyecto)'  role="button">FINALIZAR</button>
+          </td>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<br>
+<br>
+
+<!-- -------------------PROYECTOS ESPECIALES--------------- -->
+
+<app-detalle-proyecto-especial *ngIf="proyectoEspecialSeleccionado" [proyectoEspecial]="proyectoEspecialSeleccionado"></app-detalle-proyecto-especial>
+
+<app-detalle-proyecto-especial-miembro *ngIf="proyectoEspecialSeleccionadoMiembro" [proyectoEspecial]="proyectoEspecialSeleccionadoMiembro"></app-detalle-proyecto-especial-miembro>
+
+<app-detalle-proyecto-especial-socio *ngIf="proyectoEspecialSeleccionadoSocio" [proyectoEspecial]="proyectoEspecialSeleccionadoSocio"></app-detalle-proyecto-especial-socio>
+
+<app-detalle-proyecto-especial-sintetico *ngIf="proyectoEspecialSeleccionadoSintetico" [proyectoEspecial]="proyectoEspecialSeleccionadoSintetico"></app-detalle-proyecto-especial-sintetico>
+
+ <div class="animated fadeIn card border-primary mb-3" style="width: 75rem;">
+  <div class="card-header bg-transparent border-info">
+    <h5 align="center">LISTADO DE PROYECTOS ESPECIALES ACTIVOS</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div *ngIf="proyectosEspeciales?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos
+    </div>
+
+    <table class="table table-bordered table-striped text-center" *ngIf="proyectosEspeciales?.length > 0">
+      <thead>
+        <tr>
+          <th>TÍTULO DEL PROYECTO</th>
+          <th>FECHA DE ACTIVACIÓN</th>
+          <th>VER DETALLE COMPLETO</th>
+          <th>VER DETALLE SINTÉTICO</th>
+          <th>VER SOCIOS</th>
+          <th>VER MIEMBROS</th>
+          <th>PRESUPUESTO <i class="far fa-file-excel"></i></th>
+          <th>FORMATO PDF <i class="far fa-file-pdf"></i></th>
+          <th>MODIFICAR PROYECTO</th>
+          <th>FINALIZAR PROYECTO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proyecto of proyectosEspeciales">
+          <td>{{proyecto.titulo}}</td>
+          <td>{{proyecto.fechaDeInicio | date:"longDate"}}</td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalProyectoEspecial(proyecto) role="button">DETALLE</button>
+          </td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalProyectoEspecialSintetico(proyecto) role="button">DETALLE</button>
+          </td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalProyectoEspecialSocio(proyecto) role="button">SOCIOS</button>
+          </td>
+          <td>
+            <button class="btn btn-outline-info" (click)=abrirModalProyectoEspecialMiembro(proyecto) role="button">MIEMBROS</button>
+          </td>
+          <td>
+            <a href="http://localhost:8080/proyectoEspecial/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">Presupuesto</a>
+          </td>
+          <td>
+            <a href="http://localhost:8080/proyectoEspecial/generarPDF/{{proyecto.id}}" target='_blank' title="Ver archivo">Generar PDF</a>
+          </td>
+          <td>
+            <button class="btn btn-warning" [routerLink]="['/ver-proyecto-especial', proyecto.id]" role="button">EDITAR</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)='finalizarEspecial(proyecto)'  role="button">FINALIZAR</button>
+          </td>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+    <div class="row">
+      <div class="col-3">
+   <button class="boton btn btn-primary" role="button" [routerLink]="['/elegir-proyecto']">VOLVER ATRÁS</button>
+      </div>
+    </div>
+
+</div>

@@ -1,0 +1,74 @@
+<div class="abrir-modal animated fadeIn" *ngIf="modalSinteticoService.modal">
+  <div class="modal" tabindex="-1" role="dialog" style="display:block;">
+    <div class="modal-dialog modal-dialog-scrollable  modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-transparent border-info">
+          <h5 class="modal-title">{{proyecto.titulo | uppercase}}</h5>
+          <button (click)="cerrarModalSintetico()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+
+            <div class="row">
+
+              <div class="col-8">
+                <ul *ngIf=proyecto class="list-group text-dark">
+                  <li class="list-group-item active" align="center">DIRECTOR/A DEL PROYECTO</li>
+                  <li class="list-group-item"><b>NOMBRE:</b>: {{proyecto.director.nombre}}</li>
+                  <li class="list-group-item"><b>APELLIDO</b>: {{proyecto.director.apellido}}</li>
+                  <li class="list-group-item"><b>CLAVE</b>: {{proyecto.director.clave}}</li>
+                  <li class="list-group-item"><b>CORREO</b>: {{proyecto.director.email}}</li>
+                  <li class="list-group-item"><b>FACULTAD O ÁREA</b>: {{proyecto.director.facultad}}</li>
+                  <li class="list-group-item"><b>CARGO</b>: {{proyecto.director.cargo}}</li>
+                </ul>
+              </div>
+
+            </div>
+
+            <br>
+
+            <div class="row">
+
+              <div class="col-12">
+                <li class="list-group-item active text-center">SOCIOS</li>
+                <ul *ngFor="let pro of proyecto.socios" class="list-group text-dark">
+                  <li class="list-group-item"><b>INSTITUCIÓN</b>: {{pro.institucion}}</li>
+                  <li class="list-group-item"><b>DOMICILIO LEGAL</b>: {{pro.domicilioLegal}}</li>
+                  <li class="list-group-item"><b>DESCRIPCIÓN</b>: {{pro.descripcion}}</li>
+                  <li class="list-group-item"><b>NOMBRE</b>: {{pro.nombre}}</li>
+                  <li class="list-group-item"><b>APELLIDO</b>: {{pro.apellido}}</li>
+                  <li class="list-group-item"><b>TELÉFONO</b>: {{pro.telefono}}</li>
+                  <li class="list-group-item"><b>EMAIL</b>: {{pro.email}}</li>
+                  <br>
+                </ul>
+              </div>
+
+            </div>
+
+              <div class="row">
+
+                <div class="col-12">
+                  <ul *ngIf=proyecto class="list-group text-dark">
+                    <li class="list-group-item active" align="center">SÍNTESIS DEL PROYECTO</li>
+                    <li class="list-group-item">{{proyecto.sintesisDelProyecto}}</li>
+                  </ul>
+                </div>
+
+              </div>
+
+          </div>
+
+
+        </div>
+
+
+        <div class="modal-footer">
+          <button (click)="cerrarModalSintetico()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+
+
+      </div>
+    </div>
+  </div>

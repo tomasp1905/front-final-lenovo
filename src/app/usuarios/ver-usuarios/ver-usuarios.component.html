@@ -1,0 +1,122 @@
+<div class="estilo">
+
+  <div class="animated fadeIn card border-primary mb-3">
+    <div class="card-header bg-transparent border-info">
+      <h5 align="center">LISTADO DE USUARIOS ADMIN</h5>
+    </div>
+    <div class="card-body text-primary">
+
+      <div *ngIf="usuariosAdmin?.length == 0" class="alert alert-info">
+        No hay registros de usuarios
+      </div>
+
+      <table class="table table-bordered table-striped text-center" *ngIf="usuariosAdmin?.length > 0">
+        <thead>
+          <tr>
+            <th>NOMBRE</th>
+            <th>APELLIDO</th>
+            <th>EMAIL</th>
+            <th>CLAVE</th>
+            <th>ASIGNAR COMO DOCENTE</th>
+            <th>ASIGNAR COMO VISITANTE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuariosAdmin">
+            <td>{{usuario.nombre}}</td>
+            <td>{{usuario.apellido}}</td>
+            <td>{{usuario.email}}</td>
+            <td>{{usuario.username}}</td>
+            <td>
+              <button class="btn btn-outline-success" (click)="establecerComoUser(usuario)" role="button">DOCENTE</button>
+            </td>
+            <td>
+              <button class="btn btn-outline-success" (click)="establecerComoVisit(usuario)" role="button">VISITANTE</button>
+            </td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="animated fadeIn card border-primary mb-3">
+    <div class="card-header bg-transparent border-info">
+      <h5 align="center">LISTADO DE USUARIOS DOCENTE</h5>
+    </div>
+    <div class="card-body text-primary">
+
+      <div *ngIf="usuariosUser?.length == 0" class="alert alert-info">
+        No hay registros de usuarios
+      </div>
+
+      <table class="table table-bordered table-striped text-center" *ngIf="usuariosUser?.length > 0">
+        <thead>
+          <tr>
+            <th>NOMBRE</th>
+            <th>APELLIDO</th>
+            <th>EMAIL</th>
+            <th>CLAVE</th>
+            <th>ASIGNAR COMO ADMIN</th>
+            <th>ASIGNAR COMO VISITANTE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuariosUser">
+            <td>{{usuario.nombre}}</td>
+            <td>{{usuario.apellido}}</td>
+            <td>{{usuario.email}}</td>
+            <td>{{usuario.username}}</td>
+            <td>
+              <button class="btn btn-outline-success" (click)="establecerComoAdmin(usuario)" role="button">ADMIN</button>
+            </td>
+            <td>
+              <button class="btn btn-outline-success" (click)="establecerComoVisit(usuario)" role="button">VISITANTE</button>
+            </td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="animated fadeIn card border-primary mb-3">
+    <div class="card-header bg-transparent border-info">
+      <h5 align="center">LISTADO DE USUARIOS VISITANTES</h5>
+    </div>
+    <div class="card-body text-primary">
+
+      <div *ngIf="usuariosVisit?.length == 0" class="alert alert-info">
+        No hay registros de usuarios
+      </div>
+
+      <table class="table table-bordered table-striped text-center" *ngIf="usuariosVisit?.length > 0">
+        <thead>
+          <tr>
+            <th>NOMBRE</th>
+            <th>APELLIDO</th>
+            <th>EMAIL</th>
+            <th>CLAVE</th>
+            <th>ASIGNAR COMO DOCENTE</th>
+            <th>ASIGNAR COMO ADMIN</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let usuario of usuariosVisit">
+            <td>{{usuario.nombre}}</td>
+            <td>{{usuario.apellido}}</td>
+            <td>{{usuario.email}}</td>
+            <td>{{usuario.username}}</td>
+            <td>
+              <button class="btn btn-outline-success" (click)="establecerComoUser(usuario)" role="button">DOCENTE</button>
+            </td>
+            <td>
+              <button class="btn btn-outline-success" (click)="establecerComoAdmin(usuario)" role="button">ADMIN</button>
+            </td>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</div>

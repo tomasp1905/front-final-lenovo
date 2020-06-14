@@ -1,0 +1,208 @@
+<div class="abrir-modal animated fadeIn" *ngIf="modalProyectoBienestarService.modal">
+  <div class="modal" tabindex="-1" role="dialog" style="display:block;">
+    <div class="modal-dialog modal-dialog-scrollable  modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header bg-transparent border-info">
+          <h5 class="modal-title">PROYECTO DE BIENESTAR</h5>
+          <button (click)="cerrarModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+
+            <div class="row">
+
+              <div class="col-7">
+                <ul *ngIf=proyectoBienestar class="list-group text-dark">
+                  <li class="list-group-item active" align="center">TÍTULO</li>
+                  <li class="list-group-item">{{proyectoBienestar.titulo}}</li>
+                </ul>
+              </div>
+
+              <div class="col-2">
+                <ul *ngIf=proyectoBienestar class="list-group text-dark">
+                  <li class="list-group-item active" align="center">AÑO</li>
+                  <li class="list-group-item">{{proyectoBienestar.anioDePresentacion}}</li>
+                </ul>
+              </div>
+
+              <div class="col-3">
+                <ul *ngIf=proyectoBienestar class="list-group text-dark">
+                  <li class="list-group-item active" align="center">TIPO</li>
+                  <li class="list-group-item">{{proyectoBienestar.tipoDeProyecto}}</li>
+                </ul>
+              </div>
+
+            </div>
+
+            <br>
+
+
+
+            <div class="row">
+
+              <div class="col-3">
+                <li class="list-group-item active text-center">UNIDAD/ES ACADÉMICA/S</li>
+                <ul *ngFor="let pro of proyectoBienestar.unidadesAcademicas" class="list-group text-dark">
+                  <li class="list-group-item">{{pro.nombre}}</li>
+                </ul>
+              </div>
+
+              <div class="col-3">
+                <li class="list-group-item active text-center">CARRERA/S</li>
+                <ul *ngFor="let pro of proyectoBienestar.listaDeCarreras" class="list-group text-dark">
+                  <li class="list-group-item">{{pro.nombre}}</li>
+                </ul>
+              </div>
+
+              <div class="col-3">
+                <li class="list-group-item active text-center">CATEDRA/S</li>
+                <ul *ngFor="let pro of proyectoBienestar.listaDeCatedras" class="list-group text-dark">
+                  <li class="list-group-item">{{pro.nombre}}</li>
+                </ul>
+              </div>
+
+              <div class="col-3">
+                <li class="list-group-item active text-center">TEMATICA/S</li>
+                <ul *ngFor="let pro of proyectoBienestar.listaDeTematicas" class="list-group text-dark">
+                  <li class="list-group-item">{{pro.nombre}}</li>
+                </ul>
+              </div>
+
+            </div>
+
+            <br>
+
+
+            <div class="row">
+              <div class="col-6">
+                <ul *ngIf=proyectoBienestar class="list-group text-dark">
+                  <li class="list-group-item active" align="center">DIRECTOR/A DEL PROYECTO</li>
+                  <li class="list-group-item"><b>NOMBRE:</b>: {{proyectoBienestar.director.nombre}}</li>
+                  <li class="list-group-item"><b>APELLIDO</b>: {{proyectoBienestar.director.apellido}}</li>
+                  <li class="list-group-item"><b>CLAVE</b>: {{proyectoBienestar.director.clave}}</li>
+                  <li class="list-group-item"><b>CORREO</b>: {{proyectoBienestar.director.email}}</li>
+                  <li class="list-group-item"><b>FACULTAD O ÁREA</b>: {{proyectoBienestar.director.facultad}}</li>
+                  <li class="list-group-item"><b>CARGO</b>: {{proyectoBienestar.director.cargo}}</li>
+                </ul>
+              </div>
+            </div>
+
+
+
+
+            <br>
+
+
+            <div class="row">
+              <div class="col-12">
+                <li class="list-group-item active text-center">MIEMBROS DEL EQUIPO</li>
+                <ul *ngFor="let pro of proyectoBienestar.miembros" class="list-group text-dark">
+                  <li class="list-group-item"><b>NOMBRE</b>: {{pro.nombre}}</li>
+                  <li class="list-group-item"><b>APELLIDO</b>: {{pro.apellido}}</li>
+                  <li class="list-group-item"><b>CLAVE</b>: {{pro.clave}}</li>
+                  <li class="list-group-item"><b>FACULTAD O ÁREA</b>: {{pro.facultad}}</li>
+                  <br>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <ul *ngIf=proyectoBienestar.razonRenovacion class="list-group text-dark">
+                  <li class="list-group-item active" align="center">RAZONES DE RENOVACIÓN</li>
+                  <li class="list-group-item">{{proyectoBienestar.razonRenovacion}}</li>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <ul *ngIf=proyectoBienestar class="list-group text-dark">
+                  <li class="list-group-item active" align="center">DESCRIPCIÓN DEL PROBLEMA O SITUACIÓN</li>
+                  <li class="list-group-item">{{proyectoBienestar.situacionAResolver}}</li>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <ul *ngIf=proyectoBienestar class="list-group text-dark">
+                  <li class="list-group-item active" align="center">SÍNTESIS DEL PROYECTO</li>
+                  <li class="list-group-item">{{proyectoBienestar.sintesisDelProyecto}}</li>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <ul *ngIf=proyectoBienestar class="list-group text-dark">
+                  <li class="list-group-item active" align="center">OBJETIVO/S GENERAL/ES</li>
+                  <li class="list-group-item">{{proyectoBienestar.objetivoGeneral}}</li>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <ul *ngIf=proyectoBienestar class="list-group text-dark">
+                  <li class="list-group-item active" align="center">OBJETIVO/S ESPECÍFICOS</li>
+                  <li class="list-group-item">{{proyectoBienestar.objetivoEspecifico}}</li>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <ul *ngIf=proyectoBienestar class="list-group text-dark">
+                  <li class="list-group-item active" align="center">BENEFICIAROS DE LA PROPUESTA</li>
+                  <li class="list-group-item">{{proyectoBienestar.beneficiarios}}</li>
+                  <li class="list-group-item">NÚMERO APROXIMADO DE BENEFICIARIOS: {{proyectoBienestar.numeroDeBeneficiarios}}</li>
+                </ul>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-12">
+                <li class="list-group-item active text-center">ACTIVIDADES</li>
+                <ul *ngFor="let pro of proyectoBienestar.listaDeActividades" class="list-group text-dark">
+                  <li class="list-group-item"><b>TIPO</b>: {{pro.tipoDeActividad}}</li>
+                  <li class="list-group-item"><b>INDICADOR DE RESULTADO</b>: {{pro.indicadorDeResultado}}</li>
+                  <li class="list-group-item"><b>MEDIO DE VERIFICACIÓN</b>: {{pro.medioDeVerificacion}}</li>
+                  <li class="list-group-item"><b>INSUMOS REQUERIDOS</b>: {{pro.insumoRequerido}}</li>
+                  <li class="list-group-item"><b>FECHA DE INICIO</b>: {{pro.fechaInicio | date:"longDate"}}</li>
+                  <li class="list-group-item"><b>FECHA DE FIN</b>: {{pro.fechaFinalizacion | date:"longDate"}}</li>
+                  <br>
+                </ul>
+              </div>
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button (click)="cerrarModal()" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

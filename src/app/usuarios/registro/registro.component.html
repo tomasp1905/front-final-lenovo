@@ -1,0 +1,141 @@
+<div class="estilo divRegistro animated fadeIn">
+
+<div class="card border-primary" style="width: 35rem;">
+  <div class="card-header text-center"><h5>REGISTRAR USUARIO</h5></div>
+  <div class="card-body">
+
+    <form #f="ngForm">
+
+        <div class="form-group col-sm-6">
+          <input class="form-control" type="text" name="nombre" [class.is-invalid]="nombre.invalid && nombre.touched" [(ngModel)]="usuario.nombre" required #nombre="ngModel" placeholder="Nombre" style="width:410px">
+          <small *ngIf="nombre.invalid && nombre.touched" class="form-text text-danger animated fadeIn">Campo requerido</small>
+        </div>
+
+
+      <div class="form-group col-sm-6">
+        <input type="text" class="form-control" name="apellido" [class.is-invalid]="apellido.invalid && apellido.touched" [(ngModel)]="usuario.apellido"  #apellido="ngModel" placeholder="Apellido"  required style="width:410px">
+        <small *ngIf="apellido.invalid && apellido.touched" class="form-text text-danger animated fadeIn">Campo requerido</small>
+      </div>
+
+
+      <div class="form-group col-sm-6">
+        <input type="email" class="form-control" name="email" [class.is-invalid]="email.invalid && email.touched" [(ngModel)]="usuario.email" #email="ngModel" placeholder="Email" email  required style="width:410px">
+        <small *ngIf="email.invalid && email.touched" class="form-text text-danger animated fadeIn">Campo requerido</small>
+      </div>
+
+
+      <div class="form-group col-sm-6">
+        <input type="text" class="form-control" name="username" [class.is-invalid]="username.invalid && username.touched" [(ngModel)]="usuario.username" #username="ngModel"  placeholder="Clave UCC"  required style="width:410px">
+        <small *ngIf="username.invalid && username.touched" class="form-text text-danger animated fadeIn">Campo requerido</small>
+      </div>
+
+
+      <div class='form-group'>
+        <div class="col-sm-6">
+          <mat-form-field class="full-width">
+            <input type="text" placeholder="Unidad/es Académica/s" aria-label="listaDeUnidadesAcademicas" matInput [formControl]="autocompleteControlUnidadAcademica" [matAutocomplete]="autoUnidadAcademica">
+            <mat-autocomplete #autoUnidadAcademica="matAutocomplete" [displayWith]="mostrarNombreUnidadAcademica" (optionSelected)="seleccionarUnidadAcademica($event)">
+              <mat-option *ngFor="let unidad of unidadesAcademicasFiltradas | async" [value]="unidad">
+                {{unidad.nombre}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class='form-group'>
+        <div class="col-sm-6">
+          <table class="table table-bordered" *ngIf="usuario.listaDeUnidadesAcademicas?.length>0">
+            <thead>
+              <tr align="center">
+                <th>Unidad Académica</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let unidad of usuario.listaDeUnidadesAcademicas">
+                <td>{{unidad.nombre}}</td>
+                <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarUnidadAcademica(unidad.id)">X</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class='form-group '>
+        <div class="col-sm-6">
+          <mat-form-field class="full-width">
+            <input type="text" placeholder="Carrera/s" aria-label="listaDeCarreras" matInput [formControl]="autocompleteControlCarrera" [matAutocomplete]="autoCarrera">
+            <mat-autocomplete #autoCarrera="matAutocomplete" [displayWith]="mostrarNombreCarrera" (optionSelected)="seleccionarCarrera($event)">
+              <mat-option *ngFor="let carrera of carrerasFiltradas | async" [value]="carrera">
+                {{carrera.nombre}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class='form-group'>
+        <div class="col-sm-6">
+          <table class="table table-bordered" *ngIf="usuario.listaDeCarreras?.length>0">
+            <thead>
+              <tr align="center">
+                <th>Carrera</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let carrera of usuario.listaDeCarreras">
+                <td>{{carrera.nombre}}</td>
+                <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarCarrera(carrera.id)">X</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- <div class="form-group col-sm-6">
+        <input type="text" class="form-control" name="cargo" [class.is-invalid]="cargo.invalid && cargo.touched" [(ngModel)]="usuario.cargo" #cargo="ngModel"  placeholder="Cargo"  required style="width:410px">
+        <small *ngIf="cargo.invalid && cargo.touched" class="form-text text-danger animated fadeIn">Campo requerido</small>
+      </div> -->
+
+      <div class="form-group">
+        <!-- <label for="cargo" class="col-form-label col-sm-2">Cargo</label> -->
+        <div class="col-sm-6">
+          <select [compareWith]="compararCargo" name="cargo" class="form-control" [(ngModel)]="usuario.cargo" style="width:410px;" >
+            <option [ngValue]="undefined">Seleccionar cargo</option>
+             <option *ngFor="let cargo of cargos" [ngValue]="cargo">{{region.nombre}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group col-sm-6">
+        <input type="number" class="form-control" name="telefono" [class.is-invalid]="telefono.invalid && telefono.touched" [(ngModel)]="usuario.telefono" #telefono="ngModel"  placeholder="Teléfono"  required style="width:410px">
+        <small *ngIf="telefono.invalid && telefono.touched" class="form-text text-danger animated fadeIn">Campo requerido</small>
+      </div>
+
+      <div class="form-group col-sm-6">
+        <input type="number" class="form-control" name="dni" [class.is-invalid]="dni.invalid && dni.touched" [(ngModel)]="usuario.dni" #dni="ngModel"  placeholder="DNI"  required style="width:410px">
+        <small *ngIf="dni.invalid && dni.touched" class="form-text text-danger animated fadeIn">Campo requerido</small>
+      </div>
+
+
+      <div class="form-group col-sm-6">
+        <input type="password" class="form-control" name="password" [class.is-invalid]="password.invalid && password.touched" [(ngModel)]="usuario.password" minlength="6" #password="ngModel" minlength="6"  placeholder="Contraseña" required style="width:410px">
+        <small *ngIf="password.invalid && password.touched" class="form-text text-danger animated fadeIn">Debe contener un mínimo 6 caracteres</small>
+      </div>
+
+      <div class="form-group col-sm-3">
+      <button class="btn btn-primary" role="button" (click)='crearUsuario()' [disabled]="!f.form.valid">ENVIAR</button>
+      </div>
+
+      <div class="text-center">
+        <a routerLink="/login" class="txt1">
+          ¿Ya tenés cuenta? Ingresar
+        </a>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+</div>

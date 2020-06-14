@@ -1,0 +1,167 @@
+<div class="estilo">
+
+<app-detalle-proyecto-bianual-autorizado *ngIf="proyectoSeleccionadoBianual" [proyecto]="proyectoSeleccionadoBianual"></app-detalle-proyecto-bianual-autorizado>
+
+<div class="animated fadeIn cardcss card border-primary mb-3">
+  <div class="card-header bg-transparent border-info">
+    <h5 align="center">LISTADO DE PROYECTOS BIANUALES AUTORIZADOS</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div *ngIf="proyectosBianuales?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos
+    </div>
+
+    <table class="table table-bordered table-striped text-center" *ngIf="proyectosBianuales?.length > 0">
+      <thead>
+        <tr>
+          <th>TÍTULO DEL PROYECTO</th>
+          <th>FECHA DE AUTORIZACIÓN</th>
+          <th>VER DETALLE COMPLETO</th>
+          <th>ACTIVAR PROYECTO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proyecto of proyectosBianuales">
+          <td>{{proyecto.titulo}}</td>
+          <td>{{proyecto.fechaDeAutorizacion | date:"longDate"}}</td>
+          <td>
+            <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">DETALLE</button>
+          </td>
+          <td>
+            <button class="btn btn-success" (click)="activarBianual(proyecto)" role="button">ACTIVAR</button>
+          </td>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<br>
+<br>
+
+<app-detalle-programa-estable-autorizado *ngIf="programaEstableSeleccionado" [programaEstable]="programaEstableSeleccionado"></app-detalle-programa-estable-autorizado>
+
+<div class="animated fadeIn cardcss card border-primary mb-3">
+  <div class="card-header bg-transparent border-info">
+    <h5 align="center">LISTADO DE PROGRAMAS ESTABLES AUTORIZADOS</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div *ngIf="programasEstables?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos
+    </div>
+
+    <table class="table table-bordered table-striped text-center" *ngIf="programasEstables?.length > 0">
+      <thead>
+        <tr>
+          <th>TÍTULO DEL PROGRAMA</th>
+          <th>FECHA DE AUTORIZACIÓN</th>
+          <th>VER DETALLE COMPLETO</th>
+          <th>ACTIVAR PROGRAMA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let programaEstable of programasEstables">
+          <td>{{programaEstable.titulo}}</td>
+          <td>{{programaEstable.fechaDeAutorizacion | date:"longDate"}}</td>
+          <td>
+            <button class="btn btn-outline-info" (click)="abrirModalEstable(programaEstable)" role="button">DETALLE</button>
+          </td>
+          <td>
+            <button class="btn btn-success" (click)="activarEstable(programaEstable)" role="button">ACTIVAR</button>
+          </td>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<br>
+<br>
+
+<app-detalle-proyecto-bienestar-autorizado *ngIf="proyectoBienestarSeleccionado" [proyectoBienestar]="proyectoBienestarSeleccionado"></app-detalle-proyecto-bienestar-autorizado>
+
+<div class="animated fadeIn cardcss card border-primary mb-3">
+  <div class="card-header bg-transparent border-info">
+    <h5 align="center">LISTADO DE PROYECTOS BIENESTAR AUTORIZADOS</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div *ngIf="proyectosBienestar?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos
+    </div>
+
+    <table class="table table-bordered table-striped text-center" *ngIf="proyectosBienestar?.length > 0">
+      <thead>
+        <tr>
+          <th>TÍTULO DEL PROYECTO</th>
+          <th>FECHA DE AUTORIZACIÓN</th>
+          <th>VER DETALLE COMPLETO</th>
+          <th>ACTIVAR PROYECTO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proyectoBienestar of proyectosBienestar">
+          <td>{{proyectoBienestar.titulo}}</td>
+          <td>{{proyectoBienestar.fechaDeAutorizacion | date:"longDate"}}</td>
+          <td>
+            <button class="btn btn-outline-info" (click)="abrirModalBienestar(proyectoBienestar)" role="button">DETALLE</button>
+          </td>
+          <td>
+            <button class="btn btn-success" (click)="activarBienestar(proyectoBienestar)" role="button">ACTIVAR</button>
+          </td>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<br>
+<br>
+
+<app-detalle-proyecto-especial-autorizado *ngIf="proyectoEspecialSeleccionado" [proyectoEspecial]="proyectoEspecialSeleccionado"></app-detalle-proyecto-especial-autorizado>
+
+<div class="animated fadeIn cardcss card border-primary mb-3">
+  <div class="card-header bg-transparent border-info">
+    <h5 align="center">LISTADO DE PROYECTOS ESPECIALES AUTORIZADOS</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div *ngIf="proyectosEspeciales?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos
+    </div>
+
+    <table class="table table-bordered table-striped text-center" *ngIf="proyectosEspeciales?.length > 0">
+      <thead>
+        <tr>
+          <th>TÍTULO DEL PROYECTO</th>
+          <th>FECHA DE AUTORIZACIÓN</th>
+          <th>VER DETALLE COMPLETO</th>
+          <th>ACTIVAR PROYECTO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proyectoEspecial of proyectosEspeciales">
+          <td>{{proyectoEspecial.titulo}}</td>
+          <td>{{proyectoEspecial.fechaDeAutorizacion | date:"longDate"}}</td>
+          <td>
+            <button class="btn btn-outline-info" (click)="abrirModalEspecial(proyectoEspecial)" role="button">DETALLE</button>
+          </td>
+          <td>
+            <button class="btn btn-success" (click)="activarEspecial(proyectoEspecial)" role="button">ACTIVAR</button>
+          </td>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-3">
+<button class="boton btn btn-primary" role="button" [routerLink]="['/elegir-proyecto']">VOLVER ATRÁS</button>
+  </div>
+</div>
+
+
+</div>
