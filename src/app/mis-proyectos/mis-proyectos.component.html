@@ -1,5 +1,7 @@
 <div class="estilo">
 
+<app-detalle-bianual-mis-proyectos *ngIf="proyectoSeleccionadoBianual" [proyecto]="proyectoSeleccionadoBianual"></app-detalle-bianual-mis-proyectos>
+
 <div class="animated fadeIn cardcss card border-primary mb-3">
   <div class="card-header bg-transparent border-info">
     <h5 align="center">LISTADO DE PROYECTOS BIANUALES</h5>
@@ -14,11 +16,89 @@
       <thead>
         <tr>
           <th>TÍTULO DEL PROYECTO</th>
+          <th>ESTADO</th>
+          <th>VER DETALLE COMPLETO</th>
+          <th>EDITAR PROYECTO</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let proyecto of proyectosBianuales">
           <td>{{proyecto.titulo}}</td>
+          <td>{{proyecto.estado}}</td>
+          <td>
+            <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">DETALLE</button>
+          </td>
+          <td>
+            <button class="btn btn-warning" [routerLink]="['/ver-proyecto-bianual', proyecto.id]" role="button">EDITAR</button>
+          </td>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="animated fadeIn cardcss card border-primary mb-3">
+  <div class="card-header bg-transparent border-info">
+    <h5 align="center">LISTADO DE PROYECTOS ESPECIALES</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div *ngIf="proyectosEspeciales?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos
+    </div>
+
+    <table class="table table-bordered table-striped text-center" *ngIf="proyectosEspeciales?.length > 0" >
+      <thead>
+        <tr>
+          <th>TÍTULO DEL PROYECTO</th>
+          <th>ESTADO</th>
+          <th>VER DETALLE COMPLETO</th>
+          <th>EDITAR PROYECTO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proyecto of proyectosEspeciales">
+          <td>{{proyecto.titulo}}</td>
+          <td>{{proyecto.estado}}</td>
+          <!-- <td>
+            <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">DETALLE</button>
+          </td> -->
+          <td>
+            <button class="btn btn-warning" [routerLink]="['/ver-proyecto-especial', proyecto.id]" role="button">EDITAR</button>
+          </td>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="animated fadeIn cardcss card border-primary mb-3">
+  <div class="card-header bg-transparent border-info">
+    <h5 align="center">LISTADO DE PROYECTOS DE BIENESTAR</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div *ngIf="proyectosBienestar?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos
+    </div>
+
+    <table class="table table-bordered table-striped text-center" *ngIf="proyectosBienestar?.length > 0" >
+      <thead>
+        <tr>
+          <th>TÍTULO DEL PROYECTO</th>
+          <th>ESTADO</th>
+          <th>VER DETALLE COMPLETO</th>
+          <th>EDITAR PROYECTO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let proyecto of proyectosBienestar">
+          <td>{{proyecto.titulo}}</td>
+          <td>{{proyecto.estado}}</td>
+          <!-- <td>
+            <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">DETALLE</button>
+          </td> -->
+          <td>
+            <button class="btn btn-warning" [routerLink]="['/ver-proyecto-bienestar', proyecto.id]" role="button">EDITAR</button>
+          </td>
       </tbody>
     </table>
   </div>

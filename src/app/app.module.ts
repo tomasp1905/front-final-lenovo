@@ -64,6 +64,7 @@ import { VerUsuariosComponent } from './usuarios/ver-usuarios/ver-usuarios.compo
 import {TokenInterceptor} from './usuarios/interceptors/token.interceptor';
 import {AuthInterceptor} from './usuarios/interceptors/auth.interceptor';
 import { MisProyectosComponent } from './mis-proyectos/mis-proyectos.component';
+import { DetalleBianualMisProyectosComponent } from './mis-proyectos/detalle-bianual-mis-proyectos/detalle-bianual-mis-proyectos.component';
 
 
 
@@ -144,6 +145,7 @@ const routes: Routes = [
     RegistroComponent,
     VerUsuariosComponent,
     MisProyectosComponent,
+    DetalleBianualMisProyectosComponent,
 
 
   ],
