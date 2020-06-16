@@ -43,12 +43,12 @@ export class RegistroComponent implements OnInit {
           flatMap(value => value ? this._filterCarrera(value) : [])
         );
 
-      // this.registroService.getCargos().subscribe(cargos => this.cargos = cargos);
+      this.registroService.getCargos().subscribe(cargos => this.cargos = cargos);
 
   }
 
   public crearUsuario(): void {
-
+    console.log(this.usuario)
     this.registroService.create(this.usuario).
       subscribe(response => {
         this.router.navigate(['/login']);
@@ -106,11 +106,12 @@ export class RegistroComponent implements OnInit {
     this.usuario.listaDeCarreras = this.usuario.listaDeCarreras.filter((carrera: Carrera) => id !== carrera.id)
   }
 
-  compararCargo(o1:Cargo, o2:Cargo):boolean {
-    if(o1 === undefined && o2 === undefined){
+  compararCargo(o1: Cargo, o2: Cargo): boolean {
+    if (o1 === undefined && o2 === undefined) {
       return true;
     }
-    return o1 == null || o2 == null? false: o1.id===o2.id;
+
+    return o1 === null || o2 === null || o1 === undefined || o2 === undefined ? false : o1.id === o2.id;
   }
 
 

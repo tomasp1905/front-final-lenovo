@@ -14,5 +14,6 @@ export class Usuario {
   listaDeCarreras: Array<Carrera> = [];
   dni: string;
   listaDeUnidadesAcademicas: Array<UnidadAcademica> = [];
-  cargo: Cargo;
+  cargo:Cargo;
+
 }

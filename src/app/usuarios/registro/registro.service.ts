@@ -17,7 +17,7 @@ export class RegistroService {
 
   private urlEndPointUnidadAcedemica: string = 'http://localhost:8080/unidadesAcademicas';
   private urlEndPointCarrera: string = 'http://localhost:8080/carreras';
-  // private urlEndPointCargo: string = 'http://localhost:8080/cargos';
+  private urlEndPointCargo: string = 'http://localhost:8080/cargos';
 
   constructor(private http: HttpClient) { }
 
@@ -34,9 +34,9 @@ export class RegistroService {
     return this.http.get<Carrera[]>(`${this.urlEndPointCarrera}/filtrar-carreras/${term}`)
   }
 
-  // getCargos():Observable<Cargo[]>{
-  //   return this.http.get<Cargo[]>(this.urlEndPointCargo);
-  // }
+  getCargos():Observable<Cargo[]>{
+    return this.http.get<Cargo[]>(`${this.urlEndPointCargo}/verCargos/`)
+  }
 
 
 }
