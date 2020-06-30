@@ -64,6 +64,17 @@ export class ProyectoBienestarService {
 
   }
 
+  subirRendicion(archivo: File,id):Observable<HttpEvent<{}>> {
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id",id);
+
+    const req = new HttpRequest ('POST',`${this.urlEndPointUpload}/uploadRendicionContable`,formData)
+
+    return this.http.request(req);
+
+  }
+
   getProyectoBienestar(id):Observable<ProyectoBienestar>{
     return this.http.get<ProyectoBienestar>(`${this.urlEndPointProyectoBienestarPorId}/${id}`)
   }

@@ -1,32 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { ProyectoBianual } from '../proyecto-bianual';
-import { ProyectoBianualService } from '../proyecto-bianual.service';
+import { ProyectoEspecial } from '../proyecto-especial';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProyectoEspecialService } from '../proyecto-especial.service';
 import { HttpEventType } from '@angular/common/http';
 import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-rendicion-contable',
-  templateUrl: './rendicion-contable.component.html'
+  selector: 'app-rendicion-contable-especial',
+  templateUrl: './rendicion-contable-especial.component.html'
 })
-export class RendicionContableComponent implements OnInit {
+export class RendicionContableEspecialComponent implements OnInit {
 
-  proyectoBianual: ProyectoBianual;
-  titulo: string = "RENDICIÓN CONTABLE DEL PROYECTO BIANUAL";
+  proyectoEspecial: ProyectoEspecial;
+  titulo: string = "RENDICIÓN CONTABLE DEL PROYECTO ESPECIAL";
 
   private rendicionSeleccionada: File;
   progreso:number = 0;
 
-
-  constructor(private proyectoBianualService: ProyectoBianualService, private activatedRouter: ActivatedRoute,
+  constructor(private activatedRouter: ActivatedRoute, private proyectoEspecialService: ProyectoEspecialService,
               private router: Router) { }
 
   ngOnInit() {
     this.activatedRouter.paramMap.subscribe(params => {
       let id: number = +params.get('id');
       if (id) {
-        this.proyectoBianualService.getProyectoBianual(id).subscribe(proyectoBianual => {
-          this.proyectoBianual = proyectoBianual;
+        this.proyectoEspecialService.getProyectoEspecial(id).subscribe(proyectoEspecial => {
+          this.proyectoEspecial = proyectoEspecial;
         })
       }
     }
@@ -40,13 +39,13 @@ export class RendicionContableComponent implements OnInit {
   }
 
   subirRendicion() {
-    this.proyectoBianualService.subirRendicion(this.rendicionSeleccionada, this.proyectoBianual.id)
+    this.proyectoEspecialService.subirRendicion(this.rendicionSeleccionada, this.proyectoEspecial.id)
     .subscribe(event =>{
       if(event.type === HttpEventType.UploadProgress){
         this.progreso = Math.round((event.loaded/event.total)*100);
       }else if(event.type === HttpEventType.Response){
         let response:any = event.body;
-        this.proyectoBianual = response.proyectoBianual as ProyectoBianual;
+        this.proyectoEspecial = response.proyectoEspecial as ProyectoEspecial;
         swal.fire('La rendicion contable se cargó correctamente','Archivo subido con éxito', 'success');
         this.router.navigate(['/ver-mis-proyectos']);
       }

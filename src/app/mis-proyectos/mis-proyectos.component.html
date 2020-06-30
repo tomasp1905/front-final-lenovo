@@ -61,17 +61,25 @@
           <th>ESTADO</th>
           <th>VER DETALLE COMPLETO</th>
           <th>EDITAR PROYECTO</th>
+          <th>INFORME FINAL</th>
+          <th>RENDICIÓN CONTABLE</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let proyecto of proyectosEspeciales">
           <td>{{proyecto.titulo}}</td>
           <td>{{proyecto.estado}}</td>
-          <!-- <td>
-            <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">DETALLE</button>
-          </td> -->
+          <td>
+            <button class="btn btn-outline-info"  role="button">DETALLE</button>
+          </td>
           <td>
             <button class="btn btn-warning" [routerLink]="['/ver-proyecto-especial', proyecto.id]" role="button">EDITAR</button>
+          </td>
+          <td *ngIf="proyecto.estado == 'Activo'">
+            <a href="https://www.google.com.ar" target="_blank" >COMPLETAR INFORME</a>
+          </td>
+          <td *ngIf="proyecto.estado == 'Activo'">
+            <button class="btn btn-outline-info" [routerLink]="['/proyecto-especial/rendicion-contable', proyecto.id]" role="button">SUBIR ARCHIVO</button>
           </td>
       </tbody>
     </table>
@@ -95,17 +103,25 @@
           <th>ESTADO</th>
           <th>VER DETALLE COMPLETO</th>
           <th>EDITAR PROYECTO</th>
+          <th>INFORME FINAL</th>
+          <th>RENDICIÓN CONTABLE</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let proyecto of proyectosBienestar">
           <td>{{proyecto.titulo}}</td>
           <td>{{proyecto.estado}}</td>
-          <!-- <td>
-            <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">DETALLE</button>
-          </td> -->
+          <td>
+            <button class="btn btn-outline-info" role="button">DETALLE</button>
+          </td>
           <td>
             <button class="btn btn-warning" [routerLink]="['/ver-proyecto-bienestar', proyecto.id]" role="button">EDITAR</button>
+          </td>
+          <td *ngIf="proyecto.estado == 'Activo'">
+            <a href="https://www.google.com.ar" target="_blank" >COMPLETAR INFORME</a>
+          </td>
+          <td *ngIf="proyecto.estado == 'Activo'">
+            <button class="btn btn-outline-info" [routerLink]="['/proyecto-bienestar/rendicion-contable', proyecto.id]" role="button">SUBIR ARCHIVO</button>
           </td>
       </tbody>
     </table>

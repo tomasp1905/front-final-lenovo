@@ -56,6 +56,16 @@ export class ProgramaEstableService {
 
   }
 
+  subirRendicion(archivo: File,id):Observable<HttpEvent<{}>> {
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id",id);
+
+    const req = new HttpRequest ('POST',`${this.urlEndPointUpload}/uploadRendicionContable`,formData)
+
+    return this.http.request(req);
+  }
+
   getProgramaEstable(id):Observable<ProgramaEstable>{
     return this.http.get<ProgramaEstable>(`${this.urlEndPointProgramaEstablePorId}/${id}`)
   }

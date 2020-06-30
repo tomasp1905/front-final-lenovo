@@ -69,6 +69,9 @@ import { RestaurarContraComponent } from './usuarios/restaurar-contra/restaurar-
 import { VerificarCodigoComponent } from './usuarios/restaurar-contra/verificar-codigo/verificar-codigo.component';
 import { CambiarPasswordComponent } from './usuarios/restaurar-contra/cambiar-password/cambiar-password.component';
 import { RendicionContableComponent } from './proyectos-bianuales/rendicion-contable/rendicion-contable.component';
+import { RendicionContableEspecialComponent } from './proyectos-especiales/rendicion-contable-especial/rendicion-contable-especial.component';
+import { RendicionContableEstableComponent } from './programas-estables/rendicion-contable-estable/rendicion-contable-estable.component';
+import { RendicionContableBienestarComponent } from './proyectos-bienestar/rendicion-contable-bienestar/rendicion-contable-bienestar.component';
 
 
 
@@ -101,6 +104,9 @@ const routes: Routes = [
   {path:'verificar-codigo', component: VerificarCodigoComponent},
   {path:'cambiar-pass', component: CambiarPasswordComponent},
   {path:'proyecto-bianual/rendicion-contable/:id', component:RendicionContableComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  {path:'proyecto-especial/rendicion-contable/:id', component:RendicionContableEspecialComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  {path:'programa-estable/rendicion-contable/:id', component:RendicionContableEstableComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  {path:'proyecto-bienestar/rendicion-contable/:id', component:RendicionContableBienestarComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } }
 
 
 
@@ -161,6 +167,9 @@ const routes: Routes = [
     VerificarCodigoComponent,
     CambiarPasswordComponent,
     RendicionContableComponent,
+    RendicionContableEspecialComponent,
+    RendicionContableEstableComponent,
+    RendicionContableBienestarComponent,
 
 
 
