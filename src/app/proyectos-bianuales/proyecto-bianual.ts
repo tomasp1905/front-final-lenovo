@@ -8,6 +8,7 @@ import { Actividad } from './objetos/actividad';
 import { ProyectoDeInvestigacion } from './objetos/proyectoInvestigacion';
 
 
+
 export class ProyectoBianual {
   id: number;
   titulo: string;
@@ -20,7 +21,6 @@ export class ProyectoBianual {
   listaDePrioridades: Array<Prioridad> = [];
 
   director: Director = new Director();
-  // director:Director;
   miembros: Miembro[] = [];
   socios: Socio[] = [];
   listaDeActividades: Actividad[] = [];
@@ -49,6 +49,10 @@ export class ProyectoBianual {
   fechaDeFinalizacion:Date;
 
   estado: string;
+
+  rendicionContable: string;
+
+
 
 
 }

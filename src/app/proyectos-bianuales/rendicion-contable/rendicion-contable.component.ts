@@ -1,24 +1,25 @@
- import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProyectoBianual } from '../proyecto-bianual';
 import { ProyectoBianualService } from '../proyecto-bianual.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import swal from 'sweetalert2';
 import { HttpEventType } from '@angular/common/http';
+import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-presupuesto',
-  templateUrl: './presupuesto.component.html'
-
+  selector: 'app-rendicion-contable',
+  templateUrl: './rendicion-contable.component.html'
 })
-export class PresupuestoComponent implements OnInit {
+export class RendicionContableComponent implements OnInit {
 
-  private presupuestoSeleccionado: File;
-  progreso:number = 0;
   proyectoBianual: ProyectoBianual;
-  titulo: string = "PRESUPUESTO DEL PROYECTO";
+  titulo: string = "RENDICIÓN CONTABLE DEL PROYECTO/PROGRAMA";
 
-  constructor(private proyectoBianualService: ProyectoBianualService,
-    private activatedRouter: ActivatedRoute, private router: Router) { }
+  private rendicionSeleccionada: File;
+  progreso:number = 0;
+
+
+  constructor(private proyectoBianualService: ProyectoBianualService, private activatedRouter: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.activatedRouter.paramMap.subscribe(params => {
@@ -32,22 +33,22 @@ export class PresupuestoComponent implements OnInit {
     );
   }
 
-  seleccionarPresupuesto(event){
-    this.presupuestoSeleccionado = event.target.files[0];
+  seleccionarRendicion(event){
+    this.rendicionSeleccionada = event.target.files[0];
     this.progreso = 0;
-    console.log(this.presupuestoSeleccionado);
+    console.log(this.rendicionSeleccionada);
   }
 
-  subirPresupuesto() {
-    this.proyectoBianualService.subirPresupuesto(this.presupuestoSeleccionado, this.proyectoBianual.id)
+  subirRendicion() {
+    this.proyectoBianualService.subirRendicion(this.rendicionSeleccionada, this.proyectoBianual.id)
     .subscribe(event =>{
       if(event.type === HttpEventType.UploadProgress){
         this.progreso = Math.round((event.loaded/event.total)*100);
       }else if(event.type === HttpEventType.Response){
         let response:any = event.body;
         this.proyectoBianual = response.proyectoBianual as ProyectoBianual;
-        swal.fire('El presupuesto se cargó correctamente','Archivo subido con éxito', 'success');
-        this.router.navigate(['/elegir-proyecto']);
+        swal.fire('La rendicion contable se cargó correctamente','Archivo subido con éxito', 'success');
+        this.router.navigate(['/ver-mis-proyectos']);
       }
     })
   }

@@ -41,5 +41,7 @@ export class MisProyectosComponent implements OnInit {
     console.log("click")
   }
 
+  
+
 
 }
