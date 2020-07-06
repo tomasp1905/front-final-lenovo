@@ -79,12 +79,12 @@ import { RendicionContableBienestarComponent } from './proyectos-bienestar/rendi
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path:'elegir-proyecto', component: ElegirProyectoComponent},
+  {path:'elegir-proyecto', component: ElegirProyectoComponent,  canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   {path:'proyecto-bianual', component: ProyectosBianualesComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   {path:'proyecto-bienestar', component: ProyectosBienestarComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   {path:'programa-estable', component: ProgramasEstablesComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   {path:'proyecto-especial', component: ProyectosEspecialesComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  {path:'ver-proyectos-activos', component: VerProyectosComponent},
+  {path:'ver-proyectos-activos', component: VerProyectosComponent,  canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   {path:'ver-proyecto-bianual/:id', component: ProyectosBianualesComponent},
   {path:'ver-programa-estable/:id', component: ProgramasEstablesComponent},
   {path:'ver-proyecto-bienestar/:id', component: ProyectosBienestarComponent},

@@ -22,6 +22,7 @@ import { ModalService } from './detalle-proyecto-bianual/modal.service';
 import { ModalSinteticoService } from './detalle-proyecto-bianual-sintetico/modal-sintetico.service';
 import { ModalMiembroService } from './detalle-proyecto-bianual-miembro/modal-miembro.service';
 import { ModalSocioService } from './detalle-proyecto-bianual-socio/modal-socio.service';
+import { AuthService } from '../usuarios/auth.service';
 
 
 
@@ -57,8 +58,6 @@ export class VerProyectosComponent implements OnInit {
   proyectoEspecialSeleccionadoSintetico: ProyectoEspecial;
 
 
-
-
   constructor(private verProyectoService: VerProyectoService,
     private modalService: ModalService, private modalSinteticoService: ModalSinteticoService,
     private modalSocioService: ModalSocioService, private modalMiembroService: ModalMiembroService,
@@ -67,7 +66,7 @@ export class VerProyectosComponent implements OnInit {
     private modalProyectoBienestarService: ModalProyectoBienestarService, private modalProyectoBienestarMiembroService: ModalProyectoBienestarMiembroService,
     private modalProyectoBienestarSinteticoService: ModalProyectoBienestarSinteticoService, private modalProyectoEspecialService: ModalProyectoEspecialService,
     private modalProyectoEspecialMiembroService: ModalProyectoEspecialMiembroService, private modalProyectoEspecialSocioService: ModalProyectoEspecialSocioService,
-    private modalProyectoEspecialSinteticoService: ModalProyectoEspecialSinteticoService, private router: Router, private activatedRoute: ActivatedRoute) { }
+    private modalProyectoEspecialSinteticoService: ModalProyectoEspecialSinteticoService, private router: Router, private activatedRoute: ActivatedRoute, private authService:AuthService) { }
 
   ngOnInit() {
     this.verProyectoService.getProyectosBianuales().subscribe(
@@ -307,10 +306,46 @@ export class VerProyectosComponent implements OnInit {
     })
   }
 
-  // generarPDFBianual(proyectoBianual: ProyectoBianual):void {
-  //   this.verProyectoService.generarPDFBianual(proyectoBianual.id);
-  //   console.log(proyectoBianual.id);
+  // generar(proyectoBianual: ProyectoBianual): void {
+  //   const swalWithBootstrapButtons = Swal.mixin({
+  //     customClass: {
+  //       confirmButton: 'btn btn-success',
+  //       cancelButton: 'btn btn-danger'
+  //     },
+  //     buttonsStyling: false
+  //   })
+  //
+  //   swalWithBootstrapButtons.fire({
+  //     title: 'Está seguro?',
+  //     text: `¿Seguro que desea generar el PDF del ID ${proyectoBianual.id}?`,
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonText: 'Si, generar PDF!',
+  //     cancelButtonText: 'No, cancelar!',
+  //     reverseButtons: true
+  //   }).then((result) => {
+  //     if (result.value) {
+  //       this.verProyectoService.generar(proyectoBianual.id).subscribe(
+  //         response => {
+  //           swalWithBootstrapButtons.fire(
+  //             'PDF Creado!',
+  //             `PDF de ID ${proyectoBianual.id} creado con éxito.`,
+  //             'success'
+  //           )
+  //         }
+  //       )
+  //     }
+  //
+  //   })
+  //
   // }
+
+  generar(proyecto:ProyectoBianual){
+    console.log("entro al componente con el id: " + proyecto.id)
+    this.verProyectoService.generar(proyecto.id);
+
+  }
+
 
 
 }

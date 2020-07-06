@@ -50,7 +50,7 @@
 
   <div *ngIf="authService.hasRole('ROLE_ADMIN')" class="row">
 
-    <div *ngIf="!mostrarBianual" class="col-3">
+    <!-- <div *ngIf="!mostrarBianual" class="col-3">
       <button (click)=" mostrarBianual = !mostrarBianual " class="btn btn-outline-success btn-block">
         Activar PB
       </button>
@@ -59,6 +59,12 @@
     <div *ngIf="mostrarBianual" class="col-3">
       <button (click)=" mostrarBianual = !mostrarBianual " class="btn btn-outline-danger btn-block">
         Desactivar PB
+      </button>
+    </div> -->
+
+    <div class="col-3" >
+      <button (click)="cambiarEstado()" class="btn btn-outline-success btn-block">
+        Activar/Desactivar PB
       </button>
     </div>
 

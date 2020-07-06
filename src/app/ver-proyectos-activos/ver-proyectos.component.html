@@ -9,7 +9,7 @@
 <app-detalle-miembro *ngIf="proyectoSeleccionadoMiembroBianual" [proyecto]="proyectoSeleccionadoMiembroBianual"></app-detalle-miembro>
 
 
-<div class="animated fadeIn card border-primary" style="width: 75rem;">
+<div class="animated fadeIn card border-primary" style="width: 70rem;">
   <div class="card-header bg-transparent border-info">
     <h5 align="center">LISTADO DE PROYECTOS BIANUALES ACTIVOS</h5>
   </div>
@@ -22,17 +22,17 @@
     <table class="table table-bordered table-striped text-center" *ngIf="proyectosBianuales?.length > 0">
       <thead>
         <tr>
-          <th>TÍTULO DEL PROYECTO</th>
+          <th>PROYECTO</th>
           <th>FECHA DE ACTIVACIÓN</th>
-          <th>VER DETALLE COMPLETO</th>
-          <th>VER DETALLE SINTÉTICO</th>
-          <th>VER SOCIOS</th>
-          <th>VER MIEMBROS</th>
-          <th>PRESUPUESTO <i class="far fa-file-excel"></i></th>
-          <!-- <th>RENDICIÓN CONTABLE</th> -->
+          <th>DETALLE COMPLETO</th>
+          <th>DETALLE SINTÉTICO</th>
+          <!-- <th>SOCIOS</th>
+          <th>MIEMBROS</th> -->
+          <th>PRESUPUESTO</th>
+          <th>RENDICIÓN CONTABLE</th>
           <th>FORMATO PDF <i class="far fa-file-pdf"></i></th>
-          <th>EDITAR PROYECTO</th>
-          <th>FINALIZAR PROYECTO</th>
+          <th>EDITAR</th>
+          <th>FINALIZAR</th>
         </tr>
       </thead>
       <tbody>
@@ -40,26 +40,32 @@
           <td>{{proyecto.titulo}}</td>
           <td>{{proyecto.fechaDeInicio | date:"longDate"}}</td>
           <td>
-            <button class="btn btn-outline-info" (click)=abrirModalBianual(proyecto) role="button">DETALLE</button>
+            <button class="btn btn-outline-info" (click)=abrirModalBianual(proyecto) role="button">VER</button>
           </td>
           <td>
-            <button class="btn btn-outline-info" (click)=abrirModalSinteticoBianual(proyecto) role="button">DETALLE</button>
+            <button class="btn btn-outline-info" (click)=abrirModalSinteticoBianual(proyecto) role="button">VER</button>
           </td>
-          <td>
+          <!-- <td>
             <button class="btn btn-outline-info" (click)=abrirModalSocioBianual(proyecto) role="button">SOCIOS</button>
           </td>
           <td>
             <button class="btn btn-outline-info" (click)=abrirModalMiembroBianual(proyecto) role="button">MIEMBROS</button>
-          </td>
+          </td> -->
           <!-- <td>
             <button class="btn btn-outline-danger" (click)="generarPDFBianual(proyecto)" role="button">PDF</button>
           </td> -->
           <td>
-            <a href="http://localhost:8080/proyectoBianual/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">Presupuesto</a>
+            <a href="http://localhost:8080/proyectoBianual/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
           </td>
           <td>
-            <a href="http://localhost:8080/proyectoBianual/generarPDF/{{proyecto.id}}" target='_blank' title="Ver archivo">Generar PDF</a>
+            <a href="http://localhost:8080/proyectoBianual/uploads/arch/{{proyecto.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
           </td>
+          <td>
+            <button class="btn btn-outline-danger" (click)="generar(proyecto)" role="button">PDF</button>
+          </td>
+          <!-- <td>
+            <a href="http://localhost:8080/proyectoBianual/generarPDF/{{proyecto.id}}" target='_blank' title="Ver archivo">GENERAR PDF</a>
+          </td> -->
           <td>
             <button class="btn btn-warning" [routerLink]="['/ver-proyecto-bianual', proyecto.id]" role="button">EDITAR</button>
           </td>
@@ -85,7 +91,7 @@
 
 <app-detalle-programa-estable-miembro *ngIf="programaEstableSeleccionadoMiembro" [programaEstable]="programaEstableSeleccionadoMiembro"></app-detalle-programa-estable-miembro>
 
-<div class="animated fadeIn card border-primary mb-3" style="width: 75rem;">
+<div class="animated fadeIn card border-primary" style="width: 70rem;">
   <div class="card-header bg-transparent border-info">
     <h5 align="center">LISTADO DE PROGRAMAS ESTABLES ACTIVOS</h5>
   </div>
@@ -157,7 +163,7 @@
 
 
 
- <div class="animated fadeIn card border-primary mb-3" style="width: 75rem;">
+ <div class="animated fadeIn card border-primary" style="width: 70rem;">
   <div class="card-header bg-transparent border-info">
     <h5 align="center">LISTADO DE PROYECTOS DE BIENESTAR ACTIVOS</h5>
   </div>
@@ -225,7 +231,7 @@
 
 <app-detalle-proyecto-especial-sintetico *ngIf="proyectoEspecialSeleccionadoSintetico" [proyectoEspecial]="proyectoEspecialSeleccionadoSintetico"></app-detalle-proyecto-especial-sintetico>
 
- <div class="animated fadeIn card border-primary mb-3" style="width: 75rem;">
+ <div class="animated fadeIn card border-primary" style="width: 70rem;">
   <div class="card-header bg-transparent border-info">
     <h5 align="center">LISTADO DE PROYECTOS ESPECIALES ACTIVOS</h5>
   </div>

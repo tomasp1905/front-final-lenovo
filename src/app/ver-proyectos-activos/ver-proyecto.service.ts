@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { saveAs } from 'file-saver';
 import { ProyectoBianual } from '../proyectos-bianuales/proyecto-bianual';
 import { ProyectoEspecial } from '../proyectos-especiales/proyecto-especial';
 import { ProgramaEstable } from '../programas-estables/programa-estable';
 import { ProyectoBienestar } from '../proyectos-bienestar/proyecto-bienestar';
+import { saveAs } from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
@@ -19,17 +19,16 @@ export class VerProyectoService {
   private urlEndPointVerProyectosBienestar: string = 'http://localhost:8080/proyectoBienestar/verProyectosActivos';
   private urlEndPointVerProyectosEspeciales: string = 'http://localhost:8080/proyectoEspecial/verProyectosActivos';
 
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
-  // private httpHeaders2 = new HttpHeaders({'Content-Type': 'blob'})
 
   private urlEndPointProyectoBianualPorId: string = 'http://localhost:8080/proyectoBianual/verProyecto';
   private urlEndPointModificarProyectoBianual: string = 'http://localhost:8080/proyectoBianual/modificarProyecto';
   private urlEndPointFinalizarProyectoBianual: string = 'http://localhost:8080/proyectoBianual/finalizarProyecto';
-  // private urlEndPointGenerarPDFBianual: string = 'http://localhost:8080/proyectoBianual/generarPDF'
+  private urlEndPointGenerarPDFBianual: string = 'http://localhost:8080/proyectoBianual/generarPDF';
 
   private urlEndPointProgramaEstablePorId: string = 'http://localhost:8080/programaEstable/verProgramaEstable';
   private urlEndPointModificarProgramaEstable: string = 'http://localhost:8080/programaEstable/modificarPrograma';
   private urlEndPointFinalizarProgramaEstable: string = 'http://localhost:8080/programaEstable/finalizarProgramaEstable';
+
 
   private urlEndPointProyectoBienestarPorId: string = 'http://localhost:8080/proyectoBienestar/verProyecto';
   private urlEndPointModificarProyectoBienestar: string = 'http://localhost:8080/proyectoBienestar/modificarProyecto';
@@ -38,6 +37,9 @@ export class VerProyectoService {
   private urlEndPointProyectoEspecialPorId: string = 'http://localhost:8080/proyectoEspecial/verProyecto';
   private urlEndPointModificarProyectoEspecial: string = 'http://localhost:8080/proyectoEspecial/modificarProyecto';
   private urlEndPointFinalizarProyectoEspecial: string = 'http://localhost:8080/proyectoEspecial/finalizarProyecto';
+
+ private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
+ private httpHeaders2 = new HttpHeaders({'Content-Type': 'application/pdf'})
 
 
 
@@ -95,14 +97,32 @@ export class VerProyectoService {
    return this.http.post<ProyectoBianual>(`${this.urlEndPointFinalizarProyectoBianual}/${id}`,{headers: this.httpHeaders} )
 }
 
-  // generarPDFBianual(id:number):Observable<ProyectoBianual>{
-  //   return this.http.get<ProyectoBianual>(`${this.urlEndPointGenerarPDFBianual}/${id}`,{ headers: this.httpHeaders2})
-  // }
+
+public generar(id:number): any {
+    var mediaType = 'application/pdf';
+    this.http.get(`${this.urlEndPointGenerarPDFBianual}/${id}`, { responseType: 'blob' }).subscribe(
+        (response) => {
+            var blob = new Blob([response], { type: mediaType });
+            saveAs(blob, 'reporte.pdf');
+        },
+        e => { throwError(e); }
+    );
+}
+
+
+
+//  generar(id: number) {
+//    console.log("entro al servicio con el id: " + id)
+//    let headers = new HttpHeaders();
+//    headers = headers.set('Accept', 'application/pdf');
+//    return this.http.get(`${this.urlEndPointGenerarPDFBianual}/${id}`,{ headers: headers, responseType: 'blob' });
+// }
 
 //PROGRAMA ESTABLE
 
 getProgramaEstable(id): Observable<ProgramaEstable>{
   return this.http.get<ProgramaEstable>(`${this.urlEndPointProgramaEstablePorId}/${id}`)
+
 }
 
 updateEstable(programaEstable: ProgramaEstable): Observable<ProgramaEstable>{
@@ -112,6 +132,7 @@ updateEstable(programaEstable: ProgramaEstable): Observable<ProgramaEstable>{
 finalizarEstable(id: number): Observable<ProgramaEstable>{
  return this.http.post<ProgramaEstable>(`${this.urlEndPointFinalizarProgramaEstable}/${id}`,{headers: this.httpHeaders} )
 }
+
 
 //PROYECTO BIENESTAR
 
