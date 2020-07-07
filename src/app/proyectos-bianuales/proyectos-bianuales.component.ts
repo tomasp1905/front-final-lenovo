@@ -234,17 +234,17 @@ export class ProyectosBianualesComponent implements OnInit {
   }
 
   eliminarActividad(id: number): void {
-    this.proyectoBianual.listaDeActividades = this.proyectoBianual.listaDeActividades.filter((actividad: Actividad) => id !== actividad.id)
+    this.proyectoBianual.listaDeActividades = this.proyectoBianual.listaDeActividades.filter((actividad: Actividad) =>  id !== actividad.id)
   }
 
 
   public crearProyecto(): void {
-    if(this.proyectoBianual.director.nombre == null){
-      this.proyectoBianual.director = null;
-    }
-    if (this.proyectoBianual.proyectoDeInvestigacion.nombre == null){
-      this.proyectoBianual.proyectoDeInvestigacion = null;
-    }
+    // if(this.proyectoBianual.director.nombre == null){
+    //   this.proyectoBianual.director = null;
+    // }
+    // if (this.proyectoBianual.proyectoDeInvestigacion.nombre == null){
+    //   this.proyectoBianual.proyectoDeInvestigacion = null;
+    // }
     this.proyectoBianualService.create(this.proyectoBianual).
       subscribe(response => {
         this.proyectoBianual.fechaDeCreacion = new Date();
@@ -267,7 +267,7 @@ export class ProyectosBianualesComponent implements OnInit {
   updateBianual(): void {
     this.verProyectoService.updateBianual(this.proyectoBianual)
       .subscribe(json => {
-        this.router.navigate(['/ver-proyectos'])
+        this.router.navigate(['/ver-proyectos-activos'])
         swal.fire('Proyecto actualizado', `El Proyecto ${this.proyectoBianual.titulo} se actualizó con éxito`, 'success');
       }
       )

@@ -6,12 +6,12 @@ import { registerLocaleData } from '@angular/common';
 registerLocaleData(localeES, 'es')
 
 import { AppComponent } from './app.component';
-import { RouterModule, Routes} from '@angular/router';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { ElegirProyectoComponent } from './elegir-proyecto/elegir-proyecto.component';
 import { FooterComponent } from './footer/footer.component';
@@ -61,8 +61,8 @@ import { AuthGuard } from './usuarios/guards/auth.guard';
 import { RoleGuard } from './usuarios/guards/role.guard';
 import { RegistroComponent } from './usuarios/registro/registro.component';
 import { VerUsuariosComponent } from './usuarios/ver-usuarios/ver-usuarios.component';
-import {TokenInterceptor} from './usuarios/interceptors/token.interceptor';
-import {AuthInterceptor} from './usuarios/interceptors/auth.interceptor';
+import { TokenInterceptor } from './usuarios/interceptors/token.interceptor';
+import { AuthInterceptor } from './usuarios/interceptors/auth.interceptor';
 import { MisProyectosComponent } from './mis-proyectos/mis-proyectos.component';
 import { DetalleBianualMisProyectosComponent } from './mis-proyectos/detalle-bianual-mis-proyectos/detalle-bianual-mis-proyectos.component';
 import { RestaurarContraComponent } from './usuarios/restaurar-contra/restaurar-contra.component';
@@ -72,41 +72,42 @@ import { RendicionContableComponent } from './proyectos-bianuales/rendicion-cont
 import { RendicionContableEspecialComponent } from './proyectos-especiales/rendicion-contable-especial/rendicion-contable-especial.component';
 import { RendicionContableEstableComponent } from './programas-estables/rendicion-contable-estable/rendicion-contable-estable.component';
 import { RendicionContableBienestarComponent } from './proyectos-bienestar/rendicion-contable-bienestar/rendicion-contable-bienestar.component';
+import { ProyectoEstadoPipe } from './elegir-proyecto/proyecto-estado.pipe';
 
 
 
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path:'elegir-proyecto', component: ElegirProyectoComponent,  canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  {path:'proyecto-bianual', component: ProyectosBianualesComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  {path:'proyecto-bienestar', component: ProyectosBienestarComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  {path:'programa-estable', component: ProgramasEstablesComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  {path:'proyecto-especial', component: ProyectosEspecialesComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  {path:'ver-proyectos-activos', component: VerProyectosComponent,  canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  {path:'ver-proyecto-bianual/:id', component: ProyectosBianualesComponent},
-  {path:'ver-programa-estable/:id', component: ProgramasEstablesComponent},
-  {path:'ver-proyecto-bienestar/:id', component: ProyectosBienestarComponent},
-  {path:'ver-proyecto-especial/:id', component: ProyectosEspecialesComponent},
-  {path:'proyecto-bianual/presupuesto/:id', component:PresupuestoComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  {path:'programa-estable/presupuesto/:id', component:PresupuestoEstableComponent},
-  {path:'proyecto-bienestar/presupuesto/:id', component:PresupuestoBienestarComponent},
-  {path:'proyecto-especial/presupuesto/:id', component:PresupuestoEspecialComponent},
-  {path:'ver-proyectos-finalizados', component: VerProyectosFinalizadosComponent},
-  {path:'ver-proyectos-no-autorizados', component: VerProyectosNoAutorizadosComponent},
-  {path:'ver-proyectos-autorizados', component: VerProyectosAutorizadosComponent},
-  {path:'login', component: LoginComponent},
-  {path:'registro', component: RegistroComponent},
-  {path:'ver-usuarios', component: VerUsuariosComponent},
-  {path:'ver-mis-proyectos', component: MisProyectosComponent},
-  {path:'restaurar-contra', component: RestaurarContraComponent},
-  {path:'verificar-codigo', component: VerificarCodigoComponent},
-  {path:'cambiar-pass', component: CambiarPasswordComponent},
-  {path:'proyecto-bianual/rendicion-contable/:id', component:RendicionContableComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  {path:'proyecto-especial/rendicion-contable/:id', component:RendicionContableEspecialComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  {path:'programa-estable/rendicion-contable/:id', component:RendicionContableEstableComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  {path:'proyecto-bienestar/rendicion-contable/:id', component:RendicionContableBienestarComponent, canActivate:[AuthGuard, RoleGuard],data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'elegir-proyecto', component: ElegirProyectoComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  { path: 'proyecto-bianual', component: ProyectosBianualesComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  { path: 'proyecto-bienestar', component: ProyectosBienestarComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  { path: 'programa-estable', component: ProgramasEstablesComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  { path: 'proyecto-especial', component: ProyectosEspecialesComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  { path: 'ver-proyectos-activos', component: VerProyectosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  { path: 'ver-proyecto-bianual/:id', component: ProyectosBianualesComponent },
+  { path: 'ver-programa-estable/:id', component: ProgramasEstablesComponent },
+  { path: 'ver-proyecto-bienestar/:id', component: ProyectosBienestarComponent },
+  { path: 'ver-proyecto-especial/:id', component: ProyectosEspecialesComponent },
+  { path: 'proyecto-bianual/presupuesto/:id', component: PresupuestoComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  { path: 'programa-estable/presupuesto/:id', component: PresupuestoEstableComponent },
+  { path: 'proyecto-bienestar/presupuesto/:id', component: PresupuestoBienestarComponent },
+  { path: 'proyecto-especial/presupuesto/:id', component: PresupuestoEspecialComponent },
+  { path: 'ver-proyectos-finalizados', component: VerProyectosFinalizadosComponent },
+  { path: 'ver-proyectos-no-autorizados', component: VerProyectosNoAutorizadosComponent },
+  { path: 'ver-proyectos-autorizados', component: VerProyectosAutorizadosComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'registro', component: RegistroComponent },
+  { path: 'ver-usuarios', component: VerUsuariosComponent },
+  { path: 'ver-mis-proyectos', component: MisProyectosComponent },
+  { path: 'restaurar-contra', component: RestaurarContraComponent },
+  { path: 'verificar-codigo', component: VerificarCodigoComponent },
+  { path: 'cambiar-pass', component: CambiarPasswordComponent },
+  { path: 'proyecto-bianual/rendicion-contable/:id', component: RendicionContableComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  { path: 'proyecto-especial/rendicion-contable/:id', component: RendicionContableEspecialComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  { path: 'programa-estable/rendicion-contable/:id', component: RendicionContableEstableComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  { path: 'proyecto-bienestar/rendicion-contable/:id', component: RendicionContableBienestarComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } }
 
 
 
@@ -170,9 +171,7 @@ const routes: Routes = [
     RendicionContableEspecialComponent,
     RendicionContableEstableComponent,
     RendicionContableBienestarComponent,
-
-
-
+    ProyectoEstadoPipe
   ],
   imports: [
     BrowserModule,
@@ -185,7 +184,7 @@ const routes: Routes = [
     MatInputModule,
     MatFormFieldModule,
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'es'},
+  providers: [{ provide: LOCALE_ID, useValue: 'es' },
   { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
   bootstrap: [AppComponent]

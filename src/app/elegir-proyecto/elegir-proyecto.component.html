@@ -1,125 +1,69 @@
+
 <div class="estilo animated fadeIn">
 
-  <div class="row text-center justify-content-center">
+ <div class="row text-center justify-content-center">
 
-    <div class="col-6">
-      <div class="list-group" id=mostrarOcultar>
-        <h3><button class="list-group-item list-group-item-action active" [routerLink]="['/elegir-proyecto']">ELEGIR TIPO DE PROYECTO/PROGRAMA</button></h3>
-        <div *ngIf="mostrarBianual">
-          <h4><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/proyecto-bianual']">PB - PROYECTO BIANUAL</button></h4>
+   <div class="col-6" *ngIf="!authService.hasRole('ROLE_ADMIN')">
+    <div class="list-group" >
+      <h3><button class="list-group-item list-group-item-action active">ELEGIR TIPO DE PROYECTO</button></h3>
+      <ng-container *ngIf="projectsList.length == 0"> Cargando datos...</ng-container>
+      <ng-container *ngIf="projectsList.length > 0">
+        <div *ngFor="let project of projectsList|estado">
+          <div class="card card-custom" [routerLink]="[project.route]">
+            <div class="d-flex justify-content-between">
+              <h5>{{project.tipoDeProyecto|uppercase}}</h5>
+            </div>
+          </div>
         </div>
-        <div *ngIf="authService.hasRole('ROLE_ADMIN')">
-        <div *ngIf="mostrarEstable">
-          <h4><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/programa-estable']">PRG - PROGRAMA ESTABLE</button></h4>
-        </div>
-        </div>
-        <div *ngIf="mostrarEspecial">
-          <h4><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/proyecto-especial']">PE - PROYECTO ESPECIAL</button></h4>
-        </div>
-        <div *ngIf="mostrarBienestar">
-          <h4><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/proyecto-bienestar']">PBCI - PROYECTO DE BIENESTAR INTERNO</button></h4>
-        </div>
-        <div *ngIf="authService.hasRole('ROLE_USER') || authService.hasRole('ROLE_USER')">
-          <h4><button type="button" class="list-group-item list-group-item-action active" [routerLink]="['/ver-mis-proyectos']">VER MIS PROYECTOS</button></h4>
-        </div>
-      </div>
+      </ng-container>
     </div>
+   </div>
 
 
-    <div *ngIf="authService.hasRole('ROLE_ADMIN')" class="col-6">
-      <div class="list-group" id=mostrarOcultar>
-        <h3><button class="list-group-item list-group-item-action active" [routerLink]="['/elegir-proyecto']">VER PROYECTOS/PROGRAMAS</button></h3>
-        <div>
-          <h4><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/ver-proyectos-no-autorizados']">NO AUTORIZADOS</button></h4>
+ <div *ngIf="authService.hasRole('ROLE_ADMIN')">
+  <div class="col-9">
+    <div class="list-group">
+      <h3><button class="list-group-item list-group-item-action active">ELEGIR TIPO DE LINEA OPERATIVA</button></h3>
+      <ng-container *ngIf="projectsList.length == 0"> Cargando datos...</ng-container>
+      <ng-container *ngIf="projectsList.length > 0">
+        <div *ngFor="let project of projectsList">
+          <div class="card card-custom" >
+            <div class="d-flex justify-content-between" >
+             <div [routerLink]="[project.route]">
+              <h5>{{project.tipoDeProyecto|uppercase}}</h5>
+            </div>
+              <div class="custom-control custom-switch">
+                <input (change)="changeStatusProject(project)" [id]="project.tipoDeProyecto" [checked]="project.estado" [name]="project.tipoDeProyecto" type="checkbox"
+                  class="custom-control-input">
+                <label class="custom-control-label" [for]="project.tipoDeProyecto">Activar/Desactivar Línea Operativa</label>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h4><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/ver-proyectos-autorizados']">AUTORIZADOS</button></h4>
-        </div>
-        <div>
-          <h4><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/ver-proyectos-activos']">ACTIVOS</button></h4>
-        </div>
-        <div>
-          <h4><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/ver-proyectos-finalizados']">FINALIZADOS</button></h4>
-        </div>
-      </div>
+      </ng-container>
     </div>
-
   </div>
 
-  <br>
+   </div>
 
-  <div *ngIf="authService.hasRole('ROLE_ADMIN')" class="row">
-
-    <!-- <div *ngIf="!mostrarBianual" class="col-3">
-      <button (click)=" mostrarBianual = !mostrarBianual " class="btn btn-outline-success btn-block">
-        Activar PB
-      </button>
-    </div>
-
-    <div *ngIf="mostrarBianual" class="col-3">
-      <button (click)=" mostrarBianual = !mostrarBianual " class="btn btn-outline-danger btn-block">
-        Desactivar PB
-      </button>
-    </div> -->
-
-    <div class="col-3" >
-      <button (click)="cambiarEstado()" class="btn btn-outline-success btn-block">
-        Activar/Desactivar PB
-      </button>
-    </div>
-
-    <div *ngIf="!mostrarEstable" class="col-3">
-      <button (click)=" mostrarEstable = !mostrarEstable " class="btn btn-outline-success btn-block">
-        Activar PRG
-      </button>
-    </div>
-
-    <div *ngIf="mostrarEstable" class="col-3">
-      <button (click)=" mostrarEstable = !mostrarEstable " class="btn btn-outline-danger btn-block">
-        Desactivar PRG
-      </button>
-    </div>
-
-    <div class="col-6">
-      <button class="btn btn-outline-secondary btn-block" [routerLink]="['/ver-mis-proyectos']">VER MIS PROYECTOS/PROGRAMAS</button>
-    </div>
-
-  </div>
+   </div>
 
 
-  <br>
 
-  <div *ngIf="authService.hasRole('ROLE_ADMIN')" class="row">
-
-    <div *ngIf="!mostrarEspecial" class="col-3">
-      <button (click)=" mostrarEspecial = !mostrarEspecial " class="btn btn-outline-success btn-block">
-        Activar PE
-      </button>
-    </div>
-
-    <div *ngIf="mostrarEspecial" class="col-3">
-      <button (click)=" mostrarEspecial = !mostrarEspecial " class="btn btn-outline-danger btn-block">
-        Desactivar PE
-      </button>
-    </div>
-
-
-    <div *ngIf="!mostrarBienestar" class="col-3">
-      <button (click)=" mostrarBienestar = !mostrarBienestar " class="btn btn-outline-success btn-block">
-        Activar PBCI
-      </button>
-    </div>
-
-    <div *ngIf="mostrarBienestar" class="col-3">
-      <button (click)=" mostrarBienestar = !mostrarBienestar " class="btn btn-outline-danger btn-block">
-        Desactivar PBCI
-      </button>
-    </div>
-
-    <div class="col-6">
-      <button class="btn btn-outline-secondary btn-block" [routerLink]="['/ver-usuarios']">VER LISTADO COMPLETO DE USUARIOS</button>
-    </div>
-
-  </div>
 
 </div>
+
+
+
+
+   <!-- <div class="col-3">
+     <button class="btn btn-outline-secondary btn-block" [routerLink]="['/ver-mis-proyectos']">VER MIS PROYECTOS/PROGRAMAS</button>
+   </div>
+
+ </div>
+ <br>
+ <div *ngIf="authService.hasRole('ROLE_ADMIN')" class="row">
+   <div class="col-6">
+     <button class="btn btn-outline-secondary btn-block" [routerLink]="['/ver-usuarios']">VER LISTADO COMPLETO DE USUARIOS</button>
+   </div>
+ </div> -->

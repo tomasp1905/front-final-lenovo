@@ -21,6 +21,7 @@
           <th>EDITAR PROYECTO</th>
           <th>INFORME FINAL</th>
           <th>RENDICIÓN CONTABLE</th>
+          <th>EDITAR ACTIVIDADES</th>
         </tr>
       </thead>
       <tbody>
@@ -38,6 +39,9 @@
           </td>
           <td *ngIf="proyecto.estado == 'Activo'">
             <button class="btn btn-outline-info" [routerLink]="['/proyecto-bianual/rendicion-contable', proyecto.id]" role="button">SUBIR ARCHIVO</button>
+          </td>
+          <td>
+            <button class="btn btn-outline-info" (click)="editarActividades(proyecto)" role="button">EDITAR</button>
           </td>
       </tbody>
     </table>

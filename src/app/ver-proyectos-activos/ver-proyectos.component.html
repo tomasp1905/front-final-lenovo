@@ -26,8 +26,6 @@
           <th>FECHA DE ACTIVACIÓN</th>
           <th>DETALLE COMPLETO</th>
           <th>DETALLE SINTÉTICO</th>
-          <!-- <th>SOCIOS</th>
-          <th>MIEMBROS</th> -->
           <th>PRESUPUESTO</th>
           <th>RENDICIÓN CONTABLE</th>
           <th>FORMATO PDF <i class="far fa-file-pdf"></i></th>
@@ -45,27 +43,15 @@
           <td>
             <button class="btn btn-outline-info" (click)=abrirModalSinteticoBianual(proyecto) role="button">VER</button>
           </td>
-          <!-- <td>
-            <button class="btn btn-outline-info" (click)=abrirModalSocioBianual(proyecto) role="button">SOCIOS</button>
-          </td>
-          <td>
-            <button class="btn btn-outline-info" (click)=abrirModalMiembroBianual(proyecto) role="button">MIEMBROS</button>
-          </td> -->
-          <!-- <td>
-            <button class="btn btn-outline-danger" (click)="generarPDFBianual(proyecto)" role="button">PDF</button>
-          </td> -->
           <td>
             <a href="http://localhost:8080/proyectoBianual/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
           </td>
-          <td>
+          <td *ngIf="proyecto?.rendicionContable!null">
             <a href="http://localhost:8080/proyectoBianual/uploads/arch/{{proyecto.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
           </td>
           <td>
             <button class="btn btn-outline-danger" (click)="generar(proyecto)" role="button">PDF</button>
           </td>
-          <!-- <td>
-            <a href="http://localhost:8080/proyectoBianual/generarPDF/{{proyecto.id}}" target='_blank' title="Ver archivo">GENERAR PDF</a>
-          </td> -->
           <td>
             <button class="btn btn-warning" [routerLink]="['/ver-proyecto-bianual', proyecto.id]" role="button">EDITAR</button>
           </td>

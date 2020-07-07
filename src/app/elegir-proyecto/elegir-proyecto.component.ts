@@ -1,42 +1,41 @@
- import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../usuarios/auth.service';
 import { ElegirProyectoService } from './elegir-proyecto.service';
-import { HttpClient } from '@angular/common/http';
 import { DisponibilidadProyecto } from './disponibilidadProyecto';
-
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-elegir-proyecto',
   templateUrl: './elegir-proyecto.component.html',
   styleUrls: ['./elegir-proyecto.component.css']
 })
+
 export class ElegirProyectoComponent implements OnInit {
 
-  mostrarBianual = true;
-  mostrarEstable = true;
-  mostrarEspecial = true;
-  mostrarBienestar = true;
+  projectsList: Array<DisponibilidadProyecto> = new Array<DisponibilidadProyecto>();
 
-  disponibilidadProyecto:DisponibilidadProyecto;
-
-  constructor(private authService:AuthService, private elegirProyectoService:ElegirProyectoService) { }
+  constructor(private authService: AuthService, private elegirProyectoService: ElegirProyectoService) { }
 
   ngOnInit() {
+    this.getAllProjects();
   }
 
-  cambiarEstado(){
-    console.log("Entro al camponente y se va al service")
-    this.elegirProyectoService.cambiar();
-    console.log("Volvio al componente")
+  getAllProjects() {
+    this.elegirProyectoService.findAll().subscribe((data: Array<DisponibilidadProyecto>) => {
+      console.log(data);
+      data.forEach(element => {
+        element.route = `/${element.tipoDeProyecto.replace(/ /g, "-").toLowerCase()}`
+      });
+      this.projectsList = data;
+      console.log(this.projectsList);
+    });
   }
 
-
-
-
-
-
-
-
+  changeStatusProject(disponibilidadProyecto: DisponibilidadProyecto) {
+    this.elegirProyectoService.update(disponibilidadProyecto.id).subscribe(data => {
+      this.getAllProjects();
+    });
+  }
 
 
 }
