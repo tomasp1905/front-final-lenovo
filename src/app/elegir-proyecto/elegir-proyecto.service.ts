@@ -26,11 +26,11 @@ export class ElegirProyectoService {
     constructor(private http: HttpClient) { }
 
     public findAll() {
-      return this.http.get(`${this.server}/disponibilidadProyecto/verEstadoProyectoBianual`, { headers: this.headers });
+      return this.http.get(`${this.server}/disponibilidadProyecto/verEstadoProyectos`, { headers: this.headers });
     }
 
     public update(id: number) {
-      return this.http.put(`${this.server}/disponibilidadProyecto/cambiarEstadoProyectoBienestar/${id}`, {}, { headers: this.headers });
+      return this.http.put(`${this.server}/disponibilidadProyecto/cambiarEstadoProyecto/${id}`, {}, { headers: this.headers });
     }
 
 

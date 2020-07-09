@@ -22,12 +22,12 @@ export class ElegirProyectoComponent implements OnInit {
 
   getAllProjects() {
     this.elegirProyectoService.findAll().subscribe((data: Array<DisponibilidadProyecto>) => {
-      console.log(data);
+     
       data.forEach(element => {
         element.route = `/${element.tipoDeProyecto.replace(/ /g, "-").toLowerCase()}`
       });
       this.projectsList = data;
-      console.log(this.projectsList);
+      
     });
   }
 

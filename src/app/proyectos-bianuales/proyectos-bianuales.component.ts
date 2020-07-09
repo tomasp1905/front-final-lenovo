@@ -231,6 +231,7 @@ export class ProyectosBianualesComponent implements OnInit {
     this.fechaInicioTexto = '';
     this.fechaFinalizacionTexto = '';
     console.log(this.proyectoBianual)
+
   }
 
   eliminarActividad(id: number): void {
@@ -265,10 +266,11 @@ export class ProyectosBianualesComponent implements OnInit {
   }
 
   updateBianual(): void {
-    this.verProyectoService.updateBianual(this.proyectoBianual)
-      .subscribe(json => {
-        this.router.navigate(['/ver-proyectos-activos'])
+    this.proyectoBianualService.update(this.proyectoBianual)
+      .subscribe(proyectoBianual => {
+        this.router.navigate(['/ver-mis-proyectos'])
         swal.fire('Proyecto actualizado', `El Proyecto ${this.proyectoBianual.titulo} se actualizó con éxito`, 'success');
+        console.log(this.proyectoBianual)
       }
       )
   }

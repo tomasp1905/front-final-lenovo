@@ -1,6 +1,7 @@
 import { Entidad } from './entidad';
 
-export class Actividad extends Entidad {
+export class Actividad {
+  id:number;
   tipoDeActividad: string;
   indicadorDeResultado: string;
   medioDeVerificacion: string;

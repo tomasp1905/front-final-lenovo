@@ -12,6 +12,7 @@
           <label for="titulo" class="col-form-label">Título del Proyecto:</label>
 
           <div class="col-9">
+            <div [disabled]="!authService.hasRole('ROLE_ADMIN')" class='form-group row'>
             <input class="form-control" type="text" name="titulo" [class.is-invalid]="titulo.invalid && titulo.touched" [(ngModel)]="proyectoBianual.titulo" required #titulo="ngModel">
             <small *ngIf="titulo.invalid && titulo.touched" class="form-text text-danger">Campo requerido</small>
           </div>
@@ -213,6 +214,7 @@
             <table class="table table-bordered" *ngIf="proyectoBianual.miembros?.length>0">
               <thead>
                 <tr align="center">
+                  <th>Id</th>
                   <th>Nombre</th>
                   <th>Apellido</th>
                   <th>Clave</th>
@@ -221,6 +223,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let miembro of proyectoBianual.miembros">
+                  <td>{{miembro.id}}</td>
                   <td>{{miembro.nombre}}</td>
                   <td>{{miembro.apellido}}</td>
                   <td>{{miembro.clave}}</td>
@@ -483,6 +486,7 @@
                 <table class="table table-bordered" *ngIf="proyectoBianual.listaDeActividades?.length>0">
                   <thead>
                     <tr align="center">
+                      <th>ID</th>
                       <th>Tipo de actividad</th>
                       <th>Indicador de resultado</th>
                       <th>Medio de verificación</th>
@@ -493,6 +497,7 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let actividad of proyectoBianual.listaDeActividades">
+                      <td>{{actividad.id}}</td>
                       <td>{{actividad.tipoDeActividad}}</td>
                       <td>{{actividad.indicadorDeResultado}}</td>
                       <td>{{actividad.medioDeVerificacion}}</td>

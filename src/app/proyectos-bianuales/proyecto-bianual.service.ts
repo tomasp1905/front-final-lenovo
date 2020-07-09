@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { UnidadAcademica } from './listas/unidad-academica';
 import { ProyectoBianual } from './proyecto-bianual';
 import { Carrera } from './listas/carrera';
@@ -24,36 +24,14 @@ export class ProyectoBianualService {
 
   private urlEndPointUpload: string = 'http://localhost:8080/proyectoBianual';
   private urlEndPointProyectoBianualPorId: string = 'http://localhost:8080/proyectoBianual/verProyecto';
+  private urlEndPointModificarProyectoBianual: string = 'http://localhost:8080/proyectoBianual/modificarProyecto';
+
+  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
 
   constructor(private http: HttpClient, private router:Router) { }
 
-  // private agregarAuthorizationHeader(){
-  //   let token = this.authService.token;
-  //   if(token != null){
-  //     return this.httpHeaders.append('Authorization','Bearer' + token);
-  //   }
-  //   return this.httpHeaders;
-  // }
 
-  // private isNoAutorizado(e): boolean {
-  //   if (e.status===401){ //cuando carece de credenciales validas para autenticacion
-  //
-  //
-  //     if(this.authService.isAuthenticated()){
-  //       this.authService.logout();
-  //     }
-  //     this.router.navigate(['/login'])
-  //     return true;
-  //   }
-  //
-  //   if (e.status===403){  //403 es cuando no tiene el rol correspondiente
-  //     swal.fire('Acceso denegado', `Usuario ${this.authService.usuario.username} no tiene acceso a este recurso`, 'warning')
-  //     this.router.navigate(['/elegir-proyecto'])
-  //     return true;
-  //   }
-  //   return false;
-  // }
 
   filtrarUnidadesAcademicas(term: string): Observable<UnidadAcademica[]> {
     return this.http.get<UnidadAcademica[]>(`${this.urlEndPointUnidadAcedemica}/filtrar-unidades/${term}`)
@@ -111,6 +89,10 @@ export class ProyectoBianualService {
 
   getProyectoBianual(id):Observable<ProyectoBianual>{
     return this.http.get<ProyectoBianual>(`${this.urlEndPointProyectoBianualPorId}/${id}`)
+  }
+
+  update(proyectoBianual: ProyectoBianual):Observable<ProyectoBianual>{
+    return this.http.put<ProyectoBianual>(`${this.urlEndPointModificarProyectoBianual}/${proyectoBianual.id}`,proyectoBianual, {headers: this.httpHeaders})
   }
 
 }

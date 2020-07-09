@@ -7,6 +7,7 @@ import { ProyectoBienestar } from '../proyectos-bienestar/proyecto-bienestar';
 import { ProyectoEspecial } from '../proyectos-especiales/proyecto-especial';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +16,9 @@ export class MisProyectosService {
   private urlEndPointObtenerProyectosBianuales: string = 'http://localhost:8080/usuario/obtenerProyectosBianualesPorDirector';
   private urlEndPointObtenerProyectosBienestar: string = 'http://localhost:8080/usuario/obtenerProyectosBienestarPorDirector';
   private urlEndPointObtenerProyectosEspeciales: string = 'http://localhost:8080/usuario/obtenerProyectosEspecialesPorDirector';
+
+  private urlEndPointProyectoBianualPorId: string = 'http://localhost:8080/proyectoBianual/verProyecto';
+  private urlEndPointModificarProyectoBianual: string = 'http://localhost:8080/proyectoBianual/modificarProyecto';
 
 
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -47,5 +51,9 @@ export class MisProyectosService {
       })
     )
   }
+
+  
+
+
 
 }

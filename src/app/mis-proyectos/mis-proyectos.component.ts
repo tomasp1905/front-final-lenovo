@@ -4,6 +4,10 @@ import { ProyectoBianual } from '../proyectos-bianuales/proyecto-bianual';
 import { ModalDetalleBianualMisProyectosService } from './detalle-bianual-mis-proyectos/modal-detalle-bianual-mis-proyectos.service';
 import { ProyectoBienestar } from '../proyectos-bienestar/proyecto-bienestar';
 import { ProyectoEspecial } from '../proyectos-especiales/proyecto-especial';
+import { ProyectoBianualService } from '../proyectos-bianuales/proyecto-bianual.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import swal from 'sweetalert2';
+
 
 
 
@@ -21,7 +25,10 @@ export class MisProyectosComponent implements OnInit {
   proyectoSeleccionadoBienestar: ProyectoBienestar;
   proyectoSeleccionadoEspecial: ProyectoEspecial;
 
-  constructor(private misProyectosService: MisProyectosService, private modalDetalleBianualMisProyectos: ModalDetalleBianualMisProyectosService) { }
+  private proyectoBianual: ProyectoBianual = new ProyectoBianual();
+
+  constructor(private misProyectosService: MisProyectosService, private modalDetalleBianualMisProyectos: ModalDetalleBianualMisProyectosService,
+              private proyectoBianualService: ProyectoBianualService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.misProyectosService.getProyectosBianuales().subscribe(
@@ -41,9 +48,15 @@ export class MisProyectosComponent implements OnInit {
     console.log("click")
   }
 
-  editarActividades(){
 
-  }
+  // updateBianual(proyecto: ProyectoBianual): void {
+  //   this.misProyectosService.updateBianual(proyecto)
+  //     .subscribe(json => {
+  //       this.router.navigate(['/ver-mis-proyectos'])
+  //       swal.fire('Proyecto actualizado', `El Proyecto ${proyecto.titulo} se actualizó con éxito`, 'success');
+  //     }
+  //     )
+  // }
 
 
 

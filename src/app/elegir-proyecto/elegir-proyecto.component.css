@@ -3,6 +3,29 @@
 }
 
 .card-custom {
-  padding: 25px;
+  padding: 9px 25px;
   cursor: pointer;
+}
+
+.project-title{
+  font-size: 19px !important;
+  color: #495057;
+}
+
+.align-center{
+  align-items: center;
+  align-content: center;
+}
+
+.box-project{
+  background: #0078FF;
+  padding: 10px 10px;
+  text-align: center;
+  color: white; 
+  border-radius: 3px;
+  
+}
+
+.title-project{
+  font-size: 22px;
 }
