@@ -187,9 +187,7 @@ export class ProyectosBianualesComponent implements OnInit {
     console.log(this.proyectoBianual)
   }
 
-  eliminarMiembro(id: number): void {
-    this.proyectoBianual.miembros = this.proyectoBianual.miembros.filter((miembro: Miembro) => id !== miembro.id)
-  }
+
 
   agregarSocio() {
     const socio = new Socio();
@@ -211,9 +209,7 @@ export class ProyectosBianualesComponent implements OnInit {
     console.log(this.proyectoBianual)
   }
 
-  eliminarSocio(id: number): void {
-    this.proyectoBianual.socios = this.proyectoBianual.socios.filter((socio: Socio) => id !== socio.id)
-  }
+
 
   agregarActividad() {
     const actividad = new Actividad();

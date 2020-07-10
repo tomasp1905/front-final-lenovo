@@ -8,11 +8,10 @@
       <form autocomplete="off" #proyectoForm="ngForm">
 
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!proyectoBianual.id">
           <label for="titulo" class="col-form-label">Título del Proyecto:</label>
 
           <div class="col-9">
-            <div [disabled]="!authService.hasRole('ROLE_ADMIN')" class='form-group row'>
             <input class="form-control" type="text" name="titulo" [class.is-invalid]="titulo.invalid && titulo.touched" [(ngModel)]="proyectoBianual.titulo" required #titulo="ngModel">
             <small *ngIf="titulo.invalid && titulo.touched" class="form-text text-danger">Campo requerido</small>
           </div>
@@ -20,7 +19,7 @@
         </div>
 
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!proyectoBianual.id">
           <label for="anio" class="col-form-label">Año de Presentación:</label>
 
           <div class="col-2">
@@ -32,7 +31,7 @@
 
 
         <!-- ELEGIR TIPO DE PROYECTO CON RADIOBUTTON -->
-          <div class="form-group row">
+          <div class="form-group row" *ngIf="!proyectoBianual.id">
 
          <label>Tipo de Proyecto:</label>
 
@@ -55,7 +54,7 @@
 
 
         <!-- AUTOCOMPLETE PARA UNIDADES ACADEMICAS -->
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!proyectoBianual.id">
           <div class="col-9">
             <mat-form-field class="full-width">
               <input type="text" placeholder="Añadir Unidad Académica" aria-label="listaDeUnidadesAcademicas" matInput [formControl]="autocompleteControlUnidadAcademica" [matAutocomplete]="autoUnidadAcademica">
@@ -68,7 +67,7 @@
           </div>
         </div>
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!proyectoBianual.id">
           <div class="col-4">
             <table class="table table-bordered" *ngIf="proyectoBianual.unidadesAcademicas?.length>0">
               <thead>
@@ -87,7 +86,7 @@
         </div>
 
         <!--AUTOCOMPLETE PARA CARRERAS -->
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!proyectoBianual.id">
           <div class="col-9">
             <mat-form-field class="full-width">
               <input type="text" placeholder="Añadir Carrera" aria-label="listaDeCarreras" matInput [formControl]="autocompleteControlCarrera" [matAutocomplete]="autoCarrera">
@@ -100,7 +99,7 @@
           </div>
         </div>
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!proyectoBianual.id">
           <div class="col-4">
             <table class="table table-bordered" *ngIf="proyectoBianual.listaDeCarreras?.length>0">
               <thead>
@@ -118,7 +117,7 @@
           </div>
         </div>
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!proyectoBianual.id">
           <label for="catedra" class="col-form-label">Cátedra:</label>
 
           <div class="col-9">
@@ -129,7 +128,7 @@
         </div>
 
         <!--AUTOCOMPLETE PARA PRIORIDADES -->
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!proyectoBianual.id">
           <div class="col-9">
             <mat-form-field class="full-width-prioridad">
               <input type="text" placeholder="Añadir Prioridad" aria-label="listaDePrioridades" matInput [formControl]="autocompleteControlPrioridad" [matAutocomplete]="autoPrioridades">
@@ -142,7 +141,7 @@
           </div>
         </div>
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!proyectoBianual.id">
           <div class="col-7">
             <table class="table table-bordered" *ngIf="proyectoBianual.listaDePrioridades?.length>0">
               <thead>
@@ -153,6 +152,7 @@
               <tbody>
                 <tr *ngFor="let prioridad of proyectoBianual.listaDePrioridades">
                   <td>{{prioridad.nombre}}</td>
+
                   <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarPrioridad(prioridad.id)">X</button></td>
                 </tr>
               </tbody>
@@ -160,10 +160,10 @@
           </div>
         </div>
 
-        <hr>
 
 
-        <div class="card border-info mb-3">
+
+        <div class="card border-info mb-3" *ngIf="!proyectoBianual.id">
           <div class="card-header text-center">
             <h5>MIEMBROS DEL EQUIPO</h5>
           </div>
@@ -177,7 +177,7 @@
             </div>
 
 
-            <div class="form-group row">
+            <div class="form-group row" >
               <label for="apellidoMiembroTexto" class="col-form-label">Apellido:</label>
               <div class="col-sm-6">
                 <input type="text" class="form-control" [(ngModel)]="apellidoMiembroTexto" name="apellidoMiembroTexto">
@@ -209,12 +209,11 @@
         </div>
 
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!proyectoBianual.id">
           <div class="col-10">
             <table class="table table-bordered" *ngIf="proyectoBianual.miembros?.length>0">
               <thead>
                 <tr align="center">
-                  <th>Id</th>
                   <th>Nombre</th>
                   <th>Apellido</th>
                   <th>Clave</th>
@@ -223,19 +222,17 @@
               </thead>
               <tbody>
                 <tr *ngFor="let miembro of proyectoBianual.miembros">
-                  <td>{{miembro.id}}</td>
                   <td>{{miembro.nombre}}</td>
                   <td>{{miembro.apellido}}</td>
                   <td>{{miembro.clave}}</td>
                   <td>{{miembro.facultad}}</td>
-                  <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarMiembro(miembro.id)">X</button></td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!proyectoBianual.id">
           <div class="card-header text-center">
             <h5>SOCIO/S EXTERNO/S</h5>
           </div>
@@ -301,7 +298,7 @@
           </div>
         </div>
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!proyectoBianual.id">
           <div class="col-10">
             <table class="table table-bordered" *ngIf="proyectoBianual.socios?.length>0">
               <thead>
@@ -324,7 +321,7 @@
                   <td>{{socio.apellido}}</td>
                   <td>{{socio.telefono}}</td>
                   <td>{{socio.email}}</td>
-                  <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarSocio(socio.id)">X</button></td>
+
                 </tr>
               </tbody>
             </table>
@@ -333,7 +330,7 @@
 
         <!-- CAMPOS DE LLENADO CON TEXTO -->
 
-        <div class="card border-info mb-3" *ngIf="mostrarRenovacion">
+        <div class="card border-info mb-3" *ngIf="mostrarRenovacion && !proyectoBianual.id" >
           <div class="card-header text-center">
             <h5>RENOVACIÓN</h5>
           </div>
@@ -344,16 +341,16 @@
         </div>
 
         <div class="row">
-          <div *ngIf="mostrarRenovacion" class="col-sm-6">
+          <div *ngIf="mostrarRenovacion && !proyectoBianual.id" class="col-sm-6">
             <button class="boton btn btn-primary" role="button" (click)=" mostrarRenovacion = !mostrarRenovacion " *ngIf="!proyectoBianual.id">Es un proyecto nuevo</button>
           </div>
-          <div *ngIf="!mostrarRenovacion" class="col-sm-6">
+          <div *ngIf="!mostrarRenovacion && !proyectoBianual.id" class="col-sm-6">
             <button class="boton btn btn-primary" role="button" (click)=" mostrarRenovacion = !mostrarRenovacion " *ngIf="!proyectoBianual.id">Es una renovación</button>
           </div>
         </div>
 
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!proyectoBianual.id">
           <div class="card-header text-center">
             <h5>SITUACIÓN</h5>
           </div>
@@ -364,7 +361,7 @@
           </div>
         </div>
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!proyectoBianual.id">
           <div class="card-header text-center">
             <h5>SÍNTESIS DEL PROYECTO</h5>
           </div>
@@ -375,7 +372,7 @@
           </div>
         </div>
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!proyectoBianual.id">
           <div class="card-header text-center">
             <h5>OBJETIVO/S GENERAL/ES O META DEL PROYECTO</h5>
           </div>
@@ -387,7 +384,7 @@
         </div>
 
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!proyectoBianual.id">
           <div class="card-header text-center">
             <h5>OBJETIVOS ESPECÍFICOS</h5>
           </div>
@@ -398,7 +395,7 @@
           </div>
         </div>
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!proyectoBianual.id">
           <div class="card-header text-center">
             <h5>BENEFICIARIOS DE SU PROPUESTA</h5>
           </div>
@@ -427,7 +424,7 @@
 
         <br>
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" >
           <div class="card-header text-center">
             <h5>ACTIVIDADES</h5>
           </div>
@@ -486,7 +483,6 @@
                 <table class="table table-bordered" *ngIf="proyectoBianual.listaDeActividades?.length>0">
                   <thead>
                     <tr align="center">
-                      <th>ID</th>
                       <th>Tipo de actividad</th>
                       <th>Indicador de resultado</th>
                       <th>Medio de verificación</th>
@@ -497,14 +493,15 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let actividad of proyectoBianual.listaDeActividades">
-                      <td>{{actividad.id}}</td>
                       <td>{{actividad.tipoDeActividad}}</td>
                       <td>{{actividad.indicadorDeResultado}}</td>
                       <td>{{actividad.medioDeVerificacion}}</td>
                       <td>{{actividad.insumoRequerido}}</td>
                       <td>{{actividad.fechaInicio | date:"longDate"}}</td>
                       <td>{{actividad.fechaFinalizacion | date:"longDate"}}</td>
-                      <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad(actividad.id)">X</button></td>
+                      <!-- <div > -->
+                      <td *ngIf="proyectoBianual.id"><button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad(actividad.id)">X</button></td>
+                      <!-- </div> -->
                     </tr>
                   </tbody>
                 </table>
@@ -515,9 +512,9 @@
           </div>
         </div>
 
-        <hr>
+        <!-- <hr> -->
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!proyectoBianual.id">
           <div class="card-header text-center">
             <h5>VINCULACION CURRICULAR Y PARTICIPACIÓN DE LOS ESTUDIANTES</h5>
           </div>
@@ -529,7 +526,7 @@
         </div>
 
 
-        <div class="card border-info mb-3" *ngIf="mostrarInvestigacion">
+        <div class="card border-info mb-3" *ngIf="mostrarInvestigacion && !proyectoBianual.id" >
           <div class="card-header text-center">
             <h5>VINCULACION CON INVESTIGACIÓN (Indique si el proyecto que presenta está vinculado con un proyecto de investigación)</h5>
           </div>
@@ -568,17 +565,17 @@
 
         </div>
 
-        <div class="row">
-          <div *ngIf="mostrarInvestigacion" class="col-sm-6">
+        <div class="row" >
+          <div *ngIf="mostrarInvestigacion && !proyectoBianual.id" class="col-sm-6">
             <button class="boton btn btn-primary" role="button" (click)=" mostrarInvestigacion = !mostrarInvestigacion " *ngIf="!proyectoBianual.id">No tiene vinculación con investigación</button>
           </div>
-          <div *ngIf="!mostrarInvestigacion" class="col-sm-6">
+          <div *ngIf="!mostrarInvestigacion && !proyectoBianual.id" class="col-sm-6">
             <button class="boton btn btn-primary" role="button" (click)=" mostrarInvestigacion = !mostrarInvestigacion " *ngIf="!proyectoBianual.id">Si tiene vinculación con investigación</button>
           </div>
         </div>
 
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!proyectoBianual.id">
           <div class="card-header text-center">
             <h5>SUPUESTOS</h5>
           </div>
@@ -590,7 +587,7 @@
           </div>
         </div>
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!proyectoBianual.id">
           <div class="card-header text-center">
             <h5>EVALUACIÓN</h5>
           </div>
