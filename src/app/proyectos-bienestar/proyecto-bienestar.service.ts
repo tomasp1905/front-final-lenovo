@@ -25,6 +25,7 @@ export class ProyectoBienestarService {
 
   private urlEndPointUpload: string = 'http://localhost:8080/proyectoBienestar';
   private urlEndPointProyectoBienestarPorId: string = 'http://localhost:8080/proyectoBienestar/verProyecto';
+  private urlEndPointModificarProyectoBienestar: string = 'http://localhost:8080/proyectoBienestar/modificarProyecto';
 
   constructor(private http: HttpClient) { }
 
@@ -77,6 +78,10 @@ export class ProyectoBienestarService {
 
   getProyectoBienestar(id):Observable<ProyectoBienestar>{
     return this.http.get<ProyectoBienestar>(`${this.urlEndPointProyectoBienestarPorId}/${id}`)
+  }
+
+  update(proyectoBienestar: ProyectoBienestar):Observable<ProyectoBienestar>{
+    return this.http.put<ProyectoBienestar>(`${this.urlEndPointModificarProyectoBienestar}/${proyectoBienestar.id}`,proyectoBienestar, {headers: this.httpHeaders})
   }
 
 }

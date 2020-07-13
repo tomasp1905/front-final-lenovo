@@ -256,10 +256,10 @@ export class ProgramasEstablesComponent implements OnInit {
   }
 
   updateEstable(): void {
-    this.verProyectoService.updateEstable(this.programaEstable)
-      .subscribe(json => {
-        this.router.navigate(['/ver-proyectos'])
-        swal.fire('Proyecto actualizado', `El Proyecto ${this.programaEstable.titulo} se actualizó con éxito`, 'success');
+    this.programaEstableService.update(this.programaEstable)
+      .subscribe(programaEstable => {
+        this.router.navigate(['/ver-mis-proyectos'])
+        swal.fire('Programa actualizado', `El programa ${this.programaEstable.titulo} se actualizó con éxito`, 'success');
       }
       )
   }

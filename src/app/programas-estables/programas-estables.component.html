@@ -7,7 +7,7 @@
     <div class="card-body">
       <form autocomplete="off" #proyectoForm="ngForm">
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!programaEstable.id">
           <label for="titulo" class="col-form-label">Título del Programa:</label>
 
           <div class="col-9">
@@ -19,7 +19,7 @@
         </div>
 
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!programaEstable.id">
           <label for="anio" class="col-form-label">Año de Presentación:</label>
 
           <div class="col-2">
@@ -30,7 +30,7 @@
 
         </div>
 
-        <div class="card border-info mb-3" *ngIf="mostrarAntecedente">
+        <div class="card border-info mb-3" *ngIf="mostrarAntecedente && !programaEstable.id">
           <div class="card-header text-center">
             <h5>ANTECEDENTES</h5>
           </div>
@@ -41,17 +41,17 @@
         </div>
 
         <div class="row">
-          <div *ngIf="mostrarAntecedente" class="col-sm-6">
+          <div *ngIf="mostrarAntecedente && !programaEstable.id" class="col-sm-6">
             <button class="boton btn btn-primary" role="button" (click)=" mostrarAntecedente = !mostrarAntecedente " *ngIf="!programaEstable.id">No tiene antecedentes</button>
           </div>
-          <div *ngIf="!mostrarAntecedente" class="col-sm-6">
+          <div *ngIf="!mostrarAntecedente && !programaEstable.id" class="col-sm-6">
             <button class="boton btn btn-primary" role="button" (click)=" mostrarAntecedente = !mostrarAntecedente " *ngIf="!programaEstable.id">Si tiene antecedentes</button>
           </div>
         </div>
 
 
         <!-- AUTOCOMPLETE PARA UNIDADES ACADEMICAS -->
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!programaEstable.id">
           <div class="col-9">
             <mat-form-field class="full-width">
               <input type="text" placeholder="Añadir Unidad Académica" aria-label="listaDeUnidadesAcademicas" matInput [formControl]="autocompleteControlUnidadAcademica" [matAutocomplete]="autoUnidadAcademica">
@@ -64,7 +64,7 @@
           </div>
         </div>
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!programaEstable.id">
           <div class="col-4">
             <table class="table table-bordered" *ngIf="programaEstable.unidadesAcademicas?.length>0">
               <thead>
@@ -83,7 +83,7 @@
         </div>
 
         <!--AUTOCOMPLETE PARA CARRERAS -->
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!programaEstable.id">
           <div class="col-9">
             <mat-form-field class="full-width">
               <input type="text" placeholder="Añadir Carrera" aria-label="listaDeCarreras" matInput [formControl]="autocompleteControlCarrera" [matAutocomplete]="autoCarrera">
@@ -96,7 +96,7 @@
           </div>
         </div>
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!programaEstable.id">
           <div class="col-4">
             <table class="table table-bordered" *ngIf="programaEstable.listaDeCarreras?.length>0">
               <thead>
@@ -114,7 +114,7 @@
           </div>
         </div>
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!programaEstable.id">
           <label for="catedra" class="col-form-label">Cátedra:</label>
 
           <div class="col-9">
@@ -125,7 +125,7 @@
         </div>
 
         <!--AUTOCOMPLETE PARA PRIORIDADES -->
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!programaEstable.id">
           <div class="col-9">
             <mat-form-field class="full-width-prioridad">
               <input type="text" placeholder="Añadir Prioridad" aria-label="listaDePrioridades" matInput [formControl]="autocompleteControlPrioridad" [matAutocomplete]="autoPrioridades">
@@ -138,7 +138,7 @@
           </div>
         </div>
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!programaEstable.id">
           <div class="col-7">
             <table class="table table-bordered" *ngIf="programaEstable.listaDePrioridades?.length>0">
               <thead>
@@ -156,74 +156,10 @@
           </div>
         </div>
 
-        <hr>
-
-        <!-- <div class="card border-info mb-3">
-          <div class="card-header text-center">
-            <h5>DIRECTOR/A</h5>
-          </div>
-          <div class="card-body">
-
-
-            <div class="form-group row">
-              <label for="nombreDir" class="col-form-label">Nombre:</label>
-              <div class="col-sm-6">
-                <input class="form-control" type="text" name="nombreDir" [class.is-invalid]="nombreDir.invalid && nombreDir.touched" [(ngModel)]="programaEstable.director.nombre" required #nombreDir="ngModel">
-                <small *ngIf="nombreDir.invalid && nombreDir.touched" class="form-text text-danger">Campo requerido
-                </small>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="apellidoDir" class="col-form-label">Apellido:</label>
-              <div class="col-sm-6">
-                <input class="form-control" type="text" name="apellidoDir" [class.is-invalid]="apellidoDir.invalid && apellidoDir.touched" [(ngModel)]="programaEstable.director.apellido" required #apellidoDir="ngModel">
-                <small *ngIf="apellidoDir.invalid && apellidoDir.touched" class="form-text text-danger">Campo requerido
-                </small>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="claveDir" class="col-form-label">Clave UCC:</label>
-              <div class="col-sm-3">
-                <input type="number" class="form-control" [(ngModel)]="programaEstable.director.clave" name="claveDir">
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="emailDir" class="col-form-label">Email:</label>
-              <div class="col-sm-6">
-                <input class="form-control" type="email" name="emailDir" [class.is-invalid]="emailDir.invalid && emailDir.touched" [(ngModel)]="programaEstable.director.email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-                  #emailDir="ngModel" style="width:410px">
-                <small *ngIf="emailDir.invalid && emailDir.touched" class="form-text text-danger">Campo requerido
-                </small>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="facultadDir" class="col-form-label">Facultad o Área:</label>
-              <div class="col-sm-5">
-                <input class="form-control" type="text" name="facultadDir" [class.is-invalid]="facultadDir.invalid && facultadDir.touched" [(ngModel)]="programaEstable.director.facultad" required #facultadDir="ngModel" style="width:340px">
-                <small *ngIf="facultadDir.invalid && facultadDir.touched" class="form-text text-danger">Campo requerido
-                </small>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="cargoDir" class="col-form-label">Cargo (Titular / Adjunto / JTP):</label>
-              <div class="col-sm-2">
-                <input class="form-control" type="text" name="cargoDir" [class.is-invalid]="cargoDir.invalid && cargoDir.touched" [(ngModel)]="programaEstable.director.cargo" required #cargoDir="ngModel">
-                <small *ngIf="cargoDir.invalid && cargoDir.touched" class="form-text text-danger">Campo requerido
-                </small>
-              </div>
-            </div>
 
 
 
-          </div>
-        </div> -->
-
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!programaEstable.id">
           <div class="card-header text-center">
             <h5>MIEMBROS DEL EQUIPO</h5>
           </div>
@@ -269,7 +205,7 @@
         </div>
 
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!programaEstable.id">
           <div class="col-7">
             <table class="table table-bordered" *ngIf="programaEstable.miembros?.length>0">
               <thead>
@@ -286,14 +222,13 @@
                   <td>{{miembro.apellido}}</td>
                   <td>{{miembro.clave}}</td>
                   <td>{{miembro.facultad}}</td>
-                  <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarMiembro(miembro.id)">X</button></td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!programaEstable.id">
           <div class="card-header text-center">
             <h5>SOCIO/S EXTERNO/S</h5>
           </div>
@@ -359,7 +294,7 @@
           </div>
         </div>
 
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!programaEstable.id">
           <div class="col-7">
             <table class="table table-bordered" *ngIf="programaEstable.socios?.length>0">
               <thead>
@@ -382,7 +317,6 @@
                   <td>{{socio.apellido}}</td>
                   <td>{{socio.telefono}}</td>
                   <td>{{socio.email}}</td>
-                  <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarSocio(socio.id)">X</button></td>
                 </tr>
               </tbody>
             </table>
@@ -391,7 +325,7 @@
 
         <!-- CAMPOS DE LLENADO CON TEXTO -->
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!programaEstable.id">
           <div class="card-header text-center">
             <h5>PRESENTACIÓN</h5>
           </div>
@@ -402,7 +336,7 @@
         </div>
 
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!programaEstable.id">
           <div class="card-header text-center">
             <h5>OBJETIVO/S GENERAL/ES O META DEL PROYECTO</h5>
           </div>
@@ -415,7 +349,7 @@
         </div>
 
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!programaEstable.id">
           <div class="card-header text-center">
             <h5>OBJETIVOS ESPECÍFICOS</h5>
           </div>
@@ -427,7 +361,7 @@
           </div>
         </div>
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!programaEstable.id">
           <div class="card-header text-center">
             <h5>BENEFICIARIOS DE SU PROPUESTA</h5>
           </div>
@@ -438,7 +372,7 @@
             </small>
           </div>
 
-          <div class='form-group row'>
+          <div class='form-group row' >
             <div class="col-9">
             <label for="numBen" class="col-form-label">N° aproximado de beneficiarios directos que estima alcanzar con las
               acciones propuestas:</label>
@@ -532,7 +466,7 @@
                       <td>{{actividad.insumoRequerido}}</td>
                       <td>{{actividad.fechaInicio | date:"longDate"}}</td>
                       <td>{{actividad.fechaFinalizacion | date:"longDate"}}</td>
-                      <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad(actividad.id)">X</button></td>
+                      <td *ngIf="programaEstable.id"><button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad(actividad.id)">X</button></td>
                     </tr>
                   </tbody>
                 </table>
@@ -543,9 +477,9 @@
           </div>
         </div>
 
-        <hr>
 
-        <div class="card border-info mb-3">
+
+        <div class="card border-info mb-3" *ngIf="!programaEstable.id">
           <div class="card-header text-center">
             <h5>VINCULACION CURRICULAR Y PARTICIPACIÓN DE LOS ESTUDIANTES</h5>
           </div>
@@ -558,7 +492,7 @@
           </div>
         </div>
 
-        <div class="card border-info mb-3" *ngIf="mostrarInvestigacion">
+        <div class="card border-info mb-3" *ngIf="mostrarInvestigacion && !programaEstable.id">
           <div class="card-header text-center">
             <h5>Vinculación con otros Proyectos de Investigación y/o Proyección Social</h5>
           </div>
@@ -599,15 +533,15 @@
         </div>
 
         <div class="row">
-          <div *ngIf="mostrarInvestigacion" class="col-sm-6">
+          <div *ngIf="mostrarInvestigacion && !programaEstable.id" class="col-sm-6">
             <button class="boton btn btn-primary" role="button" (click)=" mostrarInvestigacion = !mostrarInvestigacion " *ngIf="!programaEstable.id">No tiene vinculación con investigación</button>
           </div>
-          <div *ngIf="!mostrarInvestigacion" class="col-sm-6">
+          <div *ngIf="!mostrarInvestigacion && !programaEstable.id" class="col-sm-6">
             <button class="boton btn btn-primary" role="button" (click)=" mostrarInvestigacion = !mostrarInvestigacion " *ngIf="!programaEstable.id">Si tiene vinculación con investigación</button>
           </div>
         </div>
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!programaEstable.id">
           <div class="card-header text-center">
             <h5>SUPUESTOS</h5>
           </div>
@@ -619,7 +553,7 @@
           </div>
         </div>
 
-        <div class="card border-info mb-3">
+        <div class="card border-info mb-3" *ngIf="!programaEstable.id">
           <div class="card-header text-center">
             <h5>EVALUACIÓN</h5>
           </div>
@@ -650,13 +584,9 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" *ngIf="!programaEstable.id">
     <div class="col-sm-6">
       <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button">VOLVER ATRÁS</button>
-      <!-- <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button" *ngIf="!programaEstable.id else elseBlockV">VOLVER ATRÁS</button> -->
-      <!-- <ng-template #elseBlockV>
-        <button class="boton btn btn-primary" role="button" [routerLink]="['/ver-proyectos']">VOLVER ATRÁS</button>
-      </ng-template> -->
     </div>
   </div>
 

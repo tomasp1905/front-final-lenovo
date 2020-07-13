@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { ProyectoBianual } from '../proyectos-bianuales/proyecto-bianual';
 import { ProyectoBienestar } from '../proyectos-bienestar/proyecto-bienestar';
 import { ProyectoEspecial } from '../proyectos-especiales/proyecto-especial';
+import { ProgramaEstable } from '../programas-estables/programa-estable';
 
 
 
@@ -16,6 +17,8 @@ export class MisProyectosService {
   private urlEndPointObtenerProyectosBianuales: string = 'http://localhost:8080/usuario/obtenerProyectosBianualesPorDirector';
   private urlEndPointObtenerProyectosBienestar: string = 'http://localhost:8080/usuario/obtenerProyectosBienestarPorDirector';
   private urlEndPointObtenerProyectosEspeciales: string = 'http://localhost:8080/usuario/obtenerProyectosEspecialesPorDirector';
+  private urlEndPointObtenerProgramasEstables: string = 'http://localhost:8080/usuario/obtenerProgramasEstablesPorDirector';
+
 
   private urlEndPointProyectoBianualPorId: string = 'http://localhost:8080/proyectoBianual/verProyecto';
   private urlEndPointModificarProyectoBianual: string = 'http://localhost:8080/proyectoBianual/modificarProyecto';
@@ -52,7 +55,16 @@ export class MisProyectosService {
     )
   }
 
-  
+  getProgramasEstables():Observable<ProgramaEstable[]>{
+    return this.http.get(this.urlEndPointObtenerProgramasEstables).pipe(
+      map(response =>{
+        let programasEstables = response as ProgramaEstable[];
+        return programasEstables;
+      })
+    )
+  }
+
+
 
 
 

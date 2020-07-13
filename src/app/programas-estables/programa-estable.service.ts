@@ -21,6 +21,7 @@ export class ProgramaEstableService {
 
   private urlEndPointUpload: string = 'http://localhost:8080/programaEstable';
   private urlEndPointProgramaEstablePorId: string = 'http://localhost:8080/programaEstable/verProgramaEstable';
+  private urlEndPointModificarProgramaEstable: string = 'http://localhost:8080/programaEstable/modificarPrograma';
 
   constructor(private http: HttpClient) { }
 
@@ -68,6 +69,10 @@ export class ProgramaEstableService {
 
   getProgramaEstable(id):Observable<ProgramaEstable>{
     return this.http.get<ProgramaEstable>(`${this.urlEndPointProgramaEstablePorId}/${id}`)
+  }
+
+  update(programaEstable: ProgramaEstable):Observable<ProgramaEstable>{
+    return this.http.put<ProgramaEstable>(`${this.urlEndPointModificarProgramaEstable}/${programaEstable.id}`,programaEstable, {headers: this.httpHeaders})
   }
 
 

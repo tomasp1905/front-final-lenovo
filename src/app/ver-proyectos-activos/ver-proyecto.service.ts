@@ -28,15 +28,18 @@ export class VerProyectoService {
   private urlEndPointProgramaEstablePorId: string = 'http://localhost:8080/programaEstable/verProgramaEstable';
   private urlEndPointModificarProgramaEstable: string = 'http://localhost:8080/programaEstable/modificarPrograma';
   private urlEndPointFinalizarProgramaEstable: string = 'http://localhost:8080/programaEstable/finalizarProgramaEstable';
+  private urlEndPointGenerarPDFEstable: string = 'http://localhost:8080/programaEstable/generarPDF';
 
 
   private urlEndPointProyectoBienestarPorId: string = 'http://localhost:8080/proyectoBienestar/verProyecto';
   private urlEndPointModificarProyectoBienestar: string = 'http://localhost:8080/proyectoBienestar/modificarProyecto';
   private urlEndPointFinalizarProyectoBienestar: string = 'http://localhost:8080/proyectoBienestar/finalizarProyecto';
+  private urlEndPointGenerarPDFBienestar: string = 'http://localhost:8080/proyectoBienestar/generarPDF';
 
   private urlEndPointProyectoEspecialPorId: string = 'http://localhost:8080/proyectoEspecial/verProyecto';
   private urlEndPointModificarProyectoEspecial: string = 'http://localhost:8080/proyectoEspecial/modificarProyecto';
   private urlEndPointFinalizarProyectoEspecial: string = 'http://localhost:8080/proyectoEspecial/finalizarProyecto';
+  private urlEndPointGenerarPDFEspecial: string = 'http://localhost:8080/proyectoEspecial/generarPDF';
 
  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
  private httpHeaders2 = new HttpHeaders({'Content-Type': 'application/pdf'})
@@ -110,14 +113,6 @@ public generar(id:number): any {
 }
 
 
-
-//  generar(id: number) {
-//    console.log("entro al servicio con el id: " + id)
-//    let headers = new HttpHeaders();
-//    headers = headers.set('Accept', 'application/pdf');
-//    return this.http.get(`${this.urlEndPointGenerarPDFBianual}/${id}`,{ headers: headers, responseType: 'blob' });
-// }
-
 //PROGRAMA ESTABLE
 
 getProgramaEstable(id): Observable<ProgramaEstable>{
@@ -131,6 +126,17 @@ updateEstable(programaEstable: ProgramaEstable): Observable<ProgramaEstable>{
 
 finalizarEstable(id: number): Observable<ProgramaEstable>{
  return this.http.post<ProgramaEstable>(`${this.urlEndPointFinalizarProgramaEstable}/${id}`,{headers: this.httpHeaders} )
+}
+
+public generarPDFEstable(id:number): any {
+    var mediaType = 'application/pdf';
+    this.http.get(`${this.urlEndPointGenerarPDFEstable}/${id}`, { responseType: 'blob' }).subscribe(
+        (response) => {
+            var blob = new Blob([response], { type: mediaType });
+            saveAs(blob, 'reporte.pdf');
+        },
+        e => { throwError(e); }
+    );
 }
 
 
@@ -148,6 +154,17 @@ finalizarBienestar(id: number): Observable<ProyectoBienestar>{
  return this.http.post<ProyectoBienestar>(`${this.urlEndPointFinalizarProyectoBienestar}/${id}`,{headers: this.httpHeaders} )
 }
 
+public generarPDFBienestar(id:number): any {
+    var mediaType = 'application/pdf';
+    this.http.get(`${this.urlEndPointGenerarPDFBienestar}/${id}`, { responseType: 'blob' }).subscribe(
+        (response) => {
+            var blob = new Blob([response], { type: mediaType });
+            saveAs(blob, 'reporte.pdf');
+        },
+        e => { throwError(e); }
+    );
+}
+
 //PROYECTO especial
 
 getProyectoEspecial(id): Observable<ProyectoEspecial>{
@@ -160,6 +177,17 @@ updateEspecial(proyectoEspecial: ProyectoEspecial): Observable<ProyectoEspecial>
 
 finalizarEspecial(id: number): Observable<ProyectoEspecial>{
  return this.http.post<ProyectoEspecial>(`${this.urlEndPointFinalizarProyectoEspecial}/${id}`,{headers: this.httpHeaders} )
+}
+
+public generarPDFEspecial(id:number): any {
+    var mediaType = 'application/pdf';
+    this.http.get(`${this.urlEndPointGenerarPDFEspecial}/${id}`, { responseType: 'blob' }).subscribe(
+        (response) => {
+            var blob = new Blob([response], { type: mediaType });
+            saveAs(blob, 'reporte.pdf');
+        },
+        e => { throwError(e); }
+    );
 }
 
 

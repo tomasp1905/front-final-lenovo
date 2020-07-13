@@ -73,6 +73,9 @@ import { RendicionContableEspecialComponent } from './proyectos-especiales/rendi
 import { RendicionContableEstableComponent } from './programas-estables/rendicion-contable-estable/rendicion-contable-estable.component';
 import { RendicionContableBienestarComponent } from './proyectos-bienestar/rendicion-contable-bienestar/rendicion-contable-bienestar.component';
 import { ProyectoEstadoPipe } from './elegir-proyecto/proyecto-estado.pipe';
+import { DetalleEstableMisProyectosComponent } from './mis-proyectos/detalle-estable-mis-proyectos/detalle-estable-mis-proyectos.component';
+import { DetalleBienestarMisProyectosComponent } from './mis-proyectos/detalle-bienestar-mis-proyectos/detalle-bienestar-mis-proyectos.component';
+import { DetalleEspecialMisProyectosComponent } from './mis-proyectos/detalle-especial-mis-proyectos/detalle-especial-mis-proyectos.component';
 
 
 
@@ -171,7 +174,10 @@ const routes: Routes = [
     RendicionContableEspecialComponent,
     RendicionContableEstableComponent,
     RendicionContableBienestarComponent,
-    ProyectoEstadoPipe
+    ProyectoEstadoPipe,
+    DetalleEstableMisProyectosComponent,
+    DetalleBienestarMisProyectosComponent,
+    DetalleEspecialMisProyectosComponent
   ],
   imports: [
     BrowserModule,

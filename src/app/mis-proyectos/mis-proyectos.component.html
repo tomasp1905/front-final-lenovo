@@ -44,6 +44,8 @@
   </div>
 </div>
 
+<app-detalle-especial-mis-proyectos *ngIf="proyectoSeleccionadoEspecial" [proyectoEspecial]="proyectoSeleccionadoEspecial"></app-detalle-especial-mis-proyectos>
+
 <div class="animated fadeIn cardcss card border-primary mb-3">
   <div class="card-header bg-transparent border-info">
     <h5 align="center">LISTADO DE PROYECTOS ESPECIALES</h5>
@@ -70,10 +72,10 @@
           <td>{{proyecto.titulo}}</td>
           <td>{{proyecto.estado}}</td>
           <td>
-            <button class="btn btn-outline-info"  role="button">DETALLE</button>
+            <button class="btn btn-outline-info" (click)="abrirModalEspecial(proyecto)" role="button">DETALLE</button>
           </td>
           <td>
-            <button class="btn btn-warning" [routerLink]="['/ver-proyecto-especial', proyecto.id]" role="button">EDITAR</button>
+            <button class="btn btn-outline-info" [routerLink]="['/ver-proyecto-especial', proyecto.id]" role="button">EDITAR</button>
           </td>
           <td *ngIf="proyecto.estado == 'Activo'">
             <a href="https://www.google.com.ar" target="_blank" >COMPLETAR INFORME</a>
@@ -85,6 +87,8 @@
     </table>
   </div>
 </div>
+
+<app-detalle-bienestar-mis-proyectos *ngIf="proyectoSeleccionadoBienestar" [proyectoBienestar]="proyectoSeleccionadoBienestar"></app-detalle-bienestar-mis-proyectos>
 
 <div class="animated fadeIn cardcss card border-primary mb-3">
   <div class="card-header bg-transparent border-info">
@@ -112,10 +116,10 @@
           <td>{{proyecto.titulo}}</td>
           <td>{{proyecto.estado}}</td>
           <td>
-            <button class="btn btn-outline-info" role="button">DETALLE</button>
+            <button class="btn btn-outline-info" (click)="abrirModalBienestar(proyecto)" role="button">DETALLE</button>
           </td>
           <td>
-            <button class="btn btn-warning" [routerLink]="['/ver-proyecto-bienestar', proyecto.id]" role="button">EDITAR</button>
+            <button class="btn btn-outline-info" [routerLink]="['/ver-proyecto-bienestar', proyecto.id]" role="button">EDITAR</button>
           </td>
           <td *ngIf="proyecto.estado == 'Activo'">
             <a href="https://www.google.com.ar" target="_blank" >COMPLETAR INFORME</a>
@@ -127,5 +131,51 @@
     </table>
   </div>
 </div>
+
+<app-detalle-estable-mis-proyectos *ngIf="programaSeleccionadoEstable" [programaEstable]="programaSeleccionadoEstable"></app-detalle-estable-mis-proyectos>
+
+<div class="animated fadeIn cardcss card border-primary mb-3" *ngIf="authService.hasRole('ROLE_ADMIN')">
+  <div class="card-header bg-transparent border-info">
+    <h5 align="center">LISTADO DE PROGRAMAS ESTABLES</h5>
+  </div>
+  <div class="card-body text-primary">
+
+    <div *ngIf="programasEstables?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos
+    </div>
+
+    <table class="table table-bordered table-striped text-center" *ngIf="programasEstables?.length > 0" >
+      <thead>
+        <tr>
+          <th>TÍTULO DEL PROGRAMA</th>
+          <th>ESTADO</th>
+          <th>VER DETALLE COMPLETO</th>
+          <th>EDITAR ACTIVIDADES</th>
+          <th>INFORME FINAL</th>
+          <th>RENDICIÓN CONTABLE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let programaEstable of programasEstables">
+          <td>{{programaEstable.titulo}}</td>
+          <td>{{programaEstable.estado}}</td>
+          <td>
+            <button class="btn btn-outline-info" (click)="abrirModalEstable(programaEstable)" role="button">DETALLE</button>
+          </td>
+          <td>
+            <button class="btn btn-outline-info" [routerLink]="['/ver-programa-estable', programaEstable.id]" role="button">EDITAR</button>
+          </td>
+          <td *ngIf="programaEstable.estado == 'Activo'">
+            <a href="https://www.google.com.ar" target="_blank" >COMPLETAR INFORME</a>
+          </td>
+          <td *ngIf="programaEstable.estado == 'Activo'">
+            <button class="btn btn-outline-info" [routerLink]="['/programa-estable/rendicion-contable', programaEstable.id]" role="button">SUBIR ARCHIVO</button>
+          </td>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<button class="boton btn btn-primary" role="button" [routerLink]="['/elegir-proyecto']">VOLVER ATRÁS</button>
 
 </div>

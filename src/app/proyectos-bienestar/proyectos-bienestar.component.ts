@@ -220,10 +220,11 @@ export class ProyectosBienestarComponent implements OnInit {
   }
 
   updateBienestar(): void {
-    this.verProyectoService.updateBienestar(this.proyectoBienestar)
-      .subscribe(json => {
-        this.router.navigate(['/ver-proyectos'])
+    this.proyectoBinestarService.update(this.proyectoBienestar)
+      .subscribe(proyectoBienestar => {
+        this.router.navigate(['/ver-mis-proyectos'])
         swal.fire('Proyecto actualizado', `El Proyecto ${this.proyectoBienestar.titulo} se actualizó con éxito`, 'success');
+        console.log(this.proyectoBienestar)
       }
       )
   }

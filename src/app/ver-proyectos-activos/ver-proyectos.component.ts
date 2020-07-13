@@ -306,45 +306,29 @@ export class VerProyectosComponent implements OnInit {
     })
   }
 
-  // generar(proyectoBianual: ProyectoBianual): void {
-  //   const swalWithBootstrapButtons = Swal.mixin({
-  //     customClass: {
-  //       confirmButton: 'btn btn-success',
-  //       cancelButton: 'btn btn-danger'
-  //     },
-  //     buttonsStyling: false
-  //   })
-  //
-  //   swalWithBootstrapButtons.fire({
-  //     title: 'Está seguro?',
-  //     text: `¿Seguro que desea generar el PDF del ID ${proyectoBianual.id}?`,
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonText: 'Si, generar PDF!',
-  //     cancelButtonText: 'No, cancelar!',
-  //     reverseButtons: true
-  //   }).then((result) => {
-  //     if (result.value) {
-  //       this.verProyectoService.generar(proyectoBianual.id).subscribe(
-  //         response => {
-  //           swalWithBootstrapButtons.fire(
-  //             'PDF Creado!',
-  //             `PDF de ID ${proyectoBianual.id} creado con éxito.`,
-  //             'success'
-  //           )
-  //         }
-  //       )
-  //     }
-  //
-  //   })
-  //
-  // }
+
 
   generar(proyecto:ProyectoBianual){
     console.log("entro al componente con el id: " + proyecto.id)
     this.verProyectoService.generar(proyecto.id);
-
   }
+
+  generarPDFEstable(programa:ProgramaEstable){
+    console.log("entro al componente con el id: " + programa.id)
+    this.verProyectoService.generarPDFEstable(programa.id);
+  }
+
+  generarPDFBienestar(proyecto:ProyectoBienestar){
+    console.log("entro al componente con el id: " + proyecto.id)
+    this.verProyectoService.generarPDFBienestar(proyecto.id);
+  }
+
+  generarPDFEspecial(proyecto:ProyectoEspecial){
+    console.log("entro al componente con el id: " + proyecto.id)
+    this.verProyectoService.generarPDFEspecial(proyecto.id);
+  }
+
+
 
 
 

@@ -90,16 +90,15 @@
     <table class="table table-bordered table-striped text-center" *ngIf="programasEstables?.length > 0">
       <thead>
         <tr>
-          <th>TÍTULO DEL PROYECTO</th>
+          <th>PROYECTO</th>
           <th>FECHA DE ACTIVACIÓN</th>
-          <th>VER DETALLE COMPLETO</th>
-          <th>VER DETALLE SINTÉTICO</th>
-          <th>VER SOCIOS</th>
-          <th>VER MIEMBROS</th>
-          <th>PRESUPUESTO <i class="far fa-file-excel"></i></th>
+          <th>DETALLE COMPLETO</th>
+          <th>DETALLE SINTÉTICO</th>
           <th>FORMATO PDF <i class="far fa-file-pdf"></i></th>
-          <th>MODIFICAR PROGRAMA</th>
-          <th>FINALIZAR PROGRAMA</th>
+          <th>EDITAR</th>
+          <th>FINALIZAR</th>
+          <th>PRESUPUESTO</th>
+          <th>RENDICIÓN CONTABLE</th>
         </tr>
       </thead>
       <tbody>
@@ -107,22 +106,13 @@
           <td>{{programa.titulo}}</td>
           <td>{{programa.fechaDeInicio | date:"longDate"}}</td>
           <td>
-            <button class="btn btn-outline-info" (click)=abrirModalProgramaEstable(programa) role="button">DETALLE</button>
+            <button class="btn btn-outline-info" (click)=abrirModalProgramaEstable(programa) role="button">VER</button>
           </td>
           <td>
-            <button class="btn btn-outline-info" (click)=abrirModalProgramaEstableSintetico(programa) role="button">DETALLE</button>
+            <button class="btn btn-outline-info" (click)=abrirModalProgramaEstableSintetico(programa) role="button">VER</button>
           </td>
           <td>
-            <button class="btn btn-outline-info" (click)=abrirModalProgramaEstableSocio(programa) role="button">SOCIOS</button>
-          </td>
-          <td>
-            <button class="btn btn-outline-info" (click)=abrirModalProgramaEstableMiembro(programa) role="button">MIEMBROS</button>
-          </td>
-          <td>
-            <a href="http://localhost:8080/programaEstable/uploads/arch/{{programa.presupuesto}}" target='_blank' title="Ver archivo">PRESUPUESTO</a>
-          </td>
-          <td>
-            <a href="http://localhost:8080/programaEstable/generarPDF/{{programa.id}}" target='_blank' title="Ver archivo">GENERAR PDF</a>
+            <button class="btn btn-outline-danger" (click)="generarPDFEstable(programa)" role="button">PDF</button>
           </td>
           <td>
             <button class="btn btn-warning" [routerLink]="['/ver-programa-estable', programa.id]" role="button">EDITAR</button>
@@ -130,6 +120,13 @@
           <td>
             <button class="btn btn-danger" (click)='finalizarEstable(programa)'  role="button">FINALIZAR</button>
           </td>
+          <td>
+            <a href="http://localhost:8080/programaEstable/uploads/arch/{{programa.presupuesto}}" target='_blank' title="Ver archivo">PRESUPUESTO</a>
+          </td>
+          <td *ngIf="programa.rendicionContable!=null">
+            <a href="http://localhost:8080/programaEstable/uploads/arch/{{programa.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+          </td>
+
       </tbody>
     </table>
 
@@ -162,15 +159,15 @@
     <table class="table table-bordered table-striped text-center" *ngIf="proyectosBienestar?.length > 0">
       <thead>
         <tr>
-          <th>TÍTULO DEL PROYECTO</th>
+          <th>PROYECTO</th>
           <th>FECHA DE ACTIVACIÓN</th>
-          <th>VER DETALLE COMPLETO</th>
-          <th>VER DETALLE SINTÉTICO</th>
-          <th>VER MIEMBROS</th>
-          <th>PRESUPUESTO <i class="far fa-file-excel"></i></th>
+          <th>DETALLE COMPLETO</th>
+          <th>DETALLE SINTÉTICO</th>
           <th>FORMATO PDF <i class="far fa-file-pdf"></i></th>
-          <th>MODIFICAR PROYECTO</th>
-          <th>FINALIZAR PROYECTO</th>
+          <th>EDITAR</th>
+          <th>FINALIZAR</th>
+          <th>PRESUPUESTO</th>
+          <th>RENDICIÓN CONTABLE</th>
         </tr>
       </thead>
       <tbody>
@@ -184,19 +181,19 @@
             <button class="btn btn-outline-info" (click)=abrirModalProyectoBienestarSintetico(proyecto) role="button">DETALLE</button>
           </td>
           <td>
-            <button class="btn btn-outline-info" (click)=abrirModalProyectoBienestarMiembro(proyecto) role="button">MIEMBROS</button>
-          </td>
-          <td>
-            <a href="http://localhost:8080/proyectoBienestar/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">Presupuesto</a>
-          </td>
-          <td>
-            <a href="http://localhost:8080/proyectoBienestar/generarPDF/{{proyecto.id}}" target='_blank' title="Ver archivo">Generar PDF</a>
+            <button class="btn btn-outline-danger" (click)="generarPDFBienestar(proyecto)" role="button">PDF</button>
           </td>
           <td>
             <button class="btn btn-warning" [routerLink]="['/ver-proyecto-bienestar', proyecto.id]" role="button">EDITAR</button>
           </td>
           <td>
             <button class="btn btn-danger" (click)='finalizarBienestar(proyecto)'  role="button">FINALIZAR</button>
+          </td>
+          <td>
+            <a href="http://localhost:8080/proyectoBienestar/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+          </td>
+          <td *ngIf="proyecto.rendicionContable!=null">
+            <a href="http://localhost:8080/proyectoBienestar/uploads/arch/{{proyecto.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
           </td>
       </tbody>
     </table>
@@ -230,16 +227,15 @@
     <table class="table table-bordered table-striped text-center" *ngIf="proyectosEspeciales?.length > 0">
       <thead>
         <tr>
-          <th>TÍTULO DEL PROYECTO</th>
+          <th>PROYECTO</th>
           <th>FECHA DE ACTIVACIÓN</th>
-          <th>VER DETALLE COMPLETO</th>
-          <th>VER DETALLE SINTÉTICO</th>
-          <th>VER SOCIOS</th>
-          <th>VER MIEMBROS</th>
-          <th>PRESUPUESTO <i class="far fa-file-excel"></i></th>
+          <th>DETALLE COMPLETO</th>
+          <th>DETALLE SINTÉTICO</th>
           <th>FORMATO PDF <i class="far fa-file-pdf"></i></th>
-          <th>MODIFICAR PROYECTO</th>
-          <th>FINALIZAR PROYECTO</th>
+          <th>EDITAR</th>
+          <th>FINALIZAR</th>
+          <th>PRESUPUESTO</th>
+          <th>RENDICIÓN CONTABLE</th>
         </tr>
       </thead>
       <tbody>
@@ -247,28 +243,25 @@
           <td>{{proyecto.titulo}}</td>
           <td>{{proyecto.fechaDeInicio | date:"longDate"}}</td>
           <td>
-            <button class="btn btn-outline-info" (click)=abrirModalProyectoEspecial(proyecto) role="button">DETALLE</button>
+            <button class="btn btn-outline-info" (click)=abrirModalProyectoEspecial(proyecto) role="button">VER</button>
           </td>
           <td>
-            <button class="btn btn-outline-info" (click)=abrirModalProyectoEspecialSintetico(proyecto) role="button">DETALLE</button>
+            <button class="btn btn-outline-info" (click)=abrirModalProyectoEspecialSintetico(proyecto) role="button">VER</button>
           </td>
           <td>
-            <button class="btn btn-outline-info" (click)=abrirModalProyectoEspecialSocio(proyecto) role="button">SOCIOS</button>
-          </td>
-          <td>
-            <button class="btn btn-outline-info" (click)=abrirModalProyectoEspecialMiembro(proyecto) role="button">MIEMBROS</button>
-          </td>
-          <td>
-            <a href="http://localhost:8080/proyectoEspecial/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">Presupuesto</a>
-          </td>
-          <td>
-            <a href="http://localhost:8080/proyectoEspecial/generarPDF/{{proyecto.id}}" target='_blank' title="Ver archivo">Generar PDF</a>
+          <button class="btn btn-outline-danger" (click)="generarPDFEspecial(proyecto)" role="button">PDF</button>
           </td>
           <td>
             <button class="btn btn-warning" [routerLink]="['/ver-proyecto-especial', proyecto.id]" role="button">EDITAR</button>
           </td>
           <td>
             <button class="btn btn-danger" (click)='finalizarEspecial(proyecto)'  role="button">FINALIZAR</button>
+          </td>
+          <td>
+            <a href="http://localhost:8080/proyectoEspecial/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+          </td>
+          <td *ngIf="proyecto.rendicionContable!=null">
+            <a href="http://localhost:8080/proyectoEspecial/uploads/arch/{{proyecto.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
           </td>
       </tbody>
     </table>

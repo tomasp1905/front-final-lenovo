@@ -7,7 +7,7 @@
   <div class="card-body">
     <form autocomplete="off" #proyectoForm="ngForm">
 
-      <div class='form-group row'>
+      <div class='form-group row' *ngIf="!proyectoBienestar.id">
         <label for="titulo" class="col-form-label">Título del Proyecto:</label>
         <div class="col-9">
           <input type="text" class="form-control" [(ngModel)]="proyectoBienestar.titulo" name="titulo" [class.is-invalid]="titulo.invalid && titulo.touched" required #titulo="ngModel">
@@ -16,7 +16,7 @@
         </div>
       </div>
 
-      <div class='form-group row'>
+      <div class='form-group row' *ngIf="!proyectoBienestar.id">
         <label for="anio" class="col-form-label">Año de Presentación:</label>
         <div class="col-2">
           <input type="number" class="form-control" [(ngModel)]="proyectoBienestar.anioDePresentacion" name="anio" [class.is-invalid]="anio.invalid && anio.touched" required #anio="ngModel" >
@@ -26,7 +26,7 @@
       </div>
 
       <!-- ELEGIR TIPO DE PROYECTO CON RADIOBUTTON -->
-      <div class="form-group row">
+      <div class="form-group row" *ngIf="!proyectoBienestar.id">
         <label>Tipo de Proyecto:</label>
 
         <div class="col-2">
@@ -49,7 +49,7 @@
 
       <!--AUTOCOMPLETE PARA TEMATICAS -->
 
-     <div class='form-group row'>
+     <div class='form-group row' *ngIf="!proyectoBienestar.id">
         <div class="col-9">
           <mat-form-field class="full-width-prioridad">
             <input type="text" placeholder="Añadir Temática" aria-label="listaDeTematicas" matInput [formControl]="autocompleteControlTematica" [matAutocomplete]="autoTematicas">
@@ -62,8 +62,8 @@
         </div>
       </div>
 
-      <div class='form-group row'>
-        <div class="col-7">
+      <div class='form-group row' *ngIf="!proyectoBienestar.id">
+        <div class="col-4">
           <table class="table table-bordered" *ngIf="proyectoBienestar.listaDeTematicas?.length>0">
             <thead>
               <tr align="center">
@@ -82,7 +82,7 @@
 
 
       <!-- AUTOCOMPLETE PARA UNIDADES ACADEMICAS -->
-      <div class='form-group row'>
+      <div class='form-group row'*ngIf="!proyectoBienestar.id" >
         <div class="col-9">
           <mat-form-field class="full-width">
             <input type="text" placeholder="Añadir Unidad Académica" aria-label="listaDeUnidadesAcademicas" matInput [formControl]="autocompleteControlUnidadAcademica" [matAutocomplete]="autoUnidadAcademica">
@@ -95,7 +95,7 @@
         </div>
       </div>
 
-      <div class='form-group row'>
+      <div class='form-group row' *ngIf="!proyectoBienestar.id">
         <div class="col-4">
           <table class="table table-bordered" *ngIf="proyectoBienestar.unidadesAcademicas?.length>0">
             <thead>
@@ -114,7 +114,7 @@
       </div>
 
       <!--AUTOCOMPLETE PARA CARRERAS -->
-        <div class='form-group row'>
+        <div class='form-group row' *ngIf="!proyectoBienestar.id">
         <div class="col-9">
           <mat-form-field class="full-width">
             <input type="text" placeholder="Añadir Carrera" aria-label="listaDeCarreras" matInput [formControl]="autocompleteControlCarrera" [matAutocomplete]="autoCarrera">
@@ -127,7 +127,7 @@
         </div>
       </div>
 
-      <div class='form-group row'>
+      <div class='form-group row' *ngIf="!proyectoBienestar.id">
         <div class="col-4">
           <table class="table table-bordered" *ngIf="proyectoBienestar.listaDeCarreras?.length>0">
             <thead>
@@ -145,7 +145,7 @@
         </div>
       </div>
 
-      <div class='form-group row'>
+      <div class='form-group row' *ngIf="!proyectoBienestar.id">
         <label for="catedra" class="col-form-label">Cátedra:</label>
 
         <div class="col-9">
@@ -155,71 +155,8 @@
 
       </div>
 
-      <!-- <div class="card border-info mb-3">
-        <div class="card-header text-center">
-          <h5>DIRECTOR/A</h5>
-        </div>
-        <div class="card-body">
 
-          <div class="form-group row">
-            <label for="nombreDir" class="col-form-label">Nombre:</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" [(ngModel)]="proyectoBienestar.director.nombre" name="nombreDir" [class.is-invalid]="nombreDir.invalid && nombreDir.touched" required #nombreDir="ngModel">
-              <small *ngIf="nombreDir.invalid && nombreDir.touched" class="form-text text-danger">Campo requerido
-              </small>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="apellidoDir" class="col-form-label">Apellido:</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" [(ngModel)]="proyectoBienestar.director.apellido" name="apellidoDir" [class.is-invalid]="apellidoDir.invalid && apellidoDir.touched" required #apellidoDir="ngModel">
-              <small *ngIf="apellidoDir.invalid && apellidoDir.touched" class="form-text text-danger">Campo requerido
-              </small>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="claveDir" class="col-form-label">Clave UCC:</label>
-            <div class="col-sm-3">
-              <input type="number" class="form-control" [(ngModel)]="proyectoBienestar.director.clave" name="claveDir" [class.is-invalid]="claveDir.invalid && claveDir.touched" required #claveDir="ngModel">
-              <small *ngIf="claveDir.invalid && claveDir.touched" class="form-text text-danger">Campo requerido
-                </small>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="emailDir" class="col-form-label">Email:</label>
-            <div class="col-sm-6">
-              <input type="text" class="form-control" [(ngModel)]="proyectoBienestar.director.email" name="emailDir" [class.is-invalid]="emailDir.invalid && emailDir.touched"  required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" #emailDir="ngModel" style="width:410px">
-              <small *ngIf="emailDir.invalid && emailDir.touched" class="form-text text-danger">Campo requerido
-              </small>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="facultadDir" class="col-form-label">Facultad o Area:</label>
-            <div class="col-sm-5">
-              <input type="text" class="form-control" [(ngModel)]="proyectoBienestar.director.facultad" name="facultadDir" [class.is-invalid]="facultadDir.invalid && facultadDir.touched" required #facultadDir="ngModel" style="width:340px">
-              <small *ngIf="facultadDir.invalid && facultadDir.touched" class="form-text text-danger">Campo requerido
-              </small>
-            </div>
-          </div>
-
-          <div class="form-group row">
-            <label for="cargoDir" class="col-form-label">Cargo (Titular / Adjunto / JTP):</label>
-            <div class="col-sm-2">
-              <input type="text" class="form-control" [(ngModel)]="proyectoBienestar.director.cargo" name="cargoDir" [class.is-invalid]="cargoDir.invalid && cargoDir.touched" required #cargoDir="ngModel">
-              <small *ngIf="cargoDir.invalid && cargoDir.touched" class="form-text text-danger">Campo requerido
-              </small>
-            </div>
-          </div>
-
-        </div>
-      </div> -->
-
-
-      <div class="card border-info mb-3">
+      <div class="card border-info mb-3" *ngIf="!proyectoBienestar.id">
         <div class="card-header text-center">
           <h5>MIEMBROS DEL EQUIPO</h5>
         </div>
@@ -265,7 +202,7 @@
       </div>
 
 
-      <div class='form-group row'>
+      <div class='form-group row' *ngIf="!proyectoBienestar.id">
         <div class="col-7">
           <table class="table table-bordered" *ngIf="proyectoBienestar.miembros?.length>0">
             <thead>
@@ -282,7 +219,6 @@
                 <td>{{miembro.apellido}}</td>
                 <td>{{miembro.clave}}</td>
                 <td>{{miembro.facultad}}</td>
-                <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarMiembro(miembro.id)">X</button></td>
               </tr>
             </tbody>
           </table>
@@ -291,7 +227,7 @@
 
       <!-- CAMPOS DE LLENADO CON TEXTO -->
 
-      <div class="card border-info mb-3" *ngIf="mostrarRenovacion">
+      <div class="card border-info mb-3" *ngIf="mostrarRenovacion && !proyectoBienestar.id" >
         <div class="card-header text-center">
           <h5>RENOVACIÓN</h5>
         </div>
@@ -302,15 +238,15 @@
       </div>
 
       <div class="row">
-        <div *ngIf="mostrarRenovacion" class="col-sm-6">
+        <div *ngIf="mostrarRenovacion && !proyectoBienestar.id" class="col-sm-6">
           <button class="boton btn btn-primary" role="button" (click)=" mostrarRenovacion = !mostrarRenovacion " *ngIf="!proyectoBienestar.id">Es un proyecto nuevo</button>
         </div>
-        <div *ngIf="!mostrarRenovacion" class="col-sm-6">
+        <div *ngIf="!mostrarRenovacion && !proyectoBienestar.id" class="col-sm-6">
           <button class="boton btn btn-primary" role="button" (click)=" mostrarRenovacion = !mostrarRenovacion " *ngIf="!proyectoBienestar.id">Es una renovación</button>
         </div>
       </div>
 
-      <div class="card border-info mb-3">
+      <div class="card border-info mb-3" *ngIf="!proyectoBienestar.id">
         <div class="card-header text-center">
           <h5>SITUACIÓN</h5>
         </div>
@@ -322,7 +258,7 @@
         </div>
       </div>
 
-      <div class="card border-info mb-3">
+      <div class="card border-info mb-3" *ngIf="!proyectoBienestar.id">
         <div class="card-header text-center">
           <h5>SÍNTESIS DEL PROYECTO</h5>
         </div>
@@ -334,7 +270,7 @@
         </div>
       </div>
 
-      <div class="card border-info mb-3">
+      <div class="card border-info mb-3" *ngIf="!proyectoBienestar.id">
         <div class="card-header text-center">
           <h5>OBJETIVO/S GENERAL/ES O META DEL PROYECTO</h5>
         </div>
@@ -347,7 +283,7 @@
       </div>
 
 
-      <div class="card border-info mb-3">
+      <div class="card border-info mb-3" *ngIf="!proyectoBienestar.id">
         <div class="card-header text-center">
           <h5>OBJETIVOS ESPECÍFICOS</h5>
         </div>
@@ -359,7 +295,7 @@
         </div>
       </div>
 
-      <div class="card border-info mb-3">
+      <div class="card border-info mb-3" *ngIf="!proyectoBienestar.id">
         <div class="card-header text-center">
           <h5>BENEFICIARIOS DE SU PROPUESTA</h5>
         </div>
@@ -463,7 +399,7 @@
                     <td>{{actividad.insumoRequerido}}</td>
                     <td>{{actividad.fechaInicio | date:"longDate"}}</td>
                     <td>{{actividad.fechaFinalizacion | date:"longDate"}}</td>
-                    <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad(actividad.id)">X</button></td>
+                    <td *ngIf="proyectoBienestar.id"><button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad(actividad.id)">X</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -492,12 +428,9 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="!proyectoBienestar.id">
   <div class="col-sm-6">
-    <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button" *ngIf="!proyectoBienestar.id else elseBlockV">VOLVER ATRÁS</button>
-    <ng-template #elseBlockV>
-        <button class="boton btn btn-primary" role="button" [routerLink]="['/ver-proyectos']" >VOLVER ATRÁS</button>
-    </ng-template>
+    <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button">VOLVER ATRÁS</button>
   </div>
 </div>
 

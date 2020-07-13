@@ -620,9 +620,9 @@
   </div>
 
 
-  <div class="row">
+  <div class="row" *ngIf="!proyectoBianual.id">
     <div class="col-sm-6">
-      <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button" *ngIf="!proyectoBianual.id">VOLVER ATRÁS</button>
+      <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button">VOLVER ATRÁS</button>
     </div>
   </div>
 
