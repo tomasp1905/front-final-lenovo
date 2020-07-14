@@ -372,11 +372,11 @@
             </small>
           </div>
 
-          <div class='form-group row' >
+          <div class='form-group row'>
             <div class="col-9">
-            <label for="numBen" class="col-form-label">N° aproximado de beneficiarios directos que estima alcanzar con las
-              acciones propuestas:</label>
-              </div>
+              <label for="numBen" class="col-form-label">N° aproximado de beneficiarios directos que estima alcanzar con las
+                acciones propuestas:</label>
+            </div>
 
             <div class="col-2">
               <input class="form-control" type="number" name="numBen" [class.is-invalid]="numBen.invalid && numBen.touched" [(ngModel)]="programaEstable.numeroDeBeneficiarios" required #numBen="ngModel">

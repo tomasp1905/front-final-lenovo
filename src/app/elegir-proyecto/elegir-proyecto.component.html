@@ -4,7 +4,7 @@
 
     <div class="col-md-6 col-sm-12 col-xs-12" *ngIf="!authService.hasRole('ROLE_ADMIN')">
       <div class="list-group">
-        <div class="box-project mb-3"> 
+        <div class="box-project mb-3">
           <h3 class="title-project" [routerLink]="['/elegir-proyecto']">
             ELEGIR TIPO DE PROYECTO
           </h3>
@@ -14,7 +14,7 @@
           <div *ngFor="let project of projectsList|estado">
             <div class="card card-custom mb-3" [routerLink]="[project.route]">
               <div class="d-flex justify-content-center ">
-                  <p class="project-title m-0">{{project.tipoDeProyecto|uppercase}}</p>
+                <p class="project-title m-0">{{project.tipoDeProyecto|uppercase}}</p>
               </div>
             </div>
           </div>
@@ -24,64 +24,63 @@
     </div>
 
 
-    <div  *ngIf="authService.hasRole('ROLE_ADMIN')">
+    <div *ngIf="authService.hasRole('ROLE_ADMIN')">
       <div class="col-12">
-      <div class="row">
-        <div class="col-md-6 col-sm-12 col-xs-12">
-        <div class="list-group">
-          <div class="box-project mb-3"> 
-            <h3 class="title-project" [routerLink]="['/elegir-proyecto']">
-              LINEA OPERATIVA
-            </h3>
-          </div>
-          <ng-container *ngIf="projectsList.length == 0"> Cargando datos...</ng-container>
-          <ng-container *ngIf="projectsList.length > 0">
-            <div *ngFor="let project of projectsList">
-              <div class="card card-custom mb-2">
-                <div class="d-flex justify-content-between text-center align-center">
-                  <div class="d-flex align-center" [routerLink]="[project.route]">
-                    <p class="project-title m-0">{{project.tipoDeProyecto|uppercase}}</p>
-                  </div>
-                  <div class="custom-control custom-switch ">
-                    <input (change)="changeStatusProject(project)" [id]="project.tipoDeProyecto" [checked]="project.estado" [name]="project.tipoDeProyecto" type="checkbox" class="custom-control-input">
-                    <label class="custom-control-label" [for]="project.tipoDeProyecto"></label>
+        <div class="row">
+          <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="list-group">
+              <div class="box-project mb-3">
+                <h3 class="title-project" [routerLink]="['/elegir-proyecto']">
+                  LINEA OPERATIVA
+                </h3>
+              </div>
+              <ng-container *ngIf="projectsList.length == 0"> Cargando datos...</ng-container>
+              <ng-container *ngIf="projectsList.length > 0">
+                <div *ngFor="let project of projectsList">
+                  <div class="card card-custom mb-2">
+                    <div class="d-flex justify-content-between text-center align-center">
+                      <div class="d-flex align-center" [routerLink]="[project.route]">
+                        <p class="project-title m-0">{{project.tipoDeProyecto|uppercase}}</p>
+                      </div>
+                      <div class="custom-control custom-switch ">
+                        <input (change)="changeStatusProject(project)" [id]="project.tipoDeProyecto" [checked]="project.estado" [name]="project.tipoDeProyecto" type="checkbox" class="custom-control-input">
+                        <label class="custom-control-label" [for]="project.tipoDeProyecto"></label>
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <button class="btn btn-outline-secondary btn-block mt-3" [routerLink]="['/ver-usuarios']">VER LISTADO DE USUARIOS</button>
+              </ng-container>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="list-group">
+              <div class="box-project mb-3">
+                <h3 class="title-project" [routerLink]="['/elegir-proyecto']">
+                  PROYECTOS/PROGRAMAS
+                </h3>
+              </div>
+              <div>
+                <h4 class="project-title"><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/ver-proyectos-no-autorizados']">NO AUTORIZADOS</button></h4>
+              </div>
+              <div>
+                <h4 class="project-title"><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/ver-proyectos-autorizados']">AUTORIZADOS</button></h4>
+              </div>
+              <div>
+                <h4 class="project-title"><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/ver-proyectos-activos']">ACTIVOS</button></h4>
+              </div>
+              <div>
+                <h4 class="project-title"><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/ver-proyectos-finalizados']">FINALIZADOS</button></h4>
               </div>
             </div>
-              <button class="btn btn-outline-secondary btn-block mt-3" [routerLink]="['/ver-usuarios']">VER LISTADO DE USUARIOS</button>
-          </ng-container>
+            <button class="btn btn-outline-secondary btn-block mt-3" [routerLink]="['/ver-mis-proyectos']">VER MIS PROYECTOS/PROGRAMAS</button>
+
+          </div>
         </div>
       </div>
-      <div class="col-md-6 col-sm-12 col-xs-12">
-        <div class="list-group">
-          <div class="box-project mb-3"> 
-          <h3 class="title-project" [routerLink]="['/elegir-proyecto']">
-            PROYECTOS/PROGRAMAS
-          </h3>
-        </div>
-          <div>
-            <h4 class="project-title"><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/ver-proyectos-no-autorizados']">NO AUTORIZADOS</button></h4>
-          </div>
-          <div>
-            <h4 class="project-title"><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/ver-proyectos-autorizados']">AUTORIZADOS</button></h4>
-          </div>
-          <div>
-            <h4 class="project-title"><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/ver-proyectos-activos']">ACTIVOS</button></h4>
-          </div>
-          <div>
-            <h4 class="project-title"><button type="button" class="list-group-item list-group-item-action" [routerLink]="['/ver-proyectos-finalizados']">FINALIZADOS</button></h4>
-          </div>
-        </div>
-        <button class="btn btn-outline-secondary btn-block mt-3" [routerLink]="['/ver-mis-proyectos']">VER MIS PROYECTOS/PROGRAMAS</button>
-
-      </div>
-    </div>
-    </div>
     </div>
   </div>
-  </div>
-
+</div>
 
 
 
@@ -142,7 +141,7 @@
 
   </div>
 
-   
+
   <div *ngIf="authService.hasRole('ROLE_ADMIN')" class="row text-center justify-content-center">
 
     <div class="col-6">
@@ -155,9 +154,7 @@
 
   </div>
 
-</div> 
+</div>
 
 
 -->
-
-

@@ -31,9 +31,9 @@
 
 
         <!-- ELEGIR TIPO DE PROYECTO CON RADIOBUTTON -->
-          <div class="form-group row" *ngIf="!proyectoBianual.id">
+        <div class="form-group row" *ngIf="!proyectoBianual.id">
 
-         <label>Tipo de Proyecto:</label>
+          <label>Tipo de Proyecto:</label>
 
           <div class="col-2">
             <div class="form-check">
@@ -177,7 +177,7 @@
             </div>
 
 
-            <div class="form-group row" >
+            <div class="form-group row">
               <label for="apellidoMiembroTexto" class="col-form-label">Apellido:</label>
               <div class="col-sm-6">
                 <input type="text" class="form-control" [(ngModel)]="apellidoMiembroTexto" name="apellidoMiembroTexto">
@@ -255,8 +255,8 @@
 
             <div class="form-group row">
               <div class="col-sm-8">
-              <label for="descripcion" class="col-form-label">Descripcion breve de lo que hace:</label>
-                <textarea class="form-control"  [(ngModel)]="descripcionSocioTexto" name="descripcion" style="width:492px"></textarea>
+                <label for="descripcion" class="col-form-label">Descripcion breve de lo que hace:</label>
+                <textarea class="form-control" [(ngModel)]="descripcionSocioTexto" name="descripcion" style="width:492px"></textarea>
               </div>
             </div>
 
@@ -330,7 +330,7 @@
 
         <!-- CAMPOS DE LLENADO CON TEXTO -->
 
-        <div class="card border-info mb-3" *ngIf="mostrarRenovacion && !proyectoBianual.id" >
+        <div class="card border-info mb-3" *ngIf="mostrarRenovacion && !proyectoBianual.id">
           <div class="card-header text-center">
             <h5>RENOVACIÓN</h5>
           </div>
@@ -407,24 +407,24 @@
 
 
 
-        <div class='form-group row'>
-        <div class="col-9">
-          <label for="numBen" class="col-form-label">N° aproximado de beneficiarios directos que estima alcanzar con las
-            acciones propuestas:</label>
-        </div>
+          <div class='form-group row'>
+            <div class="col-9">
+              <label for="numBen" class="col-form-label">N° aproximado de beneficiarios directos que estima alcanzar con las
+                acciones propuestas:</label>
+            </div>
 
-          <div class="col-2">
-            <input class="form-control" type="number" name="numBen" [class.is-invalid]="numBen.invalid && numBen.touched" [(ngModel)]="proyectoBianual.numeroDeBeneficiarios" required #numBen="ngModel">
-            <small *ngIf="numBen.invalid && numBen.touched" class="form-text text-danger">Campo requerido</small>
+            <div class="col-2">
+              <input class="form-control" type="number" name="numBen" [class.is-invalid]="numBen.invalid && numBen.touched" [(ngModel)]="proyectoBianual.numeroDeBeneficiarios" required #numBen="ngModel">
+              <small *ngIf="numBen.invalid && numBen.touched" class="form-text text-danger">Campo requerido</small>
+            </div>
+
           </div>
 
         </div>
 
-    </div>
-
         <br>
 
-        <div class="card border-info mb-3" >
+        <div class="card border-info mb-3">
           <div class="card-header text-center">
             <h5>ACTIVIDADES</h5>
           </div>
@@ -524,7 +524,7 @@
         </div>
 
 
-        <div class="card border-info mb-3" *ngIf="mostrarInvestigacion && !proyectoBianual.id" >
+        <div class="card border-info mb-3" *ngIf="mostrarInvestigacion && !proyectoBianual.id">
           <div class="card-header text-center">
             <h5>VINCULACION CON INVESTIGACIÓN (Indique si el proyecto que presenta está vinculado con un proyecto de investigación)</h5>
           </div>
@@ -563,7 +563,7 @@
 
         </div>
 
-        <div class="row" >
+        <div class="row">
           <div *ngIf="mostrarInvestigacion && !proyectoBianual.id" class="col-sm-6">
             <button class="boton btn btn-primary" role="button" (click)=" mostrarInvestigacion = !mostrarInvestigacion " *ngIf="!proyectoBianual.id">No tiene vinculación con investigación</button>
           </div>
@@ -600,7 +600,7 @@
 
         <div class="row">
           <div class="col-sm-6">
-            <button class="boton btn btn-primary" role="button" (click)='crearProyecto()' *ngIf="!proyectoBianual.id else elseBlock" [disabled]="!proyectoForm.form.valid" >CREAR PROYECTO</button>
+            <button class="boton btn btn-primary" role="button" (click)='crearProyecto()' *ngIf="!proyectoBianual.id else elseBlock" [disabled]="!proyectoForm.form.valid">CREAR PROYECTO</button>
 
             <ng-template #elseBlock>
               <button class="boton btn btn-primary" role="button" (click)='updateBianual()' [disabled]="!proyectoForm.form.valid">EDITAR</button>

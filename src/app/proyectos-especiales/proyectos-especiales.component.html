@@ -1,502 +1,525 @@
 <div class="estilo divAlineado">
 
-<div class="animated fadeIn card border-info mb-3" style="max-width: 900px;">
-  <div class="card-header bg-transparent border-info">
-    <h5 align="center">PE - PROYECTOS ESPECIALES DE PROYECCIÓN SOCIAL  </h5>
-  </div>
-  <div class="card-body">
-    <form #proyectoForm="ngForm">
+  <div class="animated fadeIn card border-info mb-3" style="max-width: 900px;">
+    <div class="card-header bg-transparent border-info">
+      <h5 align="center">PE - PROYECTOS ESPECIALES DE PROYECCIÓN SOCIAL </h5>
+    </div>
+    <div class="card-body">
+      <form #proyectoForm="ngForm">
 
-      <div class='form-group row' *ngIf="!proyectoEspecial.id">
-        <label for="titulo" class="col-form-label">Título del Proyecto:</label>
-        <div class="col-9">
-          <input type="text" class="form-control" [(ngModel)]="proyectoEspecial.titulo" name="titulo" [class.is-invalid]="titulo.invalid && titulo.touched" required #titulo="ngModel" >
-          <small *ngIf="titulo.invalid && titulo.touched" class="form-text text-danger">Campo requerido</small>
-        </div>
-      </div>
-
-
-      <div class='form-group row' *ngIf="!proyectoEspecial.id">
-        <label for="anio" class="col-form-label">Año de Presentación:</label>
-        <div class="col-2">
-          <input type="number" class="form-control" [(ngModel)]="proyectoEspecial.anioDePresentacion" name="anio" [class.is-invalid]="anio.invalid && anio.touched" required #anio="ngModel">
-          <small *ngIf="anio.invalid && anio.touched" class="form-text text-danger">Campo requerido</small>
-        </div>
-      </div>
-
-
-      <!-- ELEGIR TIPO DE PROYECTO CON RADIOBUTTON -->
-      <div class="form-group row" *ngIf="!proyectoEspecial.id">
-
-        <label>Tipo de Proyecto:</label>
-
-        <div class="col-2">
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" name="tipo" id="nuevo" class="form-check-input mr-2" [(ngModel)]="proyectoEspecial.tipoDeProyecto" value="Nuevo"> Nuevo
-            </label>
-          </div>
-        </div>
-
-        <div class="col-2">
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="radio" name="tipo" id="renovacion" class="form-check-input mr-2" [(ngModel)]="proyectoEspecial.tipoDeProyecto" value="Renovacion">Renovación
-            </label>
-          </div>
-        </div>
-
-      </div>
-
-
-      <!-- AUTOCOMPLETE PARA UNIDADES ACADEMICAS -->
-      <div class='form-group row' *ngIf="!proyectoEspecial.id">
-        <div class="col-9">
-          <mat-form-field class="full-width">
-            <input type="text" placeholder="Añadir Unidad Académica" aria-label="listaDeUnidadesAcademicas" matInput [formControl]="autocompleteControlUnidadAcademica" [matAutocomplete]="autoUnidadAcademica">
-            <mat-autocomplete #autoUnidadAcademica="matAutocomplete" [displayWith]="mostrarNombreUnidadAcademica" (optionSelected)="seleccionarUnidadAcademica($event)">
-              <mat-option *ngFor="let unidad of unidadesAcademicasFiltradas | async" [value]="unidad">
-                {{unidad.nombre}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </div>
-      </div>
-
-      <div class='form-group row' *ngIf="!proyectoEspecial.id">
-        <div class="col-4">
-          <table class="table table-bordered" *ngIf="proyectoEspecial.unidadesAcademicas?.length>0">
-            <thead>
-              <tr align="center">
-                <th>Unidad Académica</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let unidad of proyectoEspecial.unidadesAcademicas">
-                <td>{{unidad.nombre}}</td>
-                <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarUnidadAcademica(unidad.id)">X</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!--AUTOCOMPLETE PARA CARRERAS -->
         <div class='form-group row' *ngIf="!proyectoEspecial.id">
-        <div class="col-9">
-          <mat-form-field class="full-width">
-            <input type="text" placeholder="Añadir Carrera" aria-label="listaDeCarreras" matInput [formControl]="autocompleteControlCarrera" [matAutocomplete]="autoCarrera">
-            <mat-autocomplete #autoCarrera="matAutocomplete" [displayWith]="mostrarNombreCarrera" (optionSelected)="seleccionarCarrera($event)">
-              <mat-option *ngFor="let carrera of carrerasFiltradas | async" [value]="carrera">
-                {{carrera.nombre}}
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </div>
-      </div>
-
-      <div class='form-group row' *ngIf="!proyectoEspecial.id">
-        <div class="col-4">
-          <table class="table table-bordered" *ngIf="proyectoEspecial.listaDeCarreras?.length>0">
-            <thead>
-              <tr align="center">
-                <th>Carrera</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let carrera of proyectoEspecial.listaDeCarreras">
-                <td>{{carrera.nombre}}</td>
-                <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarCarrera(carrera.id)">X</button></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class='form-group row' *ngIf="!proyectoEspecial.id">
-        <label for="catedra" class="col-form-label">Cátedra:</label>
-
-        <div class="col-9">
-          <input class="form-control" type="text" name="catedra" [class.is-invalid]="catedra.invalid && catedra.touched" [(ngModel)]="proyectoEspecial.catedra" required #catedra="ngModel">
-          <small *ngIf="catedra.invalid && catedra.touched" class="form-text text-danger">Campo requerido</small>
+          <label for="titulo" class="col-form-label">Título del Proyecto:</label>
+          <div class="col-9">
+            <input type="text" class="form-control" [(ngModel)]="proyectoEspecial.titulo" name="titulo" [class.is-invalid]="titulo.invalid && titulo.touched" required #titulo="ngModel">
+            <small *ngIf="titulo.invalid && titulo.touched" class="form-text text-danger">Campo requerido</small>
+          </div>
         </div>
 
-      </div>
 
-
-
-<div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
-  <div class="card-header text-center"><h5>MIEMBROS DEL EQUIPO</h5></div>
-  <div class="card-body">
-
-    <div class="form-group row">
-      <label for="nombreM" class="col-form-label">Nombre:</label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" [(ngModel)]="nombreMiembroTexto" name="nombreM">
-      </div>
-    </div>
-
-
-    <div class="form-group row">
-      <label for="apellidoM" class="col-form-label">Apellido:</label>
-      <div class="col-sm-6">
-<input type="text" class="form-control" [(ngModel)]="apellidoMiembroTexto" name="apellidoM">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="claveM" class="col-form-label">Clave:</label>
-      <div class="col-sm-3">
-        <input type="number" class="form-control" [(ngModel)]="claveMiembroTexto" name="claveM">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="facultadM" class="col-form-label">Facultad o Área:</label>
-      <div class="col-sm-5">
-        <input type="text" class="form-control" [(ngModel)]="facultadMiembroTexto" name="facultadM" style="width:340px">
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-sm-6">
-        <button class="boton btn btn-primary" role="button" (click)='agregarMiembro()'>Agregar nuevo miembro</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-<div class='form-group row' *ngIf="!proyectoEspecial.id">
-  <div class="col-7">
-    <table class="table table-bordered" *ngIf="proyectoEspecial.miembros?.length>0">
-      <thead>
-        <tr align="center">
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Clave</th>
-          <th>Facultad</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let miembro of proyectoEspecial.miembros">
-          <td>{{miembro.nombre}}</td>
-          <td>{{miembro.apellido}}</td>
-          <td>{{miembro.clave}}</td>
-          <td>{{miembro.facultad}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
-  <div class="card-header text-center"><h5>SOCIO/S EXTERNO/S</h5></div>
-  <div class="card-body">
-
-    <div class="form-group row">
-      <label for="nombreIn" class="col-form-label">Nombre Institución:</label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" [(ngModel)]="institucionSocioTexto" name="nombreIn" style="width:360px">
-      </div>
-    </div>
-
-
-    <div class="form-group row">
-      <label for="domicilioL" class="col-form-label">Domicilio Legal:</label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" [(ngModel)]="domicilioSocioTexto" name="domicilioL" style="width:387px">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-sm-8">
-        <label for="descripcion" class="col-form-label">Descripcion breve de lo que hace:</label>
-          <textarea class="form-control" rows="4" cols="50" [(ngModel)]="descripcionSocioTexto" name="descripcion" style="width:492px"></textarea>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="nombreS" class="col-form-label">Nombre contacto:</label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" [(ngModel)]="nombreSocioTexto" name="nombreS" style="width:363px">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="apellidoS" class="col-form-label">Apellido contacto:</label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" [(ngModel)]="apellidoSocioTexto" name="apellidoS" style="width:363px">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="telefono" class="col-form-label">Teléfono contacto:</label>
-      <div class="col-sm-3">
-        <input type="number" class="form-control" [(ngModel)]="telefonoSocioTexto" name="telefono">
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label for="emails" class="col-form-label">Email contacto:</label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" [(ngModel)]="emailSocioTexto" name="emails" style="width:380px">
-      </div>
-    </div>
-
-
-    <div class="row">
-      <div class="col-sm-6">
-        <button class="boton btn btn-primary" role="button" (click)='agregarSocio()'>Agregar Socio</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class='form-group row' *ngIf="!proyectoEspecial.id">
-  <div class="col-7">
-    <table class="table table-bordered" *ngIf="proyectoEspecial.socios?.length>0">
-      <thead>
-        <tr align="center">
-          <th>Institución</th>
-          <th>Domicilio Legal</th>
-          <th>Descripción</th>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Telefono</th>
-          <th>Correo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let socio of proyectoEspecial.socios">
-          <td>{{socio.institucion}}</td>
-          <td>{{socio.domicilioLegal}}</td>
-          <td>{{socio.descripcion}}</td>
-          <td>{{socio.nombre}}</td>
-          <td>{{socio.apellido}}</td>
-          <td>{{socio.telefono}}</td>
-          <td>{{socio.email}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-  <!-- CAMPOS DE LLENADO CON TEXTO -->
-
-  <div class="card border-info mb-3" *ngIf="mostrarRenovacion && !proyectoEspecial.id">
-    <div class="card-header text-center"><h5>RENOVACIÓN</h5></div>
-    <div class="card-body">
-      <h6 class="card-title">Indique razones de orden académico y social que justifique la renovación del proyecto.</h6>
-       <textarea class="form-control" rows="4" cols="50"[(ngModel)]="proyectoEspecial.razonRenovacion" name="razon"></textarea>
-    </div>
-  </div>
-
-  <div class="row">
-    <div *ngIf="mostrarRenovacion && !proyectoEspecial.id" class="col-sm-6">
-      <button class="boton btn btn-primary" role="button" (click)=" mostrarRenovacion = !mostrarRenovacion " *ngIf="!proyectoEspecial.id">Es un proyecto nuevo</button>
-    </div>
-    <div *ngIf="!mostrarRenovacion && !proyectoEspecial.id" class="col-sm-6">
-      <button class="boton btn btn-primary" role="button" (click)=" mostrarRenovacion = !mostrarRenovacion " *ngIf="!proyectoEspecial.id">Es una renovación</button>
-    </div>
-  </div>
-
-  <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
-    <div class="card-header text-center"><h5>SITUACIÓN</h5></div>
-    <div class="card-body">
-      <h6 class="card-title">Describa brevemente el problema o situación que pretende abordar y las causas que lo provocan.</h6>
-        <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.situacionAResolver" name="situacion" [class.is-invalid]="situacion.invalid && situacion.touched" required #situacion="ngModel"></textarea>
-        <small *ngIf="situacion.invalid && situacion.touched" class="form-text text-danger">Campo requerido</small>
-    </div>
-  </div>
-
-  <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
-    <div class="card-header text-center"><h5>SÍNTESIS DEL PROYECTO</h5></div>
-    <div class="card-body">
-      <h6 class="card-title">Describa que se hará, como se hará, con quienes se hará y donde.</h6>
-        <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.sintesisDelProyecto" name="sintesis" [class.is-invalid]="sintesis.invalid && sintesis.touched" required #sintesis="ngModel"></textarea>
-        <small *ngIf="sintesis.invalid && sintesis.touched" class="form-text text-danger">Campo requerido</small>
-    </div>
-  </div>
-
-  <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
-    <div class="card-header text-center"><h5>OBJETIVO/S GENERAL/ES O META DEL PROYECTO</h5></div>
-    <div class="card-body">
-      <h6 class="card-title">Establezca que se pretende lograr con la propuesta como solución al problema identificado y como aporte a la formación académica de los estudiantes.</h6>
-        <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.objetivoGeneral" name="objetivoG" [class.is-invalid]="objetivoG.invalid && objetivoG.touched" required #objetivoG="ngModel"></textarea>
-        <small *ngIf="objetivoG.invalid && objetivoG.touched" class="form-text text-danger">Campo requerido</small>
-    </div>
-  </div>
-
-
-  <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
-    <div class="card-header text-center"><h5>OBJETIVOS ESPECÍFICOS</h5></div>
-    <div class="card-body">
-      <h6 class="card-title">Describa que resultados se esperan alcanzar para dar cumplimiento a la meta u objetivo General, incluya al menos un objetivo pedagógico.</h6>
-        <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.objetivoEspecifico" name="objetivoE" [class.is-invalid]="objetivoE.invalid && objetivoE.touched" required #objetivoE="ngModel"></textarea>
-        <small *ngIf="objetivoE.invalid && objetivoE.touched" class="form-text text-danger">Campo requerido</small>
-    </div>
-  </div>
-
-  <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
-    <div class="card-header text-center"><h5>BENEFICIARIOS DE SU PROPUESTA</h5></div>
-    <div class="card-body">
-      <h6 class="card-title">Describa brevemente quienes serán los beneficiarios directos de las actividades que se desarrollarán en el marco del proyecto. Indique el número aproximado de beneficiarios directos que estima alcanzar con las acciones propuestas.</h6>
-        <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.beneficiarios" name="beneficiarios" [class.is-invalid]="beneficiarios.invalid && beneficiarios.touched" required #beneficiarios="ngModel"></textarea>
-          <small *ngIf="beneficiarios.invalid && beneficiarios.touched" class="form-text text-danger">Campo requerido</small>
-    </div>
-
-    <div class="form-group row">
-      <div class="col-9">
-      <label for="numBen" class="col-form-label">N° aproximado de beneficiarios directos que estima alcanzar con las
-        acciones propuestas:</label>
-      </div>
-
-      <div class="col-2">
-        <input class="form-control" type="number" name="numBen" [class.is-invalid]="numBen.invalid && numBen.touched" [(ngModel)]="proyectoEspecial.numeroDeBeneficiarios" required #numBen="ngModel">
-        <small *ngIf="numBen.invalid && numBen.touched" class="form-text text-danger">Campo requerido</small>
-      </div>
-     </div>
-
-     <br>
-
-  </div>
-
-
-  <br>
-
-  <div class="card border-info mb-3">
-    <div class="card-header text-center"><h5>ACTIVIDADES</h5></div>
-    <div class="card-body">
-
-      <div class="form-group row">
-        <label for="tipoAc" class="col-form-label">Tipo de actividad:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" [(ngModel)]="tipoDeActividadTexto" name="tipoAc" style="width:680px">
+        <div class='form-group row' *ngIf="!proyectoEspecial.id">
+          <label for="anio" class="col-form-label">Año de Presentación:</label>
+          <div class="col-2">
+            <input type="number" class="form-control" [(ngModel)]="proyectoEspecial.anioDePresentacion" name="anio" [class.is-invalid]="anio.invalid && anio.touched" required #anio="ngModel">
+            <small *ngIf="anio.invalid && anio.touched" class="form-text text-danger">Campo requerido</small>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label for="indAc" class="col-form-label">Indicador de resultado:</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" [(ngModel)]="indicadorDeResultadoTexto" name="indAc" style="width:640px">
+
+        <!-- ELEGIR TIPO DE PROYECTO CON RADIOBUTTON -->
+        <div class="form-group row" *ngIf="!proyectoEspecial.id">
+
+          <label>Tipo de Proyecto:</label>
+
+          <div class="col-2">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" name="tipo" id="nuevo" class="form-check-input mr-2" [(ngModel)]="proyectoEspecial.tipoDeProyecto" value="Nuevo"> Nuevo
+              </label>
+            </div>
+          </div>
+
+          <div class="col-2">
+            <div class="form-check">
+              <label class="form-check-label">
+                <input type="radio" name="tipo" id="renovacion" class="form-check-input mr-2" [(ngModel)]="proyectoEspecial.tipoDeProyecto" value="Renovacion">Renovación
+              </label>
+            </div>
+          </div>
+
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label for="medioAc" class="col-form-label">Medio de verificación:</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" [(ngModel)]="medioDeVerificacionTexto" name="medioAc" style="width:645px">
+
+        <!-- AUTOCOMPLETE PARA UNIDADES ACADEMICAS -->
+        <div class='form-group row' *ngIf="!proyectoEspecial.id">
+          <div class="col-9">
+            <mat-form-field class="full-width">
+              <input type="text" placeholder="Añadir Unidad Académica" aria-label="listaDeUnidadesAcademicas" matInput [formControl]="autocompleteControlUnidadAcademica" [matAutocomplete]="autoUnidadAcademica">
+              <mat-autocomplete #autoUnidadAcademica="matAutocomplete" [displayWith]="mostrarNombreUnidadAcademica" (optionSelected)="seleccionarUnidadAcademica($event)">
+                <mat-option *ngFor="let unidad of unidadesAcademicasFiltradas | async" [value]="unidad">
+                  {{unidad.nombre}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label for="insAc" class="col-form-label">Insumos requeridos:</label>
-        <div class="col-sm-6">
-          <input type="text" class="form-control" [(ngModel)]="insumoRequeridoTexto" name="insAc" style="width:657px">
+        <div class='form-group row' *ngIf="!proyectoEspecial.id">
+          <div class="col-4">
+            <table class="table table-bordered" *ngIf="proyectoEspecial.unidadesAcademicas?.length>0">
+              <thead>
+                <tr align="center">
+                  <th>Unidad Académica</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let unidad of proyectoEspecial.unidadesAcademicas">
+                  <td>{{unidad.nombre}}</td>
+                  <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarUnidadAcademica(unidad.id)">X</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label for="fechaIn" class="col-form-label">Fecha de inicio:</label>
-        <div class="col-sm-6">
-          <input type="Date" class="form-control" [(ngModel)]="fechaInicioTexto" name="fechaIn" style="width:222px">
+        <!--AUTOCOMPLETE PARA CARRERAS -->
+        <div class='form-group row' *ngIf="!proyectoEspecial.id">
+          <div class="col-9">
+            <mat-form-field class="full-width">
+              <input type="text" placeholder="Añadir Carrera" aria-label="listaDeCarreras" matInput [formControl]="autocompleteControlCarrera" [matAutocomplete]="autoCarrera">
+              <mat-autocomplete #autoCarrera="matAutocomplete" [displayWith]="mostrarNombreCarrera" (optionSelected)="seleccionarCarrera($event)">
+                <mat-option *ngFor="let carrera of carrerasFiltradas | async" [value]="carrera">
+                  {{carrera.nombre}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group row">
-        <label for="fechaFin" class="col-form-label">Fecha de finalización:</label>
-        <div class="col-sm-6">
-          <input type="Date" class="form-control" [(ngModel)]="fechaFinalizacionTexto" name="fechaFin" style="width:180px">
+        <div class='form-group row' *ngIf="!proyectoEspecial.id">
+          <div class="col-4">
+            <table class="table table-bordered" *ngIf="proyectoEspecial.listaDeCarreras?.length>0">
+              <thead>
+                <tr align="center">
+                  <th>Carrera</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let carrera of proyectoEspecial.listaDeCarreras">
+                  <td>{{carrera.nombre}}</td>
+                  <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarCarrera(carrera.id)">X</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-sm-6">
-          <button class="boton btn btn-primary" role="button" (click)='agregarActividad()'>Agregar Actividad</button>
+        <div class='form-group row' *ngIf="!proyectoEspecial.id">
+          <label for="catedra" class="col-form-label">Cátedra:</label>
+
+          <div class="col-9">
+            <input class="form-control" type="text" name="catedra" [class.is-invalid]="catedra.invalid && catedra.touched" [(ngModel)]="proyectoEspecial.catedra" required #catedra="ngModel">
+            <small *ngIf="catedra.invalid && catedra.touched" class="form-text text-danger">Campo requerido</small>
+          </div>
+
         </div>
-      </div>
 
-      <div class='form-group row'>
-        <div class="col-10">
-          <table class="table table-bordered" *ngIf="proyectoEspecial.listaDeActividades?.length>0">
-            <thead>
-              <tr align="center">
-                <th>Tipo de actividad</th>
-                <th>Indicador de resultado</th>
-                <th>Medio de verificación</th>
-                <th>Insumos requeridos</th>
-                <th>Fecha de inicio</th>
-                <th>Fecha de finalización</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let actividad of proyectoEspecial.listaDeActividades">
-                <td>{{actividad.tipoDeActividad}}</td>
-                <td>{{actividad.indicadorDeResultado}}</td>
-                <td>{{actividad.medioDeVerificacion}}</td>
-                <td>{{actividad.insumoRequerido}}</td>
-                <td>{{actividad.fechaInicio | date:"longDate"}}</td>
-                <td>{{actividad.fechaFinalizacion | date:"longDate"}}</td>
-                <td *ngIf="proyectoEspecial.id"><button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad(actividad.id)">X</button></td>
-              </tr>
-            </tbody>
-          </table>
+
+
+        <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
+          <div class="card-header text-center">
+            <h5>MIEMBROS DEL EQUIPO</h5>
+          </div>
+          <div class="card-body">
+
+            <div class="form-group row">
+              <label for="nombreM" class="col-form-label">Nombre:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="nombreMiembroTexto" name="nombreM">
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label for="apellidoM" class="col-form-label">Apellido:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="apellidoMiembroTexto" name="apellidoM">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="claveM" class="col-form-label">Clave:</label>
+              <div class="col-sm-3">
+                <input type="number" class="form-control" [(ngModel)]="claveMiembroTexto" name="claveM">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="facultadM" class="col-form-label">Facultad o Área:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" [(ngModel)]="facultadMiembroTexto" name="facultadM" style="width:340px">
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-sm-6">
+                <button class="boton btn btn-primary" role="button" (click)='agregarMiembro()'>Agregar nuevo miembro</button>
+              </div>
+            </div>
+
+          </div>
         </div>
-      </div>
+
+
+        <div class='form-group row' *ngIf="!proyectoEspecial.id">
+          <div class="col-7">
+            <table class="table table-bordered" *ngIf="proyectoEspecial.miembros?.length>0">
+              <thead>
+                <tr align="center">
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Clave</th>
+                  <th>Facultad</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let miembro of proyectoEspecial.miembros">
+                  <td>{{miembro.nombre}}</td>
+                  <td>{{miembro.apellido}}</td>
+                  <td>{{miembro.clave}}</td>
+                  <td>{{miembro.facultad}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
+          <div class="card-header text-center">
+            <h5>SOCIO/S EXTERNO/S</h5>
+          </div>
+          <div class="card-body">
+
+            <div class="form-group row">
+              <label for="nombreIn" class="col-form-label">Nombre Institución:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="institucionSocioTexto" name="nombreIn" style="width:360px">
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <label for="domicilioL" class="col-form-label">Domicilio Legal:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="domicilioSocioTexto" name="domicilioL" style="width:387px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-8">
+                <label for="descripcion" class="col-form-label">Descripcion breve de lo que hace:</label>
+                <textarea class="form-control" rows="4" cols="50" [(ngModel)]="descripcionSocioTexto" name="descripcion" style="width:492px"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="nombreS" class="col-form-label">Nombre contacto:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="nombreSocioTexto" name="nombreS" style="width:363px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="apellidoS" class="col-form-label">Apellido contacto:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="apellidoSocioTexto" name="apellidoS" style="width:363px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="telefono" class="col-form-label">Teléfono contacto:</label>
+              <div class="col-sm-3">
+                <input type="number" class="form-control" [(ngModel)]="telefonoSocioTexto" name="telefono">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="emails" class="col-form-label">Email contacto:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="emailSocioTexto" name="emails" style="width:380px">
+              </div>
+            </div>
+
+
+            <div class="row">
+              <div class="col-sm-6">
+                <button class="boton btn btn-primary" role="button" (click)='agregarSocio()'>Agregar Socio</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class='form-group row' *ngIf="!proyectoEspecial.id">
+          <div class="col-7">
+            <table class="table table-bordered" *ngIf="proyectoEspecial.socios?.length>0">
+              <thead>
+                <tr align="center">
+                  <th>Institución</th>
+                  <th>Domicilio Legal</th>
+                  <th>Descripción</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Telefono</th>
+                  <th>Correo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let socio of proyectoEspecial.socios">
+                  <td>{{socio.institucion}}</td>
+                  <td>{{socio.domicilioLegal}}</td>
+                  <td>{{socio.descripcion}}</td>
+                  <td>{{socio.nombre}}</td>
+                  <td>{{socio.apellido}}</td>
+                  <td>{{socio.telefono}}</td>
+                  <td>{{socio.email}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- CAMPOS DE LLENADO CON TEXTO -->
+
+        <div class="card border-info mb-3" *ngIf="mostrarRenovacion && !proyectoEspecial.id">
+          <div class="card-header text-center">
+            <h5>RENOVACIÓN</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Indique razones de orden académico y social que justifique la renovación del proyecto.</h6>
+            <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.razonRenovacion" name="razon"></textarea>
+          </div>
+        </div>
+
+        <div class="row">
+          <div *ngIf="mostrarRenovacion && !proyectoEspecial.id" class="col-sm-6">
+            <button class="boton btn btn-primary" role="button" (click)=" mostrarRenovacion = !mostrarRenovacion " *ngIf="!proyectoEspecial.id">Es un proyecto nuevo</button>
+          </div>
+          <div *ngIf="!mostrarRenovacion && !proyectoEspecial.id" class="col-sm-6">
+            <button class="boton btn btn-primary" role="button" (click)=" mostrarRenovacion = !mostrarRenovacion " *ngIf="!proyectoEspecial.id">Es una renovación</button>
+          </div>
+        </div>
+
+        <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
+          <div class="card-header text-center">
+            <h5>SITUACIÓN</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Describa brevemente el problema o situación que pretende abordar y las causas que lo provocan.</h6>
+            <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.situacionAResolver" name="situacion" [class.is-invalid]="situacion.invalid && situacion.touched" required #situacion="ngModel"></textarea>
+            <small *ngIf="situacion.invalid && situacion.touched" class="form-text text-danger">Campo requerido</small>
+          </div>
+        </div>
+
+        <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
+          <div class="card-header text-center">
+            <h5>SÍNTESIS DEL PROYECTO</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Describa que se hará, como se hará, con quienes se hará y donde.</h6>
+            <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.sintesisDelProyecto" name="sintesis" [class.is-invalid]="sintesis.invalid && sintesis.touched" required #sintesis="ngModel"></textarea>
+            <small *ngIf="sintesis.invalid && sintesis.touched" class="form-text text-danger">Campo requerido</small>
+          </div>
+        </div>
+
+        <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
+          <div class="card-header text-center">
+            <h5>OBJETIVO/S GENERAL/ES O META DEL PROYECTO</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Establezca que se pretende lograr con la propuesta como solución al problema identificado y como aporte a la formación académica de los estudiantes.</h6>
+            <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.objetivoGeneral" name="objetivoG" [class.is-invalid]="objetivoG.invalid && objetivoG.touched" required #objetivoG="ngModel"></textarea>
+            <small *ngIf="objetivoG.invalid && objetivoG.touched" class="form-text text-danger">Campo requerido</small>
+          </div>
+        </div>
+
+
+        <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
+          <div class="card-header text-center">
+            <h5>OBJETIVOS ESPECÍFICOS</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Describa que resultados se esperan alcanzar para dar cumplimiento a la meta u objetivo General, incluya al menos un objetivo pedagógico.</h6>
+            <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.objetivoEspecifico" name="objetivoE" [class.is-invalid]="objetivoE.invalid && objetivoE.touched" required #objetivoE="ngModel"></textarea>
+            <small *ngIf="objetivoE.invalid && objetivoE.touched" class="form-text text-danger">Campo requerido</small>
+          </div>
+        </div>
+
+        <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
+          <div class="card-header text-center">
+            <h5>BENEFICIARIOS DE SU PROPUESTA</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Describa brevemente quienes serán los beneficiarios directos de las actividades que se desarrollarán en el marco del proyecto. Indique el número aproximado de beneficiarios directos que estima alcanzar con las
+              acciones propuestas.</h6>
+            <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.beneficiarios" name="beneficiarios" [class.is-invalid]="beneficiarios.invalid && beneficiarios.touched" required #beneficiarios="ngModel"></textarea>
+            <small *ngIf="beneficiarios.invalid && beneficiarios.touched" class="form-text text-danger">Campo requerido</small>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-9">
+              <label for="numBen" class="col-form-label">N° aproximado de beneficiarios directos que estima alcanzar con las
+                acciones propuestas:</label>
+            </div>
+
+            <div class="col-2">
+              <input class="form-control" type="number" name="numBen" [class.is-invalid]="numBen.invalid && numBen.touched" [(ngModel)]="proyectoEspecial.numeroDeBeneficiarios" required #numBen="ngModel">
+              <small *ngIf="numBen.invalid && numBen.touched" class="form-text text-danger">Campo requerido</small>
+            </div>
+          </div>
+
+          <br>
+
+        </div>
+
+
+        <br>
+
+        <div class="card border-info mb-3">
+          <div class="card-header text-center">
+            <h5>ACTIVIDADES</h5>
+          </div>
+          <div class="card-body">
+
+            <div class="form-group row">
+              <label for="tipoAc" class="col-form-label">Tipo de actividad:</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" [(ngModel)]="tipoDeActividadTexto" name="tipoAc" style="width:680px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="indAc" class="col-form-label">Indicador de resultado:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="indicadorDeResultadoTexto" name="indAc" style="width:640px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="medioAc" class="col-form-label">Medio de verificación:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="medioDeVerificacionTexto" name="medioAc" style="width:645px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="insAc" class="col-form-label">Insumos requeridos:</label>
+              <div class="col-sm-6">
+                <input type="text" class="form-control" [(ngModel)]="insumoRequeridoTexto" name="insAc" style="width:657px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="fechaIn" class="col-form-label">Fecha de inicio:</label>
+              <div class="col-sm-6">
+                <input type="Date" class="form-control" [(ngModel)]="fechaInicioTexto" name="fechaIn" style="width:222px">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="fechaFin" class="col-form-label">Fecha de finalización:</label>
+              <div class="col-sm-6">
+                <input type="Date" class="form-control" [(ngModel)]="fechaFinalizacionTexto" name="fechaFin" style="width:180px">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <button class="boton btn btn-primary" role="button" (click)='agregarActividad()'>Agregar Actividad</button>
+              </div>
+            </div>
+
+            <div class='form-group row'>
+              <div class="col-10">
+                <table class="table table-bordered" *ngIf="proyectoEspecial.listaDeActividades?.length>0">
+                  <thead>
+                    <tr align="center">
+                      <th>Tipo de actividad</th>
+                      <th>Indicador de resultado</th>
+                      <th>Medio de verificación</th>
+                      <th>Insumos requeridos</th>
+                      <th>Fecha de inicio</th>
+                      <th>Fecha de finalización</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let actividad of proyectoEspecial.listaDeActividades">
+                      <td>{{actividad.tipoDeActividad}}</td>
+                      <td>{{actividad.indicadorDeResultado}}</td>
+                      <td>{{actividad.medioDeVerificacion}}</td>
+                      <td>{{actividad.insumoRequerido}}</td>
+                      <td>{{actividad.fechaInicio | date:"longDate"}}</td>
+                      <td>{{actividad.fechaFinalizacion | date:"longDate"}}</td>
+                      <td *ngIf="proyectoEspecial.id"><button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad(actividad.id)">X</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
 
 
 
-    </div>
-  </div>
-
-  
-
-  <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
-    <div class="card-header text-center"><h5>VINCULACION CURRICULAR Y PARTICIPACIÓN DE LOS ESTUDIANTES</h5></div>
-    <div class="card-body">
-      <h6 class="card-title">Detalle con que contenidos curriculares o competencias disciplinares se vinculan las actividades que desarrollarán los estudiantes.</h6>
-        <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.vinculacionCurricular" name="vinculacion" [class.is-invalid]="vinculacion.invalid && vinculacion.touched" required #vinculacion="ngModel"></textarea>
-          <small *ngIf="vinculacion.invalid && vinculacion.touched" class="form-text text-danger">Campo requerido</small>
-    </div>
-  </div>
+          </div>
+        </div>
 
 
-  <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
-    <div class="card-header text-center"><h5>EVALUACIÓN</h5></div>
-    <div class="card-body">
-      <h6 class="card-title">Describa como se evaluará el desarrollo del proyecto y el logro de los resultados.</h6>
-        <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.evaluacion" name="evaluacion" [class.is-invalid]="evaluacion.invalid && evaluacion.touched" required #evaluacion="ngModel"></textarea>
-        <small *ngIf="evaluacion.invalid && evaluacion.touched" class="form-text text-danger">Campo requerido</small>
-    </div>
-  </div>
 
-      <br>
+        <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
+          <div class="card-header text-center">
+            <h5>VINCULACION CURRICULAR Y PARTICIPACIÓN DE LOS ESTUDIANTES</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Detalle con que contenidos curriculares o competencias disciplinares se vinculan las actividades que desarrollarán los estudiantes.</h6>
+            <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.vinculacionCurricular" name="vinculacion" [class.is-invalid]="vinculacion.invalid && vinculacion.touched" required #vinculacion="ngModel"></textarea>
+            <small *ngIf="vinculacion.invalid && vinculacion.touched" class="form-text text-danger">Campo requerido</small>
+          </div>
+        </div>
 
-      <div class="row">
-        <div class="col-sm-6">
-          <button class="boton btn btn-primary" role="button" (click)='crearProyecto()' *ngIf="!proyectoEspecial.id else elseBlock" [disabled]="!proyectoForm.form.valid">CREAR PROYECTO</button>
 
-          <ng-template #elseBlock>
+        <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
+          <div class="card-header text-center">
+            <h5>EVALUACIÓN</h5>
+          </div>
+          <div class="card-body">
+            <h6 class="card-title">Describa como se evaluará el desarrollo del proyecto y el logro de los resultados.</h6>
+            <textarea class="form-control" rows="4" cols="50" [(ngModel)]="proyectoEspecial.evaluacion" name="evaluacion" [class.is-invalid]="evaluacion.invalid && evaluacion.touched" required #evaluacion="ngModel"></textarea>
+            <small *ngIf="evaluacion.invalid && evaluacion.touched" class="form-text text-danger">Campo requerido</small>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
+          <div class="col-sm-6">
+            <button class="boton btn btn-primary" role="button" (click)='crearProyecto()' *ngIf="!proyectoEspecial.id else elseBlock" [disabled]="!proyectoForm.form.valid">CREAR PROYECTO</button>
+
+            <ng-template #elseBlock>
               <button class="boton btn btn-primary" role="button" (click)='updateEspecial()' [disabled]="!proyectoForm.form.valid">EDITAR</button>
-          </ng-template>
+            </ng-template>
 
+          </div>
         </div>
-      </div>
 
-    </form>
+      </form>
 
 
+    </div>
   </div>
-</div>
 
-<div class="row" *ngIf="!proyectoEspecial.id">
-  <div class="col-sm-6">
-    <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button">VOLVER ATRÁS</button>
+  <div class="row" *ngIf="!proyectoEspecial.id">
+    <div class="col-sm-6">
+      <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button">VOLVER ATRÁS</button>
+    </div>
   </div>
-</div>
 
 </div>

@@ -1,34 +1,36 @@
 <div class="estilo divRegistro animated fadeIn">
 
-<div class="card border-primary text-center" style="width: 35rem;">
-  <div class="card-header text-center"><h5>INGRESAR USUARIO</h5></div>
-  <div class="card-body text-center">
+  <div class="card border-primary text-center" style="width: 35rem;">
+    <div class="card-header text-center">
+      <h5>INGRESAR USUARIO</h5>
+    </div>
+    <div class="card-body text-center">
 
-    <form method="post">
-      <div class="form-group col-sm-6">
-        <input type="text" class="form-control" name="username" [(ngModel)]="usuario.username"  id="username" placeholder="Clave UCC" autofocus required style="width:410px">
-      </div>
+      <form method="post">
+        <div class="form-group col-sm-6">
+          <input type="text" class="form-control" name="username" [(ngModel)]="usuario.username" id="username" placeholder="Clave UCC" autofocus required style="width:410px">
+        </div>
 
-      <div class="form-group col-sm-6">
-        <input type="password" class="form-control" name="password" [(ngModel)]="usuario.password" id="password" placeholder="Contraseña" required style="width:410px">
-      </div>
+        <div class="form-group col-sm-6">
+          <input type="password" class="form-control" name="password" [(ngModel)]="usuario.password" id="password" placeholder="Contraseña" required style="width:410px">
+        </div>
 
-      <div class="form-group col-sm-3">
-        <input (click)='login()' type="submit" class="btn btn btn-primary btn-block" value="ENVIAR">
-      </div>
+        <div class="form-group col-sm-3">
+          <input (click)='login()' type="submit" class="btn btn btn-primary btn-block" value="ENVIAR">
+        </div>
 
-      <div>
-        <a routerLink="/registro" class="txt1">
-          ¿No tenés cuenta? / Registrar
-        </a>
-        <br>
-        <a routerLink="/restaurar-contra" class="txt1">
-          ¿Olvidaste la contraseña? / Recuperar
-        </a>
-      </div>
+        <div>
+          <a routerLink="/registro" class="txt1">
+            ¿No tenés cuenta? / Registrar
+          </a>
+          <br>
+          <a routerLink="/restaurar-contra" class="txt1">
+            ¿Olvidaste la contraseña? / Recuperar
+          </a>
+        </div>
 
-    </form>
+      </form>
+    </div>
   </div>
-</div>
 
 </div>
