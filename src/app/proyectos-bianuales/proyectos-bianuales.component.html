@@ -499,9 +499,7 @@
                       <td>{{actividad.insumoRequerido}}</td>
                       <td>{{actividad.fechaInicio | date:"longDate"}}</td>
                       <td>{{actividad.fechaFinalizacion | date:"longDate"}}</td>
-                      <!-- <div > -->
                       <td *ngIf="proyectoBianual.id"><button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad(actividad.id)">X</button></td>
-                      <!-- </div> -->
                     </tr>
                   </tbody>
                 </table>

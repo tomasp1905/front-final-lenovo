@@ -219,10 +219,10 @@ export class ProyectosEspecialesComponent implements OnInit {
   }
 
   updateEspecial(): void {
-    this.verProyectoService.updateEspecial(this.proyectoEspecial)
-      .subscribe(json => {
-        this.router.navigate(['/ver-proyectos'])
+    this.proyectoEspecialService.update(this.proyectoEspecial)
+      .subscribe(proyectoEspecial => {
         swal.fire('Proyecto actualizado', `El Proyecto ${this.proyectoEspecial.titulo} se actualizó con éxito`, 'success');
+       console.log(this.proyectoEspecial)
       }
       )
   }

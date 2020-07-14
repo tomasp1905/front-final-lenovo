@@ -230,12 +230,12 @@ export class ProgramasEstablesComponent implements OnInit {
 
 
   public crearProyecto(): void {
-    if(this.programaEstable.director.nombre == null){
-      this.programaEstable.director = null;
-    }
-    if (this.programaEstable.proyectoDeInvestigacion.nombre == null){
-      this.programaEstable.proyectoDeInvestigacion = null;
-    }
+    // if(this.programaEstable.director.nombre == null){
+    //   this.programaEstable.director = null;
+    // }
+    // if (this.programaEstable.proyectoDeInvestigacion.nombre == null){
+    //   this.programaEstable.proyectoDeInvestigacion = null;
+    // }
     this.programaEstableService.create(this.programaEstable).
       subscribe(response => {
         this.programaEstable.fechaDeCreacion = new Date();
@@ -258,8 +258,8 @@ export class ProgramasEstablesComponent implements OnInit {
   updateEstable(): void {
     this.programaEstableService.update(this.programaEstable)
       .subscribe(programaEstable => {
-        this.router.navigate(['/ver-mis-proyectos'])
         swal.fire('Programa actualizado', `El programa ${this.programaEstable.titulo} se actualizó con éxito`, 'success');
+       console.log(this.programaEstable)
       }
       )
   }

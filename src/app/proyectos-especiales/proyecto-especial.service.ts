@@ -20,6 +20,7 @@ export class ProyectoEspecialService {
 
   private urlEndPointUpload: string = 'http://localhost:8080/proyectoEspecial';
   private urlEndPointProyectoEspecialPorId: string = 'http://localhost:8080/proyectoEspecial/verProyecto';
+  private urlEndPointModificarProyectoEspecial: string = 'http://localhost:8080/proyectoEspecial/modificarProyecto';
 
   constructor(private http: HttpClient) { }
 
@@ -60,6 +61,10 @@ export class ProyectoEspecialService {
 
   getProyectoEspecial(id):Observable<ProyectoEspecial>{
     return this.http.get<ProyectoEspecial>(`${this.urlEndPointProyectoEspecialPorId}/${id}`)
+  }
+
+  update(proyectoEspecial: ProyectoEspecial):Observable<ProyectoEspecial>{
+    return this.http.put<ProyectoEspecial>(`${this.urlEndPointModificarProyectoEspecial}/${proyectoEspecial.id}`,proyectoEspecial, {headers: this.httpHeaders})
   }
 
 }
