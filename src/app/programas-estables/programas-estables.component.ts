@@ -233,9 +233,9 @@ export class ProgramasEstablesComponent implements OnInit {
     // if(this.programaEstable.director.nombre == null){
     //   this.programaEstable.director = null;
     // }
-    // if (this.programaEstable.proyectoDeInvestigacion.nombre == null){
-    //   this.programaEstable.proyectoDeInvestigacion = null;
-    // }
+    if (this.programaEstable.proyectoDeInvestigacion.nombre == null){
+      this.programaEstable.proyectoDeInvestigacion = null;
+    }
     this.programaEstableService.create(this.programaEstable).
       subscribe(response => {
         this.programaEstable.fechaDeCreacion = new Date();

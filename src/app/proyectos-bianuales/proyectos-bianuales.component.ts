@@ -236,18 +236,16 @@ export class ProyectosBianualesComponent implements OnInit {
 
 
   public crearProyecto(): void {
-    // if(this.proyectoBianual.director.nombre == null){
-    //   this.proyectoBianual.director = null;
-    // }
-    // if (this.proyectoBianual.proyectoDeInvestigacion.nombre == null){
-    //   this.proyectoBianual.proyectoDeInvestigacion = null;
-    // }
+    if (this.proyectoBianual.proyectoDeInvestigacion.nombre == null){
+      this.proyectoBianual.proyectoDeInvestigacion = null;
+    }
     this.proyectoBianualService.create(this.proyectoBianual).
       subscribe(response => {
         this.proyectoBianual.fechaDeCreacion = new Date();
+
         this.router.navigate(['/proyecto-bianual/presupuesto', response.id]);
         swal.fire('Proyecto creado con éxito', `Proyecto ${this.proyectoBianual.titulo}`, 'success')
-        console.log(this.proyectoBianual.fechaDeCreacion);
+
       })
   }
 
