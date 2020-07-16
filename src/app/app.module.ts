@@ -86,7 +86,7 @@ const routes: Routes = [
   { path: 'elegir-proyecto', component: ElegirProyectoComponent},
   { path: 'proyecto-bianual', component: ProyectosBianualesComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   { path: 'proyecto-bienestar', component: ProyectosBienestarComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  { path: 'programa-estable', component: ProgramasEstablesComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  { path: 'programa-estable', component: ProgramasEstablesComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_ADMIN'] } },
   { path: 'proyecto-especial', component: ProyectosEspecialesComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   { path: 'ver-proyectos-activos', component: VerProyectosComponent},
   { path: 'ver-proyecto-bianual/:id', component: ProyectosBianualesComponent },

@@ -52,7 +52,7 @@ export class RegistroComponent implements OnInit {
     this.registroService.create(this.usuario).
       subscribe(response => {
         this.router.navigate(['/login']);
-        swal.fire('Usuario creado con éxito', 'Espere que el administrador/a lo habilite para ingresar a la plataforma', 'success')
+        swal.fire('Usuario creado con éxito', 'El administrador/a lo habilitará proximamente para que pueda utilizar la plataforma', 'success')
       })
   }
 
