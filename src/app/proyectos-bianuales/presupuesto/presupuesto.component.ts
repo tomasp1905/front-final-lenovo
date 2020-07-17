@@ -35,6 +35,7 @@ export class PresupuestoComponent implements OnInit {
   seleccionarPresupuesto(event){
     this.presupuestoSeleccionado = event.target.files[0];
     this.progreso = 0;
+    swal.fire('Presupuesto seleccionado','Haga click ahora en "Subir Archivo"', 'success');
     console.log(this.presupuestoSeleccionado);
   }
 

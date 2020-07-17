@@ -30,7 +30,7 @@
             <td>
               <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">DETALLE</button>
             </td>
-            <td>
+            <td  *ngIf="(proyecto.estado == 'Activo') || (proyecto.estado == 'No Autorizado') || (proyecto.estado == 'Autorizado')">
               <button class="btn btn-outline-info" [routerLink]="['/ver-proyecto-bianual', proyecto.id]" role="button">EDITAR</button>
             </td>
             <td *ngIf="proyecto.estado == 'Activo'">
@@ -74,7 +74,7 @@
             <td>
               <button class="btn btn-outline-info" (click)="abrirModalEspecial(proyecto)" role="button">DETALLE</button>
             </td>
-            <td>
+            <td *ngIf="(proyecto.estado == 'Activo') || (proyecto.estado == 'No Autorizado') || (proyecto.estado == 'Autorizado')">
               <button class="btn btn-outline-info" [routerLink]="['/ver-proyecto-especial', proyecto.id]" role="button">EDITAR</button>
             </td>
             <td *ngIf="proyecto.estado == 'Activo'">
@@ -118,7 +118,7 @@
             <td>
               <button class="btn btn-outline-info" (click)="abrirModalBienestar(proyecto)" role="button">DETALLE</button>
             </td>
-            <td>
+            <td *ngIf="(proyecto.estado == 'Activo') || (proyecto.estado == 'No Autorizado') || (proyecto.estado == 'Autorizado')">
               <button class="btn btn-outline-info" [routerLink]="['/ver-proyecto-bienestar', proyecto.id]" role="button">EDITAR</button>
             </td>
             <td *ngIf="proyecto.estado == 'Activo'">
@@ -162,7 +162,7 @@
             <td>
               <button class="btn btn-outline-info" (click)="abrirModalEstable(programaEstable)" role="button">DETALLE</button>
             </td>
-            <td>
+            <td *ngIf="(programaEstable.estado == 'Activo') || (programaEstable.estado == 'No Autorizado') || (programaEstable.estado == 'Autorizado')">
               <button class="btn btn-outline-info" [routerLink]="['/ver-programa-estable', programaEstable.id]" role="button">EDITAR</button>
             </td>
             <td *ngIf="programaEstable.estado == 'Activo'">

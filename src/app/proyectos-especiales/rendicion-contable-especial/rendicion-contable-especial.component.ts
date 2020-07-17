@@ -35,6 +35,7 @@ export class RendicionContableEspecialComponent implements OnInit {
   seleccionarRendicion(event){
     this.rendicionSeleccionada = event.target.files[0];
     this.progreso = 0;
+    swal.fire('Rendicion contable seleccionada','Haga click ahora en "Subir Archivo"', 'success');
     console.log(this.rendicionSeleccionada);
   }
 
