@@ -19,8 +19,8 @@
 
 
       <div class="form-group col-sm-6">
-        <input type="email" class="form-control" name="email" [class.is-invalid]="email.invalid && email.touched" [(ngModel)]="usuario.email" #email="ngModel" placeholder="Email" email  required style="width:410px">
-        <small *ngIf="email.invalid && email.touched" class="form-text text-danger animated fadeIn">Campo requerido o inválido</small>
+        <input type="email" class="form-control" name="email" [class.is-invalid]="email.invalid && email.touched" [(ngModel)]="usuario.email" #email="ngModel" placeholder="Email" email pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required style="width:410px">
+        <small *ngIf="email.invalid && email.touched" class="form-text text-danger animated fadeIn">Campo vacío o inválido</small>
       </div>
 
 

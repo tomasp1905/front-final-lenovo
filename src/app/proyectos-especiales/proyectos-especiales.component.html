@@ -246,7 +246,7 @@
             <div class="form-group row">
               <label for="emails" class="col-form-label">Email contacto:</label>
               <div class="col-sm-6">
-                <input type="text" class="form-control" [(ngModel)]="emailSocioTexto" name="emails" style="width:380px">
+                <input type="email" class="form-control" [(ngModel)]="emailSocioTexto" name="emails" style="width:380px" email pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
               </div>
             </div>
 
