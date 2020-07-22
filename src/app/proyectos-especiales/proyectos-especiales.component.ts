@@ -140,7 +140,7 @@ export class ProyectosEspecialesComponent implements OnInit {
     this.apellidoMiembroTexto = '';
     this.claveMiembroTexto = '';
     this.facultadMiembroTexto ='';
-    console.log(this.proyectoEspecial)
+    //console.log(this.proyectoEspecial)
   }
 
   eliminarMiembro(id: number): void {
@@ -164,7 +164,7 @@ export class ProyectosEspecialesComponent implements OnInit {
     this.apellidoSocioTexto = '';
     this.telefonoSocioTexto = null;
     this.emailSocioTexto = '';
-    console.log(this.proyectoEspecial)
+    //console.log(this.proyectoEspecial)
 
   }
 
@@ -187,7 +187,7 @@ export class ProyectosEspecialesComponent implements OnInit {
     this.insumoRequeridoTexto = '';
     this.fechaInicioTexto = '';
     this.fechaFinalizacionTexto = '';
-    console.log(this.proyectoEspecial)
+    //console.log(this.proyectoEspecial)
   }
 
   eliminarActividad(id: number): void {
@@ -204,7 +204,7 @@ export class ProyectosEspecialesComponent implements OnInit {
           this.proyectoEspecial.fechaDeCreacion = new Date();
           this.router.navigate(['/proyecto-especial/presupuesto', response.id]);
         swal.fire('Proyecto creado con éxito', `Proyecto ${this.proyectoEspecial.titulo}`, 'success')
-        console.log(this.proyectoEspecial);
+        //console.log(this.proyectoEspecial);
       })
   }
 
@@ -222,7 +222,7 @@ export class ProyectosEspecialesComponent implements OnInit {
     this.proyectoEspecialService.update(this.proyectoEspecial)
       .subscribe(proyectoEspecial => {
         swal.fire('Proyecto actualizado', `El Proyecto ${this.proyectoEspecial.titulo} se actualizó con éxito`, 'success');
-       console.log(this.proyectoEspecial)
+       //console.log(this.proyectoEspecial)
       }
       )
   }

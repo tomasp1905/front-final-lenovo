@@ -172,7 +172,7 @@ export class VerProyectosComponent implements OnInit {
     })
 
     swalWithBootstrapButtons.fire({
-      title: 'Está seguro?',
+      title: '¿Está seguro?',
       text: `¿Seguro que desea finalizar el proyecto ${proyectoBianual.titulo}?`,
       icon: 'warning',
       showCancelButton: true,
@@ -186,7 +186,7 @@ export class VerProyectosComponent implements OnInit {
           response => {
             this.proyectosBianuales = this.proyectosBianuales.filter(pro => pro !== proyectoBianual)
             swalWithBootstrapButtons.fire(
-              'Proyecto finalizado!',
+              '¡Proyecto finalizado!',
               `Proyecto ${proyectoBianual.titulo} finalizado con éxito.`,
               'success'
             )
@@ -208,7 +208,7 @@ export class VerProyectosComponent implements OnInit {
     })
 
     swalWithBootstrapButtons.fire({
-      title: 'Está seguro?',
+      title: '¿Está seguro?',
       text: `¿Seguro que desea finalizar el programa ${programaEstable.titulo}?`,
       icon: 'warning',
       showCancelButton: true,
@@ -222,7 +222,7 @@ export class VerProyectosComponent implements OnInit {
           response => {
             this.programasEstables = this.programasEstables.filter(prog => prog !== programaEstable)
             swalWithBootstrapButtons.fire(
-              'Programa finalizado!',
+              '¡Programa finalizado!',
               `Programa ${programaEstable.titulo} finalizado con éxito.`,
               'success'
             )
@@ -244,7 +244,7 @@ export class VerProyectosComponent implements OnInit {
     })
 
     swalWithBootstrapButtons.fire({
-      title: 'Está seguro?',
+      title: '¿Está seguro?',
       text: `¿Seguro que desea finalizar el proyecto ${proyectoBienestar.titulo}?`,
       icon: 'warning',
       showCancelButton: true,
@@ -258,7 +258,7 @@ export class VerProyectosComponent implements OnInit {
           response => {
             this.proyectosBienestar = this.proyectosBienestar.filter(pro => pro !== proyectoBienestar)
             swalWithBootstrapButtons.fire(
-              'Proyecto finalizado!',
+              '¡Proyecto finalizado!',
               `Proyecto ${proyectoBienestar.titulo} finalizado con éxito.`,
               'success'
             )
@@ -280,7 +280,7 @@ export class VerProyectosComponent implements OnInit {
     })
 
     swalWithBootstrapButtons.fire({
-      title: 'Está seguro?',
+      title: '¿Está seguro?',
       text: `¿Seguro que desea finalizar el proyecto ${proyectoEspecial.titulo}?`,
       icon: 'warning',
       showCancelButton: true,
@@ -294,7 +294,7 @@ export class VerProyectosComponent implements OnInit {
           response => {
             this.proyectosEspeciales = this.proyectosEspeciales.filter(pro => pro !== proyectoEspecial)
             swalWithBootstrapButtons.fire(
-              'Proyecto finalizado!',
+              '¡Proyecto finalizado!',
               `Proyecto ${proyectoEspecial.titulo} finalizado con éxito.`,
               'success'
             )
@@ -309,22 +309,22 @@ export class VerProyectosComponent implements OnInit {
 
 
   generar(proyecto:ProyectoBianual){
-    console.log("entro al componente con el id: " + proyecto.id)
+    //console.log("entro al componente con el id: " + proyecto.id)
     this.verProyectoService.generar(proyecto.id);
   }
 
   generarPDFEstable(programa:ProgramaEstable){
-    console.log("entro al componente con el id: " + programa.id)
+    //console.log("entro al componente con el id: " + programa.id)
     this.verProyectoService.generarPDFEstable(programa.id);
   }
 
   generarPDFBienestar(proyecto:ProyectoBienestar){
-    console.log("entro al componente con el id: " + proyecto.id)
+    //console.log("entro al componente con el id: " + proyecto.id)
     this.verProyectoService.generarPDFBienestar(proyecto.id);
   }
 
   generarPDFEspecial(proyecto:ProyectoEspecial){
-    console.log("entro al componente con el id: " + proyecto.id)
+    //console.log("entro al componente con el id: " + proyecto.id)
     this.verProyectoService.generarPDFEspecial(proyecto.id);
   }
 

@@ -184,7 +184,7 @@ export class ProyectosBianualesComponent implements OnInit {
     this.apellidoMiembroTexto = '';
     this.claveMiembroTexto = '';
     this.facultadMiembroTexto = '';
-    console.log(this.proyectoBianual)
+    //console.log(this.proyectoBianual)
   }
 
 
@@ -206,7 +206,7 @@ export class ProyectosBianualesComponent implements OnInit {
     this.apellidoSocioTexto = '';
     this.telefonoSocioTexto = null;
     this.emailSocioTexto = '';
-    console.log(this.proyectoBianual)
+    //console.log(this.proyectoBianual)
   }
 
 
@@ -226,7 +226,7 @@ export class ProyectosBianualesComponent implements OnInit {
     this.insumoRequeridoTexto = '';
     this.fechaInicioTexto = '';
     this.fechaFinalizacionTexto = '';
-    console.log(this.proyectoBianual)
+    //console.log(this.proyectoBianual)
 
   }
 

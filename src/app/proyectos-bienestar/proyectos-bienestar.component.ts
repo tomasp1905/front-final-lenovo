@@ -167,7 +167,7 @@ export class ProyectosBienestarComponent implements OnInit {
     this.apellidoMiembroTexto = '';
     this.claveMiembroTexto = '';
     this.facultadMiembroTexto ='';
-    console.log(this.proyectoBienestar)
+    //console.log(this.proyectoBienestar)
   }
 
   eliminarMiembro(id: number): void {
@@ -189,7 +189,7 @@ export class ProyectosBienestarComponent implements OnInit {
     this.insumoRequeridoTexto = '';
     this.fechaInicioTexto = '';
     this.fechaFinalizacionTexto = '';
-    console.log(this.proyectoBienestar)
+    //console.log(this.proyectoBienestar)
   }
 
   eliminarActividad(id: number): void {
@@ -205,7 +205,7 @@ export class ProyectosBienestarComponent implements OnInit {
         this.proyectoBienestar.fechaDeCreacion = new Date();
         this.router.navigate(['/proyecto-bienestar/presupuesto', response.id]);
         swal.fire('Proyecto creado con éxito', `Proyecto ${this.proyectoBienestar.titulo}`, 'success')
-        console.log(this.proyectoBienestar);
+        //console.log(this.proyectoBienestar);
       })
   }
 
@@ -223,7 +223,7 @@ export class ProyectosBienestarComponent implements OnInit {
     this.proyectoBinestarService.update(this.proyectoBienestar)
       .subscribe(proyectoBienestar => {
         swal.fire('Proyecto actualizado', `El Proyecto ${this.proyectoBienestar.titulo} se actualizó con éxito`, 'success');
-        console.log(this.proyectoBienestar)
+        //console.log(this.proyectoBienestar)
       }
       )
   }

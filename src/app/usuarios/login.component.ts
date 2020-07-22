@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       swal.fire('Login', `Usuario con clave ${usuario.username} autenticado con éxito`, 'success')
     }, err => {
       if(err.status == 400){
-          swal.fire('Error login', 'Clave o Contraseña incorrecto', 'error');
+          swal.fire('Error de autenticación', 'Clave o Contraseña incorrecto', 'error');
       }
     }
   );

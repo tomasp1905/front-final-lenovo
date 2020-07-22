@@ -57,25 +57,25 @@ export class MisProyectosComponent implements OnInit {
   abrirModalBianual(proyecto: ProyectoBianual) {
     this.proyectoSeleccionadoBianual = proyecto;
     this.modalDetalleBianualMisProyectos.abrirModal();
-    console.log("click")
+    // console.log("click")
   }
 
   abrirModalEstable(programaEstable: ProgramaEstable) {
     this.programaSeleccionadoEstable = programaEstable;
     this.modalDetalleEstableMisProyectosService.abrirModal();
-    console.log("click")
+    //console.log("click")
   }
 
   abrirModalBienestar(proyecto: ProyectoBienestar) {
     this.proyectoSeleccionadoBienestar = proyecto;
     this.modalDetalleBienestarMisProyectosService.abrirModal();
-    console.log("click")
+    //console.log("click")
   }
 
   abrirModalEspecial(proyecto: ProyectoEspecial) {
     this.proyectoSeleccionadoEspecial = proyecto;
     this.modalDetalleEspecialMisProyectosService.abrirModal();
-    console.log("click")
+    //console.log("click")
   }
 
 

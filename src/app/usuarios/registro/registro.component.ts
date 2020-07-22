@@ -48,7 +48,7 @@ export class RegistroComponent implements OnInit {
   }
 
   public crearUsuario(): void {
-    console.log(this.usuario)
+    //console.log(this.usuario)
     this.registroService.create(this.usuario).
       subscribe(response => {
         this.router.navigate(['/login']);

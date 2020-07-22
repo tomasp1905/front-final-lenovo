@@ -198,7 +198,7 @@ export class ProgramasEstablesComponent implements OnInit {
     this.apellidoSocioTexto = '';
     this.telefonoSocioTexto = null;
     this.emailSocioTexto = '';
-    console.log(this.programaEstable)
+    //console.log(this.programaEstable)
 
   }
 
@@ -221,7 +221,7 @@ export class ProgramasEstablesComponent implements OnInit {
     this.insumoRequeridoTexto = '';
     this.fechaInicioTexto = '';
     this.fechaFinalizacionTexto = '';
-    console.log(this.programaEstable)
+    //console.log(this.programaEstable)
   }
 
   eliminarActividad(id: number): void {
@@ -241,7 +241,7 @@ export class ProgramasEstablesComponent implements OnInit {
         this.programaEstable.fechaDeCreacion = new Date();
         this.router.navigate(['/programa-estable/presupuesto', response.id]);
         swal.fire('Proyecto creado con éxito', `Proyecto ${this.programaEstable.titulo}`, 'success')
-        console.log(this.programaEstable);
+        //console.log(this.programaEstable);
       })
   }
 
@@ -259,7 +259,7 @@ export class ProgramasEstablesComponent implements OnInit {
     this.programaEstableService.update(this.programaEstable)
       .subscribe(programaEstable => {
         swal.fire('Programa actualizado', `El programa ${this.programaEstable.titulo} se actualizó con éxito`, 'success');
-       console.log(this.programaEstable)
+       //console.log(this.programaEstable)
       }
       )
   }

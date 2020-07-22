@@ -37,7 +37,7 @@ export class VerUsuariosComponent implements OnInit {
     })
 
     swalWithBootstrapButtons.fire({
-      title: 'Está seguro?',
+      title: '¿Está seguro?',
       text: `¿Seguro que desea establecer como Admin el usuario con clave ${usuario.username}?`,
       icon: 'warning',
       showCancelButton: true,
@@ -49,11 +49,12 @@ export class VerUsuariosComponent implements OnInit {
         this.verUsuarioService.establecerComoAdmin(usuario.id).subscribe(
           response => {
             this.usuariosAdmin = this.usuariosAdmin.filter(usu => usu !== usuario)
-            swalWithBootstrapButtons.fire(
-              'Rol Admin establecido!',
-              `El usuario con clave ${usuario.username} es Admin`,
-              'success'
-            )
+            // swalWithBootstrapButtons.fire(
+            //   '¡Rol Admin establecido!',
+            //   `El usuario con clave ${usuario.username} es Admin`,
+            //   'success'
+            // )
+            window.location.reload();
           }
         )
       }
@@ -70,7 +71,7 @@ export class VerUsuariosComponent implements OnInit {
     })
 
     swalWithBootstrapButtons.fire({
-      title: 'Está seguro?',
+      title: '¿Está seguro?',
       text: `¿Seguro que desea establecer como Docente el usuario con clave ${usuario.username}?`,
       icon: 'warning',
       showCancelButton: true,
@@ -82,11 +83,12 @@ export class VerUsuariosComponent implements OnInit {
         this.verUsuarioService.establecerComoUser(usuario.id).subscribe(
           response => {
             this.usuariosUser = this.usuariosUser.filter(usu => usu !== usuario)
-            swalWithBootstrapButtons.fire(
-              'Rol Docente establecido!',
-              `El usuario con clave ${usuario.username} es Docente`,
-              'success'
-            )
+            // swalWithBootstrapButtons.fire(
+            //   '¡Rol Docente establecido!',
+            //   `El usuario con clave ${usuario.username} es Docente`,
+            //   'success'
+            // )
+            window.location.reload();
           }
         )
       }
@@ -103,7 +105,7 @@ export class VerUsuariosComponent implements OnInit {
     })
 
     swalWithBootstrapButtons.fire({
-      title: 'Está seguro?',
+      title: '¿Está seguro?',
       text: `¿Seguro que desea establecer como Visitante el usuario con clave ${usuario.username}?`,
       icon: 'warning',
       showCancelButton: true,
@@ -115,11 +117,12 @@ export class VerUsuariosComponent implements OnInit {
         this.verUsuarioService.establecerComoVisit(usuario.id).subscribe(
           response => {
             this.usuariosVisit = this.usuariosVisit.filter(usu => usu !== usuario)
-            swalWithBootstrapButtons.fire(
-              'Rol Visitante establecido!',
-              `El usuario con clave ${usuario.username} es Visitante`,
-              'success'
-            )
+            // swalWithBootstrapButtons.fire(
+            //   '¡Rol Visitante establecido!',
+            //   `El usuario con clave ${usuario.username} es Visitante`,
+            //   'success'
+            // )
+            window.location.reload();
           }
         )
       }

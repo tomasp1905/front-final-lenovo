@@ -77,7 +77,7 @@ export class VerProyectosNoAutorizadosComponent implements OnInit {
     })
 
     swalWithBootstrapButtons.fire({
-      title: 'Está seguro?',
+      title: '¿Está seguro?',
       text: `¿Seguro que desea autorizar el proyecto ${proyectoBianual.titulo}?`,
       icon: 'warning',
       showCancelButton: true,
@@ -91,7 +91,7 @@ export class VerProyectosNoAutorizadosComponent implements OnInit {
           response => {
             this.proyectosBianuales = this.proyectosBianuales.filter(pro => pro !== proyectoBianual)
             swalWithBootstrapButtons.fire(
-              'Proyecto autorizado!',
+              '¡Proyecto autorizado!',
               `Proyecto ${proyectoBianual.titulo} autorizado con éxito.`,
               'success'
             )
@@ -113,7 +113,7 @@ export class VerProyectosNoAutorizadosComponent implements OnInit {
     })
 
     swalWithBootstrapButtons.fire({
-      title: 'Está seguro?',
+      title: '¿Está seguro?',
       text: `¿Seguro que desea autorizar el programa ${programaEstable.titulo}?`,
       icon: 'warning',
       showCancelButton: true,
@@ -127,7 +127,7 @@ export class VerProyectosNoAutorizadosComponent implements OnInit {
           response => {
             this.programasEstables = this.programasEstables.filter(pro => pro !== programaEstable)
             swalWithBootstrapButtons.fire(
-              'Programa autorizado!',
+              '¡Programa autorizado!',
               `Programa ${programaEstable.titulo} autorizado con éxito.`,
               'success'
             )
@@ -149,7 +149,7 @@ export class VerProyectosNoAutorizadosComponent implements OnInit {
     })
 
     swalWithBootstrapButtons.fire({
-      title: 'Está seguro?',
+      title: '¿Está seguro?',
       text: `¿Seguro que desea autorizar el proyecto ${proyectoBienestar.titulo}?`,
       icon: 'warning',
       showCancelButton: true,
@@ -163,7 +163,7 @@ export class VerProyectosNoAutorizadosComponent implements OnInit {
           response => {
             this.proyectosBienestar = this.proyectosBienestar.filter(pro => pro !== proyectoBienestar)
             swalWithBootstrapButtons.fire(
-              'Proyecto autorizado!',
+              '¡Proyecto autorizado!',
               `Proyecto ${proyectoBienestar.titulo} autorizado con éxito.`,
               'success'
             )
@@ -185,7 +185,7 @@ export class VerProyectosNoAutorizadosComponent implements OnInit {
     })
 
     swalWithBootstrapButtons.fire({
-      title: 'Está seguro?',
+      title: '¿Está seguro?',
       text: `¿Seguro que desea autorizar el proyecto ${proyectoEspecial.titulo}?`,
       icon: 'warning',
       showCancelButton: true,
@@ -199,7 +199,7 @@ export class VerProyectosNoAutorizadosComponent implements OnInit {
           response => {
             this.proyectosEspeciales = this.proyectosEspeciales.filter(pro => pro !== proyectoEspecial)
             swalWithBootstrapButtons.fire(
-              'Proyecto autorizado!',
+              '¡Proyecto autorizado!',
               `Proyecto ${proyectoEspecial.titulo} autorizado con éxito.`,
               'success'
             )
