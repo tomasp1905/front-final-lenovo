@@ -225,6 +225,7 @@
                 </tr>
               </tbody>
             </table>
+            <button class="btn btn-danger btn-sm" type="button" (click)="eliminarMiembro()">Eliminar miembros</button>
           </div>
         </div>
 
@@ -277,10 +278,12 @@
               </div>
             </div>
 
+
             <div class="form-group row">
-              <label for="emails" class="col-form-label">Email contacto:</label>
+              <label for="email" class="col-form-label">Email contacto:</label>
               <div class="col-sm-6">
-                <input type="email" class="form-control" [(ngModel)]="emailSocioTexto" name="emails" style="width:380px" email pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                <input type="email" class="form-control" [(ngModel)]="emailSocioTexto" [class.is-invalid]="email.invalid" #email="ngModel" name="email" style="width:380px" email pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                <small *ngIf="email.invalid" class="form-text text-danger animated fadeIn">Campo inválido</small>
               </div>
             </div>
 
@@ -320,6 +323,7 @@
                 </tr>
               </tbody>
             </table>
+            <button class="btn btn-danger btn-sm" type="button" (click)="eliminarSocio()">Eliminar socios</button>
           </div>
         </div>
 

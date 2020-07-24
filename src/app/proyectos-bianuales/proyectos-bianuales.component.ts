@@ -184,7 +184,10 @@ export class ProyectosBianualesComponent implements OnInit {
     this.apellidoMiembroTexto = '';
     this.claveMiembroTexto = '';
     this.facultadMiembroTexto = '';
-    //console.log(this.proyectoBianual)
+  }
+
+  eliminarMiembro(): void {
+    this.proyectoBianual.miembros = this.proyectoBianual.miembros.filter((miembro: Miembro) => miembro.id)
   }
 
 
@@ -207,6 +210,10 @@ export class ProyectosBianualesComponent implements OnInit {
     this.telefonoSocioTexto = null;
     this.emailSocioTexto = '';
     //console.log(this.proyectoBianual)
+  }
+
+  eliminarSocio(): void {
+    this.proyectoBianual.socios = this.proyectoBianual.socios.filter((socio: Socio) => socio.id)
   }
 
 
