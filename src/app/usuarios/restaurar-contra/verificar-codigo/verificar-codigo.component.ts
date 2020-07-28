@@ -22,10 +22,13 @@ export class VerificarCodigoComponent implements OnInit {
     this.restaurarContraService.verificarCodigo(this.codigoRecuperacionPayload).
       subscribe(response => {
       this.router.navigate(['/cambiar-pass']);
-      swal.fire('Recuperacion realizada con éxito', 'Genere una nueva contraseña', 'success')
-    console.log(this.codigoRecuperacionPayload.username);
-    console.log(this.codigoRecuperacionPayload.codigoDeRecuperacion);
-    })
+      swal.fire('Recuperación realizada con éxito', 'Genere una nueva contraseña', 'success')
+    }, err => {
+      if(err.status == 500){
+          swal.fire('Error de recuperación', 'Clave o Código incorrecto', 'error');
+      }
+    }
+    );
   }
 
 }

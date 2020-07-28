@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   login():void{
     console.log(this.usuario);
     if(this.usuario.username == null || this.usuario.password == null) {
-      swal.fire('Error de autenticación', 'Clave o Contraseña vacíos', 'error');
+      swal.fire('Error de autenticación', 'Clave o Contraseña vacías', 'error');
       return;
     }
     this.authService.login(this.usuario).subscribe(response => {
@@ -42,10 +42,11 @@ export class LoginComponent implements OnInit {
       swal.fire('Login', `Usuario con clave ${usuario.username} autenticado con éxito`, 'success')
     }, err => {
       if(err.status == 400){
-          swal.fire('Error de autenticación', 'Clave o Contraseña incorrecto', 'error');
+          swal.fire('Error de autenticación', 'Clave o Contraseña incorrecta', 'error');
       }
     }
   );
   }
+
 
 }

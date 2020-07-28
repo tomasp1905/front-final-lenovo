@@ -119,7 +119,7 @@
 
 
       <div class="form-group col-sm-6">
-        <input type="password" class="form-control" name="password" [class.is-invalid]="password.invalid && password.touched" [(ngModel)]="usuario.password" minlength="6" #password="ngModel" minlength="6"  placeholder="Contraseña" required style="width:410px">
+        <input type="password" class="form-control" name="password" [class.is-invalid]="password.invalid && password.touched" [(ngModel)]="usuario.password"  #password="ngModel" minlength="6"  placeholder="Contraseña de mínimo 6 caracteres" required style="width:410px">
         <small *ngIf="password.invalid && password.touched" class="form-text text-danger animated fadeIn">Debe contener un mínimo 6 caracteres</small>
       </div>
 

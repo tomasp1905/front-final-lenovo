@@ -23,10 +23,12 @@ export class CambiarPasswordComponent implements OnInit {
       subscribe(response => {
       this.router.navigate(['/login']);
       swal.fire('Operación realizada con éxito', 'Nueva contraseña generada', 'success')
-    console.log(this.nuevoPasswordPayload.username);
-    console.log(this.nuevoPasswordPayload.codigoDeRecuperacion);
-    console.log(this.nuevoPasswordPayload.nuevoPassword);
-    })
+    }, err => {
+      if(err.status == 500){
+          swal.fire('Error de recuperación', 'Clave o Código incorrecto', 'error');
+      }
+    }
+  );
   }
 
 }

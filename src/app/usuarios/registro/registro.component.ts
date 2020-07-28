@@ -89,7 +89,7 @@ export class RegistroComponent implements OnInit {
 
   seleccionarCarrera(event: MatAutocompleteSelectedEvent): void {
     let carrera = event.option.value as Carrera;
-    console.log(carrera);
+    //console.log(carrera);
     this.usuario.listaDeCarreras.push(carrera);
 
 

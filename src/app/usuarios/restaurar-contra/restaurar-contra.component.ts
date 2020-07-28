@@ -26,8 +26,13 @@ export class RestaurarContraComponent implements OnInit {
       subscribe(response => {
       this.router.navigate(['/verificar-codigo']);
       swal.fire('Recuperación iniciada con éxito', 'Ingrese a su correo y obtenga el código de verificación', 'success')
-  //  console.log(this.iniciarRecuperacionPayload.username);
-    })
+
+    }, err => {
+      if(err.status == 500){
+          swal.fire('Error de autenticación', 'Clave  incorrecta', 'error');
+      }
+    }
+  );
   }
 
 }
