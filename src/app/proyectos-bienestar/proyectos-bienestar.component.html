@@ -85,7 +85,7 @@
         <div class='form-group row' *ngIf="!proyectoBienestar.id">
           <div class="col-9">
             <mat-form-field class="full-width">
-              <input type="text" placeholder="Añadir Unidad Académica" aria-label="listaDeUnidadesAcademicas" matInput [formControl]="autocompleteControlUnidadAcademica" [matAutocomplete]="autoUnidadAcademica">
+              <input type="text" placeholder="Añadir Unidad Académica y/o Área" aria-label="listaDeUnidadesAcademicas" matInput [formControl]="autocompleteControlUnidadAcademica" [matAutocomplete]="autoUnidadAcademica">
               <mat-autocomplete #autoUnidadAcademica="matAutocomplete" [displayWith]="mostrarNombreUnidadAcademica" (optionSelected)="seleccionarUnidadAcademica($event)">
                 <mat-option *ngFor="let unidad of unidadesAcademicasFiltradas | async" [value]="unidad">
                   {{unidad.nombre}}
@@ -100,7 +100,7 @@
             <table class="table table-bordered" *ngIf="proyectoBienestar.unidadesAcademicas?.length>0">
               <thead>
                 <tr align="center">
-                  <th>Unidad Académica</th>
+                  <th>Unidad Académica/Área</th>
                 </tr>
               </thead>
               <tbody>
@@ -185,7 +185,7 @@
             </div>
 
             <div class="form-group row">
-              <label for="facultadM" class="col-form-label">Facultad o Área:</label>
+              <label for="facultadM" class="col-form-label">Unidad Académica o Área:</label>
               <div class="col-sm-5">
                 <input type="text" class="form-control" [(ngModel)]="facultadMiembroTexto" name="facultadM" style="width:340px">
               </div>
