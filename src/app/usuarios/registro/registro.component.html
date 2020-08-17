@@ -25,8 +25,8 @@
 
 
       <div class="form-group col-sm-6">
-        <input type="text" class="form-control" name="username" [class.is-invalid]="username.invalid && username.touched" [(ngModel)]="usuario.username" #username="ngModel"  placeholder="Clave UCC"  required style="width:410px">
-        <small *ngIf="username.invalid && username.touched" class="form-text text-danger animated fadeIn">Campo requerido</small>
+        <input type="text" class="form-control" name="username" [class.is-invalid]="username.invalid && username.touched" [(ngModel)]="usuario.username" #username="ngModel"  placeholder="Clave UCC"  minlength="7" required style="width:410px">
+        <small *ngIf="username.invalid && username.touched" class="form-text text-danger animated fadeIn">Campo vació o inválido</small>
       </div>
 
 
@@ -93,10 +93,6 @@
       </div>
 
 
-      <!-- <div class="form-group col-sm-6">
-        <input type="text" class="form-control" name="cargo" [class.is-invalid]="cargo.invalid && cargo.touched" [(ngModel)]="usuario.cargo" #cargo="ngModel"  placeholder="Cargo"  required style="width:410px">
-        <small *ngIf="cargo.invalid && cargo.touched" class="form-text text-danger animated fadeIn">Campo requerido</small>
-      </div> -->
 
       <div class="form-group">
         <div class="col-sm-6">
@@ -113,14 +109,14 @@
       </div>
 
       <div class="form-group col-sm-6">
-        <input type="number" class="form-control" name="dni" [class.is-invalid]="dni.invalid && dni.touched" [(ngModel)]="usuario.dni" #dni="ngModel"  placeholder="DNI"  required style="width:410px">
-        <small *ngIf="dni.invalid && dni.touched" class="form-text text-danger animated fadeIn">Campo requerido</small>
+        <input type="number" class="form-control" name="dni" [class.is-invalid]="dni.invalid && dni.touched" [(ngModel)]="usuario.dni" #dni="ngModel"  placeholder="DNI"  minlength="8" required style="width:410px">
+        <small *ngIf="dni.invalid && dni.touched" class="form-text text-danger animated fadeIn">Campo vacío o inválido</small>
       </div>
 
 
       <div class="form-group col-sm-6">
         <input type="password" class="form-control" name="password" [class.is-invalid]="password.invalid && password.touched" [(ngModel)]="usuario.password"  #password="ngModel" minlength="6"  placeholder="Contraseña de mínimo 6 caracteres" required style="width:410px">
-        <small *ngIf="password.invalid && password.touched" class="form-text text-danger animated fadeIn">Debe contener un mínimo 6 caracteres</small>
+        <small *ngIf="password.invalid && password.touched" class="form-text text-danger animated fadeIn">Campo vacío o inválido</small>
       </div>
 
       <div class="form-group col-sm-3">
