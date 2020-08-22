@@ -131,7 +131,7 @@ export class ProyectosBianualesComponent implements OnInit {
 
   seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
     let unidad = event.option.value as UnidadAcademica;
-    console.log(unidad);
+    //console.log(unidad);
     this.proyectoBianual.unidadesAcademicas.push(unidad);
 
     this.autocompleteControlUnidadAcademica.setValue('');
@@ -141,7 +141,7 @@ export class ProyectosBianualesComponent implements OnInit {
 
   seleccionarCarrera(event: MatAutocompleteSelectedEvent): void {
     let carrera = event.option.value as Carrera;
-    console.log(carrera);
+    //console.log(carrera);
     this.proyectoBianual.listaDeCarreras.push(carrera);
 
     this.autocompleteControlCarrera.setValue('');
@@ -151,7 +151,7 @@ export class ProyectosBianualesComponent implements OnInit {
 
   seleccionarPrioridad(event: MatAutocompleteSelectedEvent): void {
     let prioridad = event.option.value as Prioridad;
-    console.log(prioridad);
+    //console.log(prioridad);
     this.proyectoBianual.listaDePrioridades.push(prioridad);
 
     this.autocompleteControlPrioridad.setValue('');

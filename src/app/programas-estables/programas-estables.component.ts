@@ -121,7 +121,7 @@ export class ProgramasEstablesComponent implements OnInit {
 
   seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
     let unidad = event.option.value as UnidadAcademica;
-    console.log(unidad);
+    //console.log(unidad);
     this.programaEstable.unidadesAcademicas.push(unidad);
 
     this.autocompleteControlUnidadAcademica.setValue('');
@@ -131,7 +131,7 @@ export class ProgramasEstablesComponent implements OnInit {
 
   seleccionarCarrera(event: MatAutocompleteSelectedEvent): void {
     let carrera = event.option.value as Carrera;
-    console.log(carrera);
+    //console.log(carrera);
     this.programaEstable.listaDeCarreras.push(carrera);
 
     this.autocompleteControlCarrera.setValue('');
@@ -141,7 +141,7 @@ export class ProgramasEstablesComponent implements OnInit {
 
   seleccionarPrioridad(event: MatAutocompleteSelectedEvent): void {
     let prioridad = event.option.value as Prioridad;
-    console.log(prioridad);
+    //console.log(prioridad);
     this.programaEstable.listaDePrioridades.push(prioridad);
 
     this.autocompleteControlPrioridad.setValue('');
@@ -174,7 +174,7 @@ export class ProgramasEstablesComponent implements OnInit {
     this.apellidoMiembroTexto = '';
     this.claveMiembroTexto = '';
     this.facultadMiembroTexto ='';
-    console.log(this.programaEstable)
+    //console.log(this.programaEstable)
   }
 
   eliminarMiembro(id: number): void {

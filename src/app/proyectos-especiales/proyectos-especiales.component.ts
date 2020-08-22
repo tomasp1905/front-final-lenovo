@@ -100,7 +100,7 @@ export class ProyectosEspecialesComponent implements OnInit {
 
   seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
     let unidad = event.option.value as UnidadAcademica;
-    console.log(unidad);
+    //console.log(unidad);
     this.proyectoEspecial.unidadesAcademicas.push(unidad);
 
     this.autocompleteControlUnidadAcademica.setValue('');
@@ -110,7 +110,7 @@ export class ProyectosEspecialesComponent implements OnInit {
 
   seleccionarCarrera(event: MatAutocompleteSelectedEvent): void {
     let carrera = event.option.value as Carrera;
-    console.log(carrera);
+    //console.log(carrera);
     this.proyectoEspecial.listaDeCarreras.push(carrera);
 
     this.autocompleteControlCarrera.setValue('');

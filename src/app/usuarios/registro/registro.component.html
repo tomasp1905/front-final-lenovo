@@ -25,15 +25,15 @@
 
 
       <div class="form-group col-sm-6">
-        <input type="text" class="form-control" name="username" [class.is-invalid]="username.invalid && username.touched" [(ngModel)]="usuario.username" #username="ngModel"  placeholder="Clave UCC"  minlength="7" required style="width:410px">
+        <input type="text" class="form-control" name="username" [class.is-invalid]="username.invalid && username.touched" [(ngModel)]="usuario.username" #username="ngModel"  placeholder="Clave UCC"  pattern="^[0-9]*$" minlength="7" required style="width:410px">
         <small *ngIf="username.invalid && username.touched" class="form-text text-danger animated fadeIn">Campo vació o inválido</small>
       </div>
 
 
       <div class='form-group'>
-        <div class="col-sm-6">
-          <mat-form-field class="full-width">
-            <input type="text" placeholder="Unidad/es Académica/s" aria-label="listaDeUnidadesAcademicas" matInput [formControl]="autocompleteControlUnidadAcademica" [matAutocomplete]="autoUnidadAcademica">
+        <div class="col-sm-8">
+          <mat-form-field class="unidad-width">
+            <input type="text" placeholder="Unidad Académica o Área" aria-label="listaDeUnidadesAcademicas" matInput [formControl]="autocompleteControlUnidadAcademica" [matAutocomplete]="autoUnidadAcademica">
             <mat-autocomplete #autoUnidadAcademica="matAutocomplete" [displayWith]="mostrarNombreUnidadAcademica" (optionSelected)="seleccionarUnidadAcademica($event)">
               <mat-option *ngFor="let unidad of unidadesAcademicasFiltradas | async" [value]="unidad">
                 {{unidad.nombre}}
@@ -44,7 +44,7 @@
       </div>
 
       <div class='form-group'>
-        <div class="col-sm-6">
+        <div class="col-sm-8">
           <table class="table table-bordered" *ngIf="usuario.listaDeUnidadesAcademicas?.length>0">
             <thead>
               <tr align="center">
@@ -64,7 +64,7 @@
       <div class='form-group '>
         <div class="col-sm-6">
           <mat-form-field class="full-width">
-            <input type="text" placeholder="Carrera/s" aria-label="listaDeCarreras" matInput [formControl]="autocompleteControlCarrera" [matAutocomplete]="autoCarrera">
+            <input type="text" placeholder="Carrera" aria-label="listaDeCarreras" matInput [formControl]="autocompleteControlCarrera" [matAutocomplete]="autoCarrera">
             <mat-autocomplete #autoCarrera="matAutocomplete" [displayWith]="mostrarNombreCarrera" (optionSelected)="seleccionarCarrera($event)">
               <mat-option *ngFor="let carrera of carrerasFiltradas | async" [value]="carrera">
                 {{carrera.nombre}}
@@ -109,7 +109,7 @@
       </div>
 
       <div class="form-group col-sm-6">
-        <input type="number" class="form-control" name="dni" [class.is-invalid]="dni.invalid && dni.touched" [(ngModel)]="usuario.dni" #dni="ngModel"  placeholder="DNI"  minlength="8" required style="width:410px">
+        <input type="text" class="form-control" name="dni" [class.is-invalid]="dni.invalid && dni.touched" [(ngModel)]="usuario.dni" #dni="ngModel"  placeholder="DNI"  pattern="^[0-9]*$" minlength="8"  maxlength="8" required style="width:410px">
         <small *ngIf="dni.invalid && dni.touched" class="form-text text-danger animated fadeIn">Campo vacío o inválido</small>
       </div>
 

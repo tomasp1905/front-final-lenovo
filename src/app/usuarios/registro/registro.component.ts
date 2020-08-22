@@ -79,7 +79,7 @@ export class RegistroComponent implements OnInit {
 
   seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
     let unidad = event.option.value as UnidadAcademica;
-    console.log(unidad);
+    //console.log(unidad);
     this.usuario.listaDeUnidadesAcademicas.push(unidad);
 
     this.autocompleteControlUnidadAcademica.setValue('');

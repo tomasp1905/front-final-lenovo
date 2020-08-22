@@ -114,7 +114,7 @@ export class ProyectosBienestarComponent implements OnInit {
 
   seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
     let unidad = event.option.value as UnidadAcademica;
-    console.log(unidad);
+    //console.log(unidad);
     this.proyectoBienestar.unidadesAcademicas.push(unidad);
 
     this.autocompleteControlUnidadAcademica.setValue('');
@@ -124,7 +124,7 @@ export class ProyectosBienestarComponent implements OnInit {
 
   seleccionarCarrera(event: MatAutocompleteSelectedEvent): void {
     let carrera = event.option.value as Carrera;
-    console.log(carrera);
+    //console.log(carrera);
     this.proyectoBienestar.listaDeCarreras.push(carrera);
 
     this.autocompleteControlCarrera.setValue('');
@@ -135,7 +135,7 @@ export class ProyectosBienestarComponent implements OnInit {
 
   seleccionarTematica(event: MatAutocompleteSelectedEvent): void {
     let tematica = event.option.value as Tematica;
-    console.log(tematica);
+    //console.log(tematica);
     this.proyectoBienestar.listaDeTematicas.push(tematica);
 
     this.autocompleteControlTematica.setValue('');
