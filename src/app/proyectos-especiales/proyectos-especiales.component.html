@@ -114,7 +114,7 @@
         </div>
 
         <div class='form-group row' *ngIf="!proyectoEspecial.id">
-          <label for="catedra" class="col-form-label">Cátedra:</label>
+          <label for="catedra" class="col-form-label">Cátedra/s:</label>
 
           <div class="col-9">
             <input class="form-control" type="text" name="catedra" [class.is-invalid]="catedra.invalid && catedra.touched" [(ngModel)]="proyectoEspecial.catedra" required #catedra="ngModel">
@@ -146,10 +146,18 @@
               </div>
             </div>
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
               <label for="claveM" class="col-form-label">Clave:</label>
               <div class="col-sm-3">
                 <input type="number" class="form-control" [(ngModel)]="claveMiembroTexto" name="claveM">
+              </div>
+            </div> -->
+
+            <div class="form-group row">
+              <label for="claveM" class="col-form-label">Clave:</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" [(ngModel)]="claveMiembroTexto" #claveM="ngModel" name="claveM" pattern="^[0-9]*$" minlength="7" [class.is-invalid]="claveM.invalid">
+                <small *ngIf="claveM.invalid" class="form-text text-danger animated fadeIn">Campo inválido</small>
               </div>
             </div>
 
@@ -237,10 +245,18 @@
               </div>
             </div>
 
-            <div class="form-group row">
+            <!-- <div class="form-group row">
               <label for="telefono" class="col-form-label">Teléfono contacto:</label>
               <div class="col-sm-3">
                 <input type="number" class="form-control" [(ngModel)]="telefonoSocioTexto" name="telefono">
+              </div>
+            </div> -->
+
+            <div class="form-group row">
+              <label for="telefono" class="col-form-label">Teléfono contacto:</label>
+              <div class="col-sm-3">
+                <input type="text" class="form-control" name="telefono" [class.is-invalid]="telefono.invalid" [(ngModel)]="telefonoSocioTexto" #telefono="ngModel"  pattern="^[0-9]*$"   style="width:363px">
+                <small *ngIf="telefono.invalid" class="form-text text-danger animated fadeIn">Ingrese solo campos numéricos</small>
               </div>
             </div>
 
@@ -263,7 +279,7 @@
         </div>
 
         <div class='form-group row' *ngIf="!proyectoEspecial.id">
-          <div class="col-7">
+          <div class="col-12">
             <table class="table table-bordered" *ngIf="proyectoEspecial.socios?.length>0">
               <thead>
                 <tr align="center">
@@ -442,8 +458,11 @@
               </div>
             </div>
 
+        </div>
+      </div>
+
             <div class='form-group row'>
-              <div class="col-10">
+              <div class="col-12">
                 <table class="table table-bordered" *ngIf="proyectoEspecial.listaDeActividades?.length>0">
                   <thead>
                     <tr align="center">
@@ -463,19 +482,12 @@
                       <td>{{actividad.insumoRequerido}}</td>
                       <td>{{actividad.fechaInicio | date:"longDate"}}</td>
                       <td>{{actividad.fechaFinalizacion | date:"longDate"}}</td>
-                      <td *ngIf="proyectoEspecial.id"><button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad(actividad.id)">X</button></td>
                     </tr>
                   </tbody>
                 </table>
+                <button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad(actividad.id)">Eliminar actividades</button>
               </div>
             </div>
-
-
-
-          </div>
-        </div>
-
-
 
         <div class="card border-info mb-3" *ngIf="!proyectoEspecial.id">
           <div class="card-header text-center">
