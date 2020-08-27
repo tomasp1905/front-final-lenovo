@@ -525,11 +525,11 @@
                       <td>{{actividad.insumoRequerido}}</td>
                       <td>{{actividad.fechaInicio | date:"longDate"}}</td>
                       <td>{{actividad.fechaFinalizacion | date:"longDate"}}</td>
-                      <!-- <td *ngIf="proyectoBianual.id"><button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad(actividad.id)">X</button></td> -->
+                      <td *ngIf="proyectoBianual.id"><button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad(actividad.id)">X</button></td>
                     </tr>
                   </tbody>
                 </table>
-                  <button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad()">Eliminar actividades</button>
+                  <!-- <button class="btn btn-danger btn-sm" type="button" (click)="eliminarActividad()">Eliminar actividades</button> -->
               </div>
             </div>
 
@@ -646,5 +646,13 @@
       <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button">VOLVER ATRÁS</button>
     </div>
   </div>
+
+  <div class="row" *ngIf="proyectoBianual.id">
+    <div class="col-sm-6">
+      <button class="boton btn btn-primary" onclick="window.history.back()" role="button">VOLVER ATRÁS</button>
+    </div>
+  </div>
+
+
 
 </div>
