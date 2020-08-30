@@ -76,6 +76,7 @@ import { ProyectoEstadoPipe } from './elegir-proyecto/proyecto-estado.pipe';
 import { DetalleEstableMisProyectosComponent } from './mis-proyectos/detalle-estable-mis-proyectos/detalle-estable-mis-proyectos.component';
 import { DetalleBienestarMisProyectosComponent } from './mis-proyectos/detalle-bienestar-mis-proyectos/detalle-bienestar-mis-proyectos.component';
 import { DetalleEspecialMisProyectosComponent } from './mis-proyectos/detalle-especial-mis-proyectos/detalle-especial-mis-proyectos.component';
+import { ReporteComponent } from './reporte/reporte.component';
 
 
 
@@ -110,7 +111,8 @@ const routes: Routes = [
   { path: 'proyecto-bianual/rendicion-contable/:id', component: RendicionContableComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   { path: 'proyecto-especial/rendicion-contable/:id', component: RendicionContableEspecialComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   { path: 'programa-estable/rendicion-contable/:id', component: RendicionContableEstableComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  { path: 'proyecto-bienestar/rendicion-contable/:id', component: RendicionContableBienestarComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } }
+  { path: 'proyecto-bienestar/rendicion-contable/:id', component: RendicionContableBienestarComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  {path: 'reporte' , component: ReporteComponent}
 
 
 
@@ -177,7 +179,8 @@ const routes: Routes = [
     ProyectoEstadoPipe,
     DetalleEstableMisProyectosComponent,
     DetalleBienestarMisProyectosComponent,
-    DetalleEspecialMisProyectosComponent
+    DetalleEspecialMisProyectosComponent,
+    ReporteComponent
   ],
   imports: [
     BrowserModule,
