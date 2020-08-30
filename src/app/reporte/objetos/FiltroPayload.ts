@@ -8,6 +8,6 @@ export class FiltroPayload {
   listaDeAnios:Array<Anio> = [];
   listaDeAniosCompletos: string;
 
-  estado:string;
+  listaDeEstados:string;
   tipoProyecto: string;
 }
