@@ -1,7 +1,8 @@
 <div class="estilo divAlineado">
+
   <div class="animated fadeIn  card border-info mb-3" style="max-width: 1000px;">
     <div class="card-header bg-transparent border-info">
-      <h5 align="center"> REPORTES </h5>
+      <h5 align="center"> FILTROS </h5>
     </div>
     <div class="card-body">
 
@@ -71,29 +72,29 @@
           </div>
         </div>
 
-       <div class="col-2">
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="radio" name="tipo" id="especial" class="form-check-input" [(ngModel)]="filtroPayload.tipoProyecto" value="Proyecto Especial"> Proyecto Especial
-          </label>
+        <div class="col-2">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" name="tipo" id="especial" class="form-check-input" [(ngModel)]="filtroPayload.tipoProyecto" value="Proyecto Especial"> Proyecto Especial
+            </label>
+          </div>
+
+
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" name="tipo" id="renovacion" class="form-check-input" [(ngModel)]="filtroPayload.tipoProyecto" value="Programa Estable"> Programa Estable
+            </label>
+          </div>
+
         </div>
 
-
-      <div class="form-check">
-        <label class="form-check-label">
-          <input type="radio" name="tipo" id="renovacion" class="form-check-input" [(ngModel)]="filtroPayload.tipoProyecto" value="Programa Estable"> Programa Estable
-        </label>
-      </div>
-
-      </div>
-
-      <div class="col-2">
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="radio" name="tipo" id="todostipo" class="form-check-input" [(ngModel)]="filtroPayload.tipoProyecto" value="TODOS"> TODOS
-          </label>
+        <div class="col-2">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" name="tipo" id="todostipo" class="form-check-input" [(ngModel)]="filtroPayload.tipoProyecto" value="TODOS"> TODOS
+            </label>
+          </div>
         </div>
-      </div>
 
       </div>
 
@@ -113,107 +114,130 @@
           </div>
 
 
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="radio" name="estado" id="autorizado" class="form-check-input" [(ngModel)]="filtroPayload.listaDeEstados" value="Autorizado">Autorizado
-              </label>
-            </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" name="estado" id="autorizado" class="form-check-input" [(ngModel)]="filtroPayload.listaDeEstados" value="Autorizado">Autorizado
+            </label>
+          </div>
+        </div>
+
+        <div class="col-2">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" name="estado" id="activo" class="form-check-input" [(ngModel)]="filtroPayload.listaDeEstados" value="Activo"> Activo
+            </label>
           </div>
 
-            <div class="col-2">
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" name="estado" id="activo" class="form-check-input" [(ngModel)]="filtroPayload.listaDeEstados" value="Activo"> Activo
-                </label>
-              </div>
-
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" name="estado" id="finalizado" class="form-check-input" [(ngModel)]="filtroPayload.listaDeEstados" value="Finalizado">Finalizado
-                </label>
-              </div>
-            </div>
-
-            <div class="col-2">
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" name="estado" id="todos" class="form-check-input" [(ngModel)]="filtroPayload.listaDeEstados" value="TODOS"> TODOS
-                </label>
-              </div>
-            </div>
-
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" name="estado" id="finalizado" class="form-check-input" [(ngModel)]="filtroPayload.listaDeEstados" value="Finalizado">Finalizado
+            </label>
           </div>
+        </div>
 
-
-          --------------------------------------------------------------------------------
-
-          <br>
-
-
-
-          <div class='form-group row'>
-            <div class="col-4">
-              <mat-form-field class="unidad-width">
-                <input type="text" placeholder="Seleccionar Año" aria-label="listaDeAnios" matInput [formControl]="autocompleteControlAnios" [matAutocomplete]="autoAnio">
-                <mat-autocomplete #autoAnio="matAutocomplete" [displayWith]="mostrarAnio" (optionSelected)="seleccionarAnio($event)">
-                  <mat-option *ngFor="let anio of aniosFiltrados | async" [value]="anio">
-                    {{anio.numero}}
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-form-field>
-            </div>
+        <div class="col-2">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" name="estado" id="todos" class="form-check-input" [(ngModel)]="filtroPayload.listaDeEstados" value="TODOS"> TODOS
+            </label>
           </div>
-
-          <div class='form-group row'>
-            <div class="col-3">
-              <table class="table table-bordered" *ngIf="filtroPayload.listaDeAnios?.length>0">
-                <thead>
-                  <tr align="center">
-                    <th>Año</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let unidad of filtroPayload.listaDeAnios">
-                    <td>{{unidad.numero}}</td>
-                    <!-- <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarUnidadAcademica(unidad.id)">X</button></td> -->
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-
-          <div class="form-group row">
-            <label>Años:</label>
-            <div class="col-2">
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" name="anio" id="Todos" class="form-check-input" [(ngModel)]="filtroPayload.listaDeAniosCompletos" value="TODOS"> seleccionar todos
-                </label>
-              </div>
-            </div>
-          </div>
-
-          <br>
-
-          <div class="row">
-            <div class="col-sm-6">
-              <button class="boton btn btn-primary" role="button" (click)='enviarFiltro()'>FILTRO</button>
-            </div>
-          </div>
-
-
-
-
-
+        </div>
 
       </div>
 
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button">VOLVER ATRÁS</button>
+
+      --------------------------------------------------------------------------------
+
+      <br>
+
+
+
+      <div class='form-group row'>
+        <div class="col-4">
+          <mat-form-field class="unidad-width">
+            <input type="text" placeholder="Seleccionar Año" aria-label="listaDeAnios" matInput [formControl]="autocompleteControlAnios" [matAutocomplete]="autoAnio">
+            <mat-autocomplete #autoAnio="matAutocomplete" [displayWith]="mostrarAnio" (optionSelected)="seleccionarAnio($event)">
+              <mat-option *ngFor="let anio of aniosFiltrados | async" [value]="anio">
+                {{anio.numero}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class='form-group row'>
+        <div class="col-3">
+          <table class="table table-bordered" *ngIf="filtroPayload.listaDeAnios?.length>0">
+            <thead>
+              <tr align="center">
+                <th>Año</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let unidad of filtroPayload.listaDeAnios">
+                <td>{{unidad.numero}}</td>
+                <!-- <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarUnidadAcademica(unidad.id)">X</button></td> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label>Años:</label>
+        <div class="col-2">
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" name="anio" id="Todos" class="form-check-input" [(ngModel)]="filtroPayload.listaDeAniosCompletos" value="TODOS"> seleccionar todos
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+
+        <div class="col-sm-2">
+          <button class="boton btn btn-outline-primary" role="button" (click)='enviarFiltro()'>APLICAR FILTRO</button>
+        </div>
+
       </div>
     </div>
-
   </div>
+
+  <div class="animated fadeIn  card border-info mb-3" style="max-width: 1000px;">
+    <div class="card-header bg-transparent border-info">
+      <h5 align="center"> REPORTE </h5>
+      <div class="card-body">
+
+        <ng-container *ngIf="resultadoFiltro">
+
+        <p>{{resultadoFiltro.contador.contadorProyectos}}</p>
+
+        <div *ngFor="let programasEstables of resultadoFiltro.listaDeProgramasEstables"> 
+          <p>{{programasEstables.lineaOperativa}}</p>
+        </div>
+
+        </ng-container>
+
+        <div class="col-sm-2">
+         <!-- [disabled]="!resultadoFiltro > 0" -->
+          <button class="boton btn btn-outline-primary"  (click)="generarPdf()" role="button">GENERAR PDF</button>
+        </div>
+        Al hacer click en este boton se debería enviar --> FiltroPayload + ResultadoFiltro = FiltroConResultado
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-sm-6">
+      <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button">VOLVER ATRÁS</button>
+    </div>
+  </div>
+
+</div>

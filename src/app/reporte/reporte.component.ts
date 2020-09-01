@@ -9,6 +9,8 @@ import { map, flatMap, startWith } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material';
 import swal from 'sweetalert2';
 import { Anio } from './objetos/anio';
+import { ResultadoFiltro } from './objetos/ResultadoFiltro';
+import { FiltroConResultado } from './objetos/FiltroConResultado';
 
 @Component({
   selector: 'app-reporte',
@@ -17,6 +19,8 @@ import { Anio } from './objetos/anio';
 export class ReporteComponent implements OnInit {
 
   filtroPayload: FiltroPayload = new FiltroPayload()
+
+  resultadoFiltro: ResultadoFiltro = new ResultadoFiltro()
 
   autocompleteControlUnidadAcademica = new FormControl();
   unidadesAcademicasFiltradas: Observable<UnidadAcademica[]>;
@@ -81,9 +85,18 @@ export class ReporteComponent implements OnInit {
     event.option.deselect();
   }
 
+  generarPdf(): void {
+      const filtroConResultado: FiltroConResultado = {
+       filtroPayolad: this.filtroPayload,
+       resultadoFiltro: this.resultadoFiltro
+      }
+
+      this.reporteService.generatePdf(filtroConResultado).subscribe(data => {
+          console.log(data);
+        })
+  }
+
   public enviarFiltro(): void {
-    console.log(this.filtroPayload)
-    console.log(JSON.stringify(this.filtroPayload))
     if( this.filtroPayload.listaDeUnidadesAcademicasCompleta == "TODOS") {
         this.filtroPayload.listaDeUnidadesAcademicas = []
     }
@@ -91,12 +104,9 @@ export class ReporteComponent implements OnInit {
       this.filtroPayload.listaDeAnios = []
     }
     this.reporteService.create(this.filtroPayload).
-      subscribe(response => {
-        swal.fire('Filtro generado con éxito', 'A continuación se visualizaran los resultados', 'success')
+      subscribe((response): ResultadoFiltro => {
+        this.resultadoFiltro = response;
+        swal.fire('Filtro aplicado con éxito', 'Ahora haga click en GENERAR REPORTE', 'success')
       })
   }
-
-
-
-
 }
