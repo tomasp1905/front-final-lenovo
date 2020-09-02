@@ -11,6 +11,7 @@ import swal from 'sweetalert2';
 import { Anio } from './objetos/anio';
 import { ResultadoFiltro } from './objetos/ResultadoFiltro';
 import { FiltroConResultado } from './objetos/FiltroConResultado';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-reporte',
@@ -91,22 +92,28 @@ export class ReporteComponent implements OnInit {
        resultadoFiltro: this.resultadoFiltro
       }
 
-      this.reporteService.generatePdf(filtroConResultado).subscribe(data => {
-          console.log(data);
+      this.reporteService.generatePdf(filtroConResultado).subscribe((data: Blob) => {
+        var blob = new Blob([data], { type: 'application/pdf' });
+        saveAs(blob, 'reporte.pdf');
         })
   }
 
-  public enviarFiltro(): void {
-    if( this.filtroPayload.listaDeUnidadesAcademicasCompleta == "TODOS") {
-        this.filtroPayload.listaDeUnidadesAcademicas = []
-    }
-    if(this.filtroPayload.listaDeAniosCompletos == "TODOS"){
-      this.filtroPayload.listaDeAnios = []
-    }
-    this.reporteService.create(this.filtroPayload).
-      subscribe((response): ResultadoFiltro => {
-        this.resultadoFiltro = response;
-        swal.fire('Filtro aplicado con éxito', 'Ahora haga click en GENERAR REPORTE', 'success')
-      })
+  limpiarFiltro() {
+    this.filtroPayload =  new FiltroPayload();
   }
+
+    enviarFiltro(): void {
+       if( this.filtroPayload.listaDeUnidadesAcademicasCompleta == "TODOS") {
+           this.filtroPayload.listaDeUnidadesAcademicas = []
+       }
+       if(this.filtroPayload.listaDeAniosCompletos == "TODOS"){
+         this.filtroPayload.listaDeAnios = []
+       }
+
+       this.reporteService.create(this.filtroPayload).subscribe(response => {
+           this.resultadoFiltro = response;
+           swal.fire('Filtro aplicado con éxito', 'Ahora haga click en el botón GENERAR PDF', 'success')
+         })
+     }
+
 }

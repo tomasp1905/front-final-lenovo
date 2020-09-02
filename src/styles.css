@@ -50,11 +50,13 @@ body {
   width: 100%;
 }
 .unidad-width {
-  min-width: 400px;
-  max-width: 600px;
+  max-width: 400px;
   width: 100%;
 }
 
+.font-weight-semibold {
+  font-weight: 600 !important;
+}
 
 .full-width-prioridad{
   min-width: 150px;

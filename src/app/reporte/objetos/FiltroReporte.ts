@@ -1,8 +1,8 @@
 import { Contador } from './Contador';
 
-export class FiltroReporte{ 
+export class FiltroReporte{
 
     contador: Contador = new Contador();
-    listaDeProgramasEstables: Array<>
+    // listaDeProgramasEstables: Array<>
 
 }

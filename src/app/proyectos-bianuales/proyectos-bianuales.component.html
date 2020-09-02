@@ -117,14 +117,20 @@
           </div>
         </div>
 
-        <div class='form-group row' *ngIf="!proyectoBianual.id">
+        <!-- <div class='form-group row' *ngIf="!proyectoBianual.id">
           <label for="catedra" class="col-form-label">Cátedra/s:</label>
-
           <div class="col-9">
             <input class="form-control" type="text" name="catedra" [class.is-invalid]="catedra.invalid && catedra.touched" [(ngModel)]="proyectoBianual.catedra" required #catedra="ngModel">
             <small *ngIf="catedra.invalid && catedra.touched" class="form-text text-danger">Campo requerido</small>
           </div>
+        </div> -->
 
+        <div class="form-group row" *ngIf="!proyectoBianual.id">
+          <div class="col-9">
+            <label for="catedra" class="col-form-label">Catedra/s:</label>
+            <textarea class="form-control" [(ngModel)]="proyectoBianual.catedra" required #catedra="ngModel" [class.is-invalid]="catedra.invalid && catedra.touched" name="catedra" style="width:492px"></textarea>
+            <small *ngIf="catedra.invalid && catedra.touched" class="form-text text-danger">Campo requerido</small>
+          </div>
         </div>
 
         <!--AUTOCOMPLETE PARA PRIORIDADES -->
