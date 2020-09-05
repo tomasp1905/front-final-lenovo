@@ -4,7 +4,7 @@
     <div class="card-header bg-transparent ">
       <h5 align="center"> FILTROS </h5>
     </div>
-    
+
     <div class="card-body">
       <div class='form-group row align-items-center'>
         <div class="col-2">
@@ -23,7 +23,8 @@
         </div>
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" name="UA" id="Todos" class="form-check-input" [(ngModel)]="filtroPayload.listaDeUnidadesAcademicasCompleta" value="TODOS"> Seleccionar todas
+              <input type="checkbox" name="UA" id="Todos" class="form-check-input" (ngModelChange)="seleccionarTodos('unidad')"
+             [(ngModel)]="filtroPayload.listaDeUnidadesAcademicasCompleta"> Seleccionar todas
             </label>
           </div>
         </div>
@@ -40,7 +41,6 @@
             <tbody>
               <tr *ngFor="let unidad of filtroPayload.listaDeUnidadesAcademicas">
                 <td>{{unidad.nombre}}</td>
-                <!-- <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarUnidadAcademica(unidad.id)">X</button></td> -->
               </tr>
             </tbody>
           </table>
@@ -87,7 +87,7 @@
         <div class="col-3">
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" name="tipo" id="todostipo" class="form-check-input" [(ngModel)]="filtroPayload.tipoProyecto" value="TODOS"> Todos
+              <input type="radio" name="tipo" id="todostipo" class="form-check-input" [(ngModel)]="filtroPayload.tipoProyecto" value="TODOS"> Seleccionar todos
             </label>
           </div>
         </div>
@@ -131,7 +131,7 @@
         <div class="col-3">
           <div class="form-check">
             <label class="form-check-label">
-              <input type="radio" name="estado" id="todos" class="form-check-input" [(ngModel)]="filtroPayload.listaDeEstados" value="TODOS"> Todos
+              <input type="radio" name="estado" id="todos" class="form-check-input" [(ngModel)]="filtroPayload.listaDeEstados" value="TODOS"> Seleccionar todos
             </label>
           </div>
         </div>
@@ -142,12 +142,12 @@
 
       <div class='form-group row align-items-center'>
         <div class="col-2">
-          <label class="font-weight-semibold">Años:</label>
+          <label class="font-weight-semibold">Año:</label>
         </div>
         <div class="col-10 d-flex align-items-center">
-          <div class="col-8 pl-0">
-            <mat-form-field class="unidad-width">
-              <input type="text" placeholder="Seleccionar Año" aria-label="listaDeAnios" matInput [formControl]="autocompleteControlAnios" [matAutocomplete]="autoAnio">
+          <div class="col-3 pl-0">
+            <mat-form-field class="unidad-anio-width">
+              <input type="text" placeholder="Añadir año" aria-label="listaDeAnios" matInput [formControl]="autocompleteControlAnios" [matAutocomplete]="autoAnio">
               <mat-autocomplete #autoAnio="matAutocomplete" [displayWith]="mostrarAnio" (optionSelected)="seleccionarAnio($event)">
                 <mat-option *ngFor="let anio of aniosFiltrados | async" [value]="anio">
                   {{anio.numero}}
@@ -157,7 +157,7 @@
         </div>
         <div class="form-check">
           <label class="form-check-label">
-            <input type="radio" name="anio" id="Todos" class="form-check-input" [(ngModel)]="filtroPayload.listaDeAniosCompletos" value="TODOS"> Seleccionar todos
+            <input type="checkbox" name="anio" id="Todos" class="form-check-input" [value]="true" (ngModelChange)="seleccionarTodos('anio')" [checked]="filtroPayload.listaDeAniosCompletos" [(ngModel)]="filtroPayload.listaDeAniosCompletos"> Seleccionar todos
           </label>
         </div>
         </div>
@@ -174,7 +174,6 @@
             <tbody>
               <tr *ngFor="let unidad of filtroPayload.listaDeAnios">
                 <td>{{unidad.numero}}</td>
-                <!-- <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarUnidadAcademica(unidad.id)">X</button></td> -->
               </tr>
             </tbody>
           </table>
@@ -186,7 +185,8 @@
       <div class="row">
         <div class="col-12 text-right">
           <button class="boton btn btn-outline-secondary" (click)="limpiarFiltro()" role="button">LIMPIAR FILTROS</button>
-          <button class="boton btn btn-info" role="button" (click)='enviarFiltro()'><i class="fas fa-filter"></i>  APLICAR FILTROS</button>
+          <button class="boton btn btn-info" role="button" [disabled]="filtroPayload.tipoProyecto == undefined || filtroPayload.listaDeEstados == undefined || !filtroPayload.listaDeUnidadesAcademicasCompleta &&filtroPayload.listaDeUnidadesAcademicas.length == 0 || 
+          !filtroPayload.listaDeAniosCompletos && filtroPayload.listaDeAnios.length == 0 " (click)='enviarFiltro()'><i class="fas fa-filter"></i>  APLICAR FILTROS</button>
           <button class="boton btn btn-success" [disabled]="!resultadoFiltro.contador.contadorProyectos" (click)="generarPdf()" role="button"> <i class="far fa-file-pdf"></i> GENERAR PDF</button>
         </div>
       </div>
@@ -194,27 +194,6 @@
     </div>
   </div>
 
-  <!-- <div class="animated fadeIn  card border-info mb-3" style="max-width: 1000px;">
-    <div class="card-header bg-transparent border-info">
-      <h5 align="center"> REPORTE </h5>
-    </div>
-
-    <div class="card-body">
-
-      <ng-container *ngIf="resultadoFiltro">
-
-        <p>{{resultadoFiltro.contador.contadorProyectos}}</p>
-
-        <div *ngFor="let programasEstables of resultadoFiltro.listaDeProgramasEstables">
-          <p>{{programasEstables.lineaOperativa}}</p>
-        </div>
-
-      </ng-container>
-
-
-
-    </div>
-  </div> -->
 
   <div class="row">
     <div class="col-sm-6">

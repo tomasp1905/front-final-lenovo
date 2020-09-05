@@ -54,6 +54,11 @@ body {
   width: 100%;
 }
 
+.unidad-anio-width {
+  max-width: 120px;
+  width: 100%;
+}
+
 .font-weight-semibold {
   font-weight: 600 !important;
 }

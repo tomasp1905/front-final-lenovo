@@ -3,11 +3,9 @@ import { UnidadAcademica } from 'src/app/proyectos-bianuales/listas/unidad-acade
 
 export class FiltroPayload {
   listaDeUnidadesAcademicas: Array<UnidadAcademica> = [];
-  listaDeUnidadesAcademicasCompleta: string;
-
+  listaDeUnidadesAcademicasCompleta: boolean;
   listaDeAnios:Array<Anio> = [];
-  listaDeAniosCompletos: string;
-
+  listaDeAniosCompletos: boolean;
   listaDeEstados:string;
   tipoProyecto: string;
 }
