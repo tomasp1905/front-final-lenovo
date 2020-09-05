@@ -101,11 +101,11 @@ export class ReporteComponent implements OnInit {
       case "anio": {
         this.filtroPayload.listaDeAniosCompletos = !this.filtroPayload.listaDeAniosCompletos;
         if(this.filtroPayload.listaDeAniosCompletos){
-          this.autocompleteControlAnios.disable({onlySelf: true, emitEvent: false}) 
+          this.autocompleteControlAnios.disable({onlySelf: true, emitEvent: false})
   this.filtroPayload.listaDeAnios = new Array<Anio>();
         } else this.autocompleteControlAnios.enable({onlySelf: true, emitEvent: false})
       }; break;
-      default: 
+      default:
     }
   }
 
@@ -128,14 +128,14 @@ export class ReporteComponent implements OnInit {
     enviarFiltro(): void {
        if(this.filtroPayload.listaDeUnidadesAcademicasCompleta) this.filtroPayload.listaDeUnidadesAcademicas = []
        if(this.filtroPayload.listaDeAniosCompletos) this.filtroPayload.listaDeAnios = []
-      
+
        this.reporteService.create(this.filtroPayload).subscribe((response:ResultadoFiltro) => {
             const resultadoContador = Object.keys(response.contador).map(key => response.contador[key]).reduce((prev, next) => (prev + next), 0);
             if(resultadoContador > 0){
            this.resultadoFiltro = response;
            swal.fire('Filtro aplicado con éxito', 'Ahora haga click en el botón GENERAR PDF', 'success')
           } else {
-           swal.fire('No existen resultados para esta búsqueda.', 'error')
+           swal.fire('Filtro aplicado con éxito','No existen resultados para esta búsqueda.', 'error')
           }
           })
      }
