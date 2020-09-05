@@ -119,6 +119,7 @@ export class ReporteComponent implements OnInit {
         var blob = new Blob([data], { type: 'application/pdf' });
         saveAs(blob, 'reporte.pdf');
         })
+      this.filtroPayload =  new FiltroPayload();
   }
 
   limpiarFiltro() {
