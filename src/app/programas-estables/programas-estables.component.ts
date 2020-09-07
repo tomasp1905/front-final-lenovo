@@ -119,34 +119,67 @@ export class ProgramasEstablesComponent implements OnInit {
   }
 
 
-  seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
-    let unidad = event.option.value as UnidadAcademica;
-    //console.log(unidad);
-    this.programaEstable.unidadesAcademicas.push(unidad);
+  // seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
+  //   let unidad = event.option.value as UnidadAcademica;
+  //   //console.log(unidad);
+  //   this.programaEstable.unidadesAcademicas.push(unidad);
+  //
+  //   this.autocompleteControlUnidadAcademica.setValue('');
+  //   event.option.focus();
+  //   event.option.deselect();
+  // }
 
+  seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
+    const existe = this.programaEstable.unidadesAcademicas.filter(unidad => unidad.id == event.option.value.id);
+    if(existe.length == 0){
+    let unidad = event.option.value as UnidadAcademica;
+    this.programaEstable.unidadesAcademicas.push(unidad);
     this.autocompleteControlUnidadAcademica.setValue('');
     event.option.focus();
     event.option.deselect();
   }
+  }
+
+  // seleccionarCarrera(event: MatAutocompleteSelectedEvent): void {
+  //   let carrera = event.option.value as Carrera;
+  //   //console.log(carrera);
+  //   this.programaEstable.listaDeCarreras.push(carrera);
+  //
+  //   this.autocompleteControlCarrera.setValue('');
+  //   event.option.focus();
+  //   event.option.deselect();
+  // }
 
   seleccionarCarrera(event: MatAutocompleteSelectedEvent): void {
+    const existe = this.programaEstable.listaDeCarreras.filter(carrera => carrera.id == event.option.value.id);
+    if(existe.length == 0){
     let carrera = event.option.value as Carrera;
-    //console.log(carrera);
     this.programaEstable.listaDeCarreras.push(carrera);
-
     this.autocompleteControlCarrera.setValue('');
     event.option.focus();
     event.option.deselect();
   }
+}
+
+  // seleccionarPrioridad(event: MatAutocompleteSelectedEvent): void {
+  //   let prioridad = event.option.value as Prioridad;
+  //   //console.log(prioridad);
+  //   this.programaEstable.listaDePrioridades.push(prioridad);
+  //
+  //   this.autocompleteControlPrioridad.setValue('');
+  //   event.option.focus();
+  //   event.option.deselect();
+  // }
 
   seleccionarPrioridad(event: MatAutocompleteSelectedEvent): void {
+    const existe = this.programaEstable.listaDePrioridades.filter(prioridad => prioridad.id == event.option.value.id);
+    if(existe.length == 0){
     let prioridad = event.option.value as Prioridad;
-    //console.log(prioridad);
     this.programaEstable.listaDePrioridades.push(prioridad);
-
     this.autocompleteControlPrioridad.setValue('');
     event.option.focus();
     event.option.deselect();
+  }
   }
 
 

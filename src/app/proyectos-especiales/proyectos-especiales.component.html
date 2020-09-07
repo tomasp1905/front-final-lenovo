@@ -113,7 +113,7 @@
           </div>
         </div>
 
-        <div class='form-group row' *ngIf="!proyectoEspecial.id">
+        <!-- <div class='form-group row' *ngIf="!proyectoEspecial.id">
           <label for="catedra" class="col-form-label">Cátedra/s:</label>
 
           <div class="col-9">
@@ -121,6 +121,14 @@
             <small *ngIf="catedra.invalid && catedra.touched" class="form-text text-danger">Campo requerido</small>
           </div>
 
+        </div> -->
+
+        <div class="form-group row" *ngIf="!proyectoEspecial.id">
+          <div class="col-9">
+            <label for="catedra" class="col-form-label">Catedra/s:</label>
+            <textarea class="form-control" [(ngModel)]="proyectoEspecial.catedra" required #catedra="ngModel" [class.is-invalid]="catedra.invalid && catedra.touched" name="catedra" style="width:492px"></textarea>
+            <small *ngIf="catedra.invalid && catedra.touched" class="form-text text-danger">Campo requerido</small>
+          </div>
         </div>
 
 

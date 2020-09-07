@@ -98,25 +98,47 @@ export class ProyectosEspecialesComponent implements OnInit {
   }
 
 
-  seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
-    let unidad = event.option.value as UnidadAcademica;
-    //console.log(unidad);
-    this.proyectoEspecial.unidadesAcademicas.push(unidad);
+  // seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
+  //   let unidad = event.option.value as UnidadAcademica;
+  //   //console.log(unidad);
+  //   this.proyectoEspecial.unidadesAcademicas.push(unidad);
+  //
+  //   this.autocompleteControlUnidadAcademica.setValue('');
+  //   event.option.focus();
+  //   event.option.deselect();
+  // }
 
+  seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
+    const existe = this.proyectoEspecial.unidadesAcademicas.filter(unidad => unidad.id == event.option.value.id);
+    if(existe.length == 0){
+    let unidad = event.option.value as UnidadAcademica;
+    this.proyectoEspecial.unidadesAcademicas.push(unidad);
     this.autocompleteControlUnidadAcademica.setValue('');
     event.option.focus();
     event.option.deselect();
   }
+  }
+
+  // seleccionarCarrera(event: MatAutocompleteSelectedEvent): void {
+  //   let carrera = event.option.value as Carrera;
+  //   //console.log(carrera);
+  //   this.proyectoEspecial.listaDeCarreras.push(carrera);
+  //
+  //   this.autocompleteControlCarrera.setValue('');
+  //   event.option.focus();
+  //   event.option.deselect();
+  // }
 
   seleccionarCarrera(event: MatAutocompleteSelectedEvent): void {
+    const existe = this.proyectoEspecial.listaDeCarreras.filter(carrera => carrera.id == event.option.value.id);
+    if(existe.length == 0){
     let carrera = event.option.value as Carrera;
-    //console.log(carrera);
     this.proyectoEspecial.listaDeCarreras.push(carrera);
-
     this.autocompleteControlCarrera.setValue('');
     event.option.focus();
     event.option.deselect();
   }
+}
 
 
 

@@ -112,36 +112,70 @@ export class ProyectosBienestarComponent implements OnInit {
   }
 
 
-  seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
-    let unidad = event.option.value as UnidadAcademica;
-    //console.log(unidad);
-    this.proyectoBienestar.unidadesAcademicas.push(unidad);
+  // seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
+  //   let unidad = event.option.value as UnidadAcademica;
+  //   //console.log(unidad);
+  //   this.proyectoBienestar.unidadesAcademicas.push(unidad);
+  //
+  //   this.autocompleteControlUnidadAcademica.setValue('');
+  //   event.option.focus();
+  //   event.option.deselect();
+  // }
 
+  seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
+    const existe = this.proyectoBienestar.unidadesAcademicas.filter(unidad => unidad.id == event.option.value.id);
+    if(existe.length == 0){
+    let unidad = event.option.value as UnidadAcademica;
+    this.proyectoBienestar.unidadesAcademicas.push(unidad);
     this.autocompleteControlUnidadAcademica.setValue('');
     event.option.focus();
     event.option.deselect();
   }
+  }
+
+  // seleccionarCarrera(event: MatAutocompleteSelectedEvent): void {
+  //   let carrera = event.option.value as Carrera;
+  //   //console.log(carrera);
+  //   this.proyectoBienestar.listaDeCarreras.push(carrera);
+  //
+  //   this.autocompleteControlCarrera.setValue('');
+  //   event.option.focus();
+  //   event.option.deselect();
+  // }
 
   seleccionarCarrera(event: MatAutocompleteSelectedEvent): void {
+    const existe = this.proyectoBienestar.listaDeCarreras.filter(carrera => carrera.id == event.option.value.id);
+    if(existe.length == 0){
     let carrera = event.option.value as Carrera;
-    //console.log(carrera);
     this.proyectoBienestar.listaDeCarreras.push(carrera);
-
     this.autocompleteControlCarrera.setValue('');
     event.option.focus();
     event.option.deselect();
   }
+}
 
+
+  // seleccionarTematica(event: MatAutocompleteSelectedEvent): void {
+  //   let tematica = event.option.value as Tematica;
+  //   //console.log(tematica);
+  //   this.proyectoBienestar.listaDeTematicas.push(tematica);
+  //
+  //   this.autocompleteControlTematica.setValue('');
+  //   event.option.focus();
+  //   event.option.deselect();
+  // }
 
   seleccionarTematica(event: MatAutocompleteSelectedEvent): void {
+    const existe = this.proyectoBienestar.listaDeTematicas.filter(tematica => tematica.id == event.option.value.id);
+    if(existe.length == 0){
     let tematica = event.option.value as Tematica;
-    //console.log(tematica);
     this.proyectoBienestar.listaDeTematicas.push(tematica);
-
     this.autocompleteControlTematica.setValue('');
     event.option.focus();
     event.option.deselect();
   }
+}
+
 
   eliminarUnidadAcademica(id: number): void {
     this.proyectoBienestar.unidadesAcademicas = this.proyectoBienestar.unidadesAcademicas.filter((unidad: UnidadAcademica) => id !== unidad.id)

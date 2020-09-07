@@ -43,27 +43,6 @@ export class ReporteService {
     return this.http.post(this.urlEndPointGenerarPdf, resultFilter, { responseType: 'blob' })
   }
 
-  // public generar(id:number): any {
-  //     var mediaType = 'application/pdf';
-  //     this.http.get(`${this.urlEndPointGenerarPDFBianual}/${id}`, { responseType: 'blob' }).subscribe(
-  //         (response) => {
-  //             var blob = new Blob([response], { type: mediaType });
-  //             saveAs(blob, 'reporte.pdf');
-  //         },
-  //         e => { throwError(e); }
-  //     );
-  // }
-
-  /*public generatePdf2(resultFilter: FiltroConResultado): any {
-      var mediaType = 'application/pdf';
-      this.http.post(this.urlEndPointGenerarPdf, resultFilter, { responseType: 'blob' }).subscribe(
-          (response) => {
-              var blob = new Blob([response], { type: mediaType });
-              saveAs(blob, 'reporte.pdf');
-          },
-          e => { throwError(e); }
-      );
-  }*/
-
+  
 
 }

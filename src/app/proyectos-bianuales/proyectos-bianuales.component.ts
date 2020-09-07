@@ -129,35 +129,68 @@ export class ProyectosBianualesComponent implements OnInit {
   }
 
 
-  seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
-    let unidad = event.option.value as UnidadAcademica;
-    //console.log(unidad);
-    this.proyectoBianual.unidadesAcademicas.push(unidad);
+  // seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
+  //   let unidad = event.option.value as UnidadAcademica;
+  //   //console.log(unidad);
+  //   this.proyectoBianual.unidadesAcademicas.push(unidad);
+  //
+  //   this.autocompleteControlUnidadAcademica.setValue('');
+  //   event.option.focus();
+  //   event.option.deselect();
+  // }
 
+  seleccionarUnidadAcademica(event: MatAutocompleteSelectedEvent): void {
+    const existe = this.proyectoBianual.unidadesAcademicas.filter(unidad => unidad.id == event.option.value.id);
+    if(existe.length == 0){
+    let unidad = event.option.value as UnidadAcademica;
+    this.proyectoBianual.unidadesAcademicas.push(unidad);
     this.autocompleteControlUnidadAcademica.setValue('');
     event.option.focus();
     event.option.deselect();
   }
-
-  seleccionarCarrera(event: MatAutocompleteSelectedEvent): void {
-    let carrera = event.option.value as Carrera;
-    //console.log(carrera);
-    this.proyectoBianual.listaDeCarreras.push(carrera);
-
-    this.autocompleteControlCarrera.setValue('');
-    event.option.focus();
-    event.option.deselect();
   }
 
-  seleccionarPrioridad(event: MatAutocompleteSelectedEvent): void {
-    let prioridad = event.option.value as Prioridad;
-    //console.log(prioridad);
-    this.proyectoBianual.listaDePrioridades.push(prioridad);
+  // seleccionarCarrera(event: MatAutocompleteSelectedEvent): void {
+  //   let carrera = event.option.value as Carrera;
+  //   this.proyectoBianual.listaDeCarreras.push(carrera);
+  //   this.autocompleteControlCarrera.setValue('');
+  //   event.option.focus();
+  //   event.option.deselect();
+  // }
 
-    this.autocompleteControlPrioridad.setValue('');
-    event.option.focus();
-    event.option.deselect();
-  }
+   seleccionarCarrera(event: MatAutocompleteSelectedEvent): void {
+     const existe = this.proyectoBianual.listaDeCarreras.filter(carrera => carrera.id == event.option.value.id);
+     if(existe.length == 0){
+     let carrera = event.option.value as Carrera;
+     this.proyectoBianual.listaDeCarreras.push(carrera);
+     this.autocompleteControlCarrera.setValue('');
+     event.option.focus();
+     event.option.deselect();
+   }
+ }
+
+
+  // seleccionarPrioridad(event: MatAutocompleteSelectedEvent): void {
+  //   let prioridad = event.option.value as Prioridad;
+  //   //console.log(prioridad);
+  //   this.proyectoBianual.listaDePrioridades.push(prioridad);
+  //
+  //   this.autocompleteControlPrioridad.setValue('');
+  //   event.option.focus();
+  //   event.option.deselect();
+  // }
+
+   seleccionarPrioridad(event: MatAutocompleteSelectedEvent): void {
+     const existe = this.proyectoBianual.listaDePrioridades.filter(prioridad => prioridad.id == event.option.value.id);
+     if(existe.length == 0){
+     let prioridad = event.option.value as Prioridad;
+     this.proyectoBianual.listaDePrioridades.push(prioridad);
+     this.autocompleteControlPrioridad.setValue('');
+     event.option.focus();
+     event.option.deselect();
+   }
+   }
+
 
 
   eliminarUnidadAcademica(id: number): void {
