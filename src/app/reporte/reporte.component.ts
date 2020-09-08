@@ -141,4 +141,12 @@ export class ReporteComponent implements OnInit {
           })
      }
 
+     eliminarUnidadAcademica(id: number): void {
+       this.filtroPayload.listaDeUnidadesAcademicas = this.filtroPayload.listaDeUnidadesAcademicas.filter((unidad: UnidadAcademica) => id !== unidad.id)
+     }
+
+     eliminarAnio(id:number): void {
+       this.filtroPayload.listaDeAnios = this.filtroPayload.listaDeAnios.filter((anio: Anio) => id !== anio.id)
+     }
+
 }

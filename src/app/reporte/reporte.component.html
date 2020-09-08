@@ -31,16 +31,18 @@
       </div>
 
       <div class='form-group row'>
-        <div class="col-5">
+        <div class="col-6">
           <table class="table table-bordered" style="box-shadow: 0 0px 6.94px 0.06px rgba(4,26,55,.16);" *ngIf="filtroPayload.listaDeUnidadesAcademicas?.length>0">
             <thead>
               <tr align="center">
                 <th>Unidad Académica/Área</th>
+                <th>Eliminar</th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let unidad of filtroPayload.listaDeUnidadesAcademicas">
                 <td>{{unidad.nombre}}</td>
+                <td align="center"><button class="btn btn-danger btn-sm" type="button" (click)="eliminarUnidadAcademica(unidad.id)">X</button></td>
               </tr>
             </tbody>
           </table>
@@ -164,16 +166,18 @@
       </div>
 
       <div class='form-group row'>
-        <div class="col-5">
+        <div class="col-3">
           <table class="table table-bordered" style="box-shadow: 0 0px 6.94px 0.06px rgba(4,26,55,.16);" *ngIf="filtroPayload.listaDeAnios?.length>0">
             <thead>
               <tr align="center">
                 <th>Año</th>
+                <th>Eliminar</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let unidad of filtroPayload.listaDeAnios">
-                <td>{{unidad.numero}}</td>
+              <tr *ngFor="let anio of filtroPayload.listaDeAnios">
+                <td>{{anio.numero}}</td>
+                <td align="center"><button class="btn btn-danger btn-sm" type="button" (click)="eliminarAnio(anio.id)">X</button></td>
               </tr>
             </tbody>
           </table>
@@ -185,7 +189,7 @@
       <div class="row">
         <div class="col-12 text-right">
           <button class="boton btn btn-outline-secondary" (click)="limpiarFiltro()" role="button">LIMPIAR FILTROS</button>
-          <button class="boton btn btn-info" role="button" [disabled]="filtroPayload.tipoProyecto == undefined || filtroPayload.listaDeEstados == undefined || !filtroPayload.listaDeUnidadesAcademicasCompleta &&filtroPayload.listaDeUnidadesAcademicas.length == 0 || 
+          <button class="boton btn btn-info" role="button" [disabled]="filtroPayload.tipoProyecto == undefined || filtroPayload.listaDeEstados == undefined || !filtroPayload.listaDeUnidadesAcademicasCompleta &&filtroPayload.listaDeUnidadesAcademicas.length == 0 ||
           !filtroPayload.listaDeAniosCompletos && filtroPayload.listaDeAnios.length == 0 " (click)='enviarFiltro()'><i class="fas fa-filter"></i>  APLICAR FILTROS</button>
           <button class="boton btn btn-success" [disabled]="!resultadoFiltro.contador.contadorProyectos" (click)="generarPdf()" role="button"> <i class="far fa-file-pdf"></i> GENERAR PDF</button>
         </div>
