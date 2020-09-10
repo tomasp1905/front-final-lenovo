@@ -10,10 +10,10 @@
           <ul class="navbar-nav navbar-right">
             <li *ngIf="authService.isAuthenticated()" class="dropdown">
               <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Clave: {{authService.usuario.username}}
+              CLAVE UCC: <b> {{authService.usuario.username}} </b>
               </a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <button (click)="logout()" class="dropdown-item" type="submit">Cerrar Sesión</button>
+                <button (click)="logout()" class="dropdown-item" type="submit">CERRAR SESIÓN</button>
               </div>
             </li>
           </ul>
