@@ -119,11 +119,13 @@ export class ReporteComponent implements OnInit {
         var blob = new Blob([data], { type: 'application/pdf' });
         saveAs(blob, 'reporte.pdf');
         })
-      this.filtroPayload =  new FiltroPayload();
+        this.limpiarFiltro();
   }
 
   limpiarFiltro() {
     this.filtroPayload =  new FiltroPayload();
+    this.autocompleteControlAnios.enable({onlySelf: true, emitEvent: false})
+    this.autocompleteControlUnidadAcademica.enable({onlySelf: true, emitEvent: false})
   }
 
     enviarFiltro(): void {
