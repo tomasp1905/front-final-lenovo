@@ -117,7 +117,7 @@ export class ReporteComponent implements OnInit {
 
       this.reporteService.generatePdf(filtroConResultado).subscribe((data: Blob) => {
         var blob = new Blob([data], { type: 'application/pdf' });
-        saveAs(blob, 'reporte.pdf');
+        saveAs(blob, 'Filtros.pdf');
         })
         this.limpiarFiltro();
   }
@@ -136,6 +136,7 @@ export class ReporteComponent implements OnInit {
             const resultadoContador = Object.keys(response.contador).map(key => response.contador[key]).reduce((prev, next) => (prev + next), 0);
             if(resultadoContador > 0){
            this.resultadoFiltro = response;
+           this.generarPdf();
            swal.fire('Filtro aplicado con éxito', 'Ahora haga click en el botón GENERAR PDF', 'success')
           } else {
            swal.fire('Filtro aplicado con éxito','No existen resultados para esta búsqueda.', 'error')

@@ -9,7 +9,7 @@
   <app-detalle-miembro *ngIf="proyectoSeleccionadoMiembroBianual" [proyecto]="proyectoSeleccionadoMiembroBianual"></app-detalle-miembro>
 
 
-  <div class="animated fadeIn card border-primary" style="width: 70rem;">
+  <div class="animated fadeIn card border-primary" style="width: 75rem;">
     <div class="card-header bg-transparent border-info">
       <h5 align="center">LISTADO DE PROYECTOS BIANUALES ACTIVOS</h5>
     </div>
@@ -29,6 +29,7 @@
             <th>FORMATO PDF <i class="far fa-file-pdf"></i></th>
             <th>EDITAR</th>
             <th>FINALIZAR</th>
+            <th>COMENTARIOS</th>
             <th>PRESUPUESTO</th>
             <th>RENDICIÓN CONTABLE</th>
           </tr>
@@ -51,6 +52,9 @@
             </td>
             <td>
               <button class="btn btn-danger" (click)='finalizarBianual(proyecto)' role="button">FINALIZAR</button>
+            </td>
+            <td>
+              <button class="btn btn-outline-info"  role="button">VER</button>
             </td>
             <td>
               <a href="http://localhost:8080/proyectoBianual/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>

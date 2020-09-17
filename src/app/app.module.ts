@@ -103,7 +103,7 @@ const routes: Routes = [
   { path: 'ver-proyectos-autorizados', component: VerProyectosAutorizadosComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
-  { path: 'ver-usuarios', component: VerUsuariosComponent },
+  { path: 'ver-usuarios', component: VerUsuariosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_ADMIN'] } },
   { path: 'ver-mis-proyectos', component: MisProyectosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   { path: 'restaurar-contra', component: RestaurarContraComponent },
   { path: 'verificar-codigo', component: VerificarCodigoComponent },
@@ -112,7 +112,7 @@ const routes: Routes = [
   { path: 'proyecto-especial/rendicion-contable/:id', component: RendicionContableEspecialComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   { path: 'programa-estable/rendicion-contable/:id', component: RendicionContableEstableComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   { path: 'proyecto-bienestar/rendicion-contable/:id', component: RendicionContableBienestarComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  {path: 'reporte' , component: ReporteComponent}
+  {path: 'reporte' , component: ReporteComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_ADMIN'] } },
 
 
 

@@ -39,7 +39,15 @@ export class LoginComponent implements OnInit {
       let usuario = this.authService.usuario;
 
       this.router.navigate(['/elegir-proyecto']);
-      swal.fire('Login', `Usuario con clave ${usuario.username} autenticado con éxito`, 'success')
+      if(usuario.roles.toString() == "ROLE_ADMIN" ){
+      swal.fire('Login', `Usuario con clave ${usuario.username} autenticado con éxito y con rol Administrador`, 'success')
+      }
+      else if(usuario.roles.toString() == "ROLE_USER" ){
+        swal.fire('Login', `Usuario con clave ${usuario.username} autenticado con éxito`, 'success')
+      }
+      else {
+        swal.fire('Login', `Recuerde que todavía debe ser habilitado por el Administrador/a para utilizar la plataforma` , 'success')
+      }
     }, err => {
       if(err.status == 400){
           swal.fire('Error de autenticación', 'Clave o Contraseña incorrecta', 'error');

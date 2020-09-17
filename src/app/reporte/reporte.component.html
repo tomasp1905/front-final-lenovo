@@ -191,7 +191,7 @@
           <button class="boton btn btn-outline-secondary" (click)="limpiarFiltro()" role="button">LIMPIAR FILTROS</button>
           <button class="boton btn btn-info" role="button" [disabled]="filtroPayload.tipoProyecto == undefined || filtroPayload.listaDeEstados == undefined || !filtroPayload.listaDeUnidadesAcademicasCompleta &&filtroPayload.listaDeUnidadesAcademicas.length == 0 ||
           !filtroPayload.listaDeAniosCompletos && filtroPayload.listaDeAnios.length == 0 " (click)='enviarFiltro()'><i class="fas fa-filter"></i>  APLICAR FILTROS</button>
-          <button class="boton btn btn-success" [disabled]="!resultadoFiltro.contador.contadorProyectos" (click)="generarPdf()" role="button"> <i class="far fa-file-pdf"></i> GENERAR PDF</button>
+          <!-- <button class="boton btn btn-success" [disabled]="!resultadoFiltro.contador.contadorProyectos" (click)="generarPdf()" role="button"> <i class="far fa-file-pdf"></i> GENERAR PDF</button> -->
         </div>
       </div>
 
