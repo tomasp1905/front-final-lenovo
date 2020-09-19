@@ -9,7 +9,7 @@
   <app-detalle-miembro *ngIf="proyectoSeleccionadoMiembroBianual" [proyecto]="proyectoSeleccionadoMiembroBianual"></app-detalle-miembro>
 
 
-  <div class="animated fadeIn card border-primary" style="width: 75rem;">
+  <div class="animated fadeIn card border-primary" style="width: 80rem;">
     <div class="card-header bg-transparent border-info">
       <h5 align="center">LISTADO DE PROYECTOS BIANUALES ACTIVOS</h5>
     </div>
@@ -22,14 +22,14 @@
       <table class="table table-bordered table-striped text-center" *ngIf="proyectosBianuales?.length > 0">
         <thead>
           <tr>
-            <th>PROYECTO</th>
+            <th>NOMBRE PROYECTO</th>
             <th>FECHA DE ACTIVACIÓN</th>
             <th>DETALLE COMPLETO</th>
             <th>DETALLE SINTÉTICO</th>
+            <th>COMENTARIOS</th>
             <th>FORMATO PDF <i class="far fa-file-pdf"></i></th>
             <th>EDITAR</th>
             <th>FINALIZAR</th>
-            <th>COMENTARIOS</th>
             <th>PRESUPUESTO</th>
             <th>RENDICIÓN CONTABLE</th>
           </tr>
@@ -45,6 +45,9 @@
               <button class="btn btn-outline-info" (click)=abrirModalSinteticoBianual(proyecto) role="button">VER</button>
             </td>
             <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos', proyecto.id]" role="button">VER</button>
+            </td>
+            <td>
               <button class="btn btn-outline-danger" (click)="generar(proyecto)" role="button">PDF</button>
             </td>
             <td>
@@ -54,13 +57,10 @@
               <button class="btn btn-danger" (click)='finalizarBianual(proyecto)' role="button">FINALIZAR</button>
             </td>
             <td>
-              <button class="btn btn-outline-info"  role="button">VER</button>
-            </td>
-            <td>
               <a href="http://localhost:8080/proyectoBianual/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
-            <td *ngIf="proyecto.rendicionContable!=null">
-              <a href="http://localhost:8080/proyectoBianual/uploads/arch/{{proyecto.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+            <td>
+              <a *ngIf="proyecto.rendicionContable!=null" href="http://localhost:8080/proyectoBianual/uploads/arch/{{proyecto.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
         </tbody>
       </table>
@@ -81,7 +81,7 @@
 
   <app-detalle-programa-estable-miembro *ngIf="programaEstableSeleccionadoMiembro" [programaEstable]="programaEstableSeleccionadoMiembro"></app-detalle-programa-estable-miembro>
 
-  <div class="animated fadeIn card border-primary" style="width: 70rem;">
+  <div class="animated fadeIn card border-primary" style="width: 80rem;">
     <div class="card-header bg-transparent border-info">
       <h5 align="center">LISTADO DE PROGRAMAS ESTABLES ACTIVOS</h5>
     </div>
@@ -94,10 +94,11 @@
       <table class="table table-bordered table-striped text-center" *ngIf="programasEstables?.length > 0">
         <thead>
           <tr>
-            <th>PROYECTO</th>
+            <th>NOMBRE PROGRAMA</th>
             <th>FECHA DE ACTIVACIÓN</th>
             <th>DETALLE COMPLETO</th>
             <th>DETALLE SINTÉTICO</th>
+            <th>COMENTARIOS</th>
             <th>FORMATO PDF <i class="far fa-file-pdf"></i></th>
             <th>EDITAR</th>
             <th>FINALIZAR</th>
@@ -116,6 +117,9 @@
               <button class="btn btn-outline-info" (click)=abrirModalProgramaEstableSintetico(programa) role="button">VER</button>
             </td>
             <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programa.id]" role="button">VER</button>
+            </td>
+            <td>
               <button class="btn btn-outline-danger" (click)="generarPDFEstable(programa)" role="button">PDF</button>
             </td>
             <td>
@@ -127,10 +131,9 @@
             <td>
               <a href="http://localhost:8080/programaEstable/uploads/arch/{{programa.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
-            <td *ngIf="programa.rendicionContable!=null">
-              <a href="http://localhost:8080/programaEstable/uploads/arch/{{programa.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+            <td>
+              <a *ngIf="programa.rendicionContable!=null" href="http://localhost:8080/programaEstable/uploads/arch/{{programa.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
-
         </tbody>
       </table>
 
@@ -150,7 +153,7 @@
 
 
 
-  <div class="animated fadeIn card border-primary" style="width: 70rem;">
+  <div class="animated fadeIn card border-primary" style="width: 80rem;">
     <div class="card-header bg-transparent border-info">
       <h5 align="center">LISTADO DE PROYECTOS DE BIENESTAR ACTIVOS</h5>
     </div>
@@ -163,10 +166,11 @@
       <table class="table table-bordered table-striped text-center" *ngIf="proyectosBienestar?.length > 0">
         <thead>
           <tr>
-            <th>PROYECTO</th>
+            <th>NOMBRE PROYECTO</th>
             <th>FECHA DE ACTIVACIÓN</th>
             <th>DETALLE COMPLETO</th>
             <th>DETALLE SINTÉTICO</th>
+            <th>COMENTARIOS</th>
             <th>FORMATO PDF <i class="far fa-file-pdf"></i></th>
             <th>EDITAR</th>
             <th>FINALIZAR</th>
@@ -185,6 +189,9 @@
               <button class="btn btn-outline-info" (click)=abrirModalProyectoBienestarSintetico(proyecto) role="button">DETALLE</button>
             </td>
             <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyecto.id]" role="button">VER</button>
+            </td>
+            <td>
               <button class="btn btn-outline-danger" (click)="generarPDFBienestar(proyecto)" role="button">PDF</button>
             </td>
             <td>
@@ -196,8 +203,8 @@
             <td>
               <a href="http://localhost:8080/proyectoBienestar/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
-            <td *ngIf="proyecto.rendicionContable!=null">
-              <a href="http://localhost:8080/proyectoBienestar/uploads/arch/{{proyecto.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+            <td>
+              <a *ngIf="proyecto.rendicionContable!=null" href="http://localhost:8080/proyectoBienestar/uploads/arch/{{proyecto.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
         </tbody>
       </table>
@@ -218,7 +225,7 @@
 
   <app-detalle-proyecto-especial-sintetico *ngIf="proyectoEspecialSeleccionadoSintetico" [proyectoEspecial]="proyectoEspecialSeleccionadoSintetico"></app-detalle-proyecto-especial-sintetico>
 
-  <div class="animated fadeIn card border-primary" style="width: 70rem;">
+  <div class="animated fadeIn card border-primary" style="width: 80rem;">
     <div class="card-header bg-transparent border-info">
       <h5 align="center">LISTADO DE PROYECTOS ESPECIALES ACTIVOS</h5>
     </div>
@@ -231,10 +238,11 @@
       <table class="table table-bordered table-striped text-center" *ngIf="proyectosEspeciales?.length > 0">
         <thead>
           <tr>
-            <th>PROYECTO</th>
+            <th>NOMBRE PROYECTO</th>
             <th>FECHA DE ACTIVACIÓN</th>
             <th>DETALLE COMPLETO</th>
             <th>DETALLE SINTÉTICO</th>
+            <th>COMENTARIOS</th>
             <th>FORMATO PDF <i class="far fa-file-pdf"></i></th>
             <th>EDITAR</th>
             <th>FINALIZAR</th>
@@ -253,6 +261,9 @@
               <button class="btn btn-outline-info" (click)=abrirModalProyectoEspecialSintetico(proyecto) role="button">VER</button>
             </td>
             <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyecto.id]" role="button">VER</button>
+            </td>
+            <td>
               <button class="btn btn-outline-danger" (click)="generarPDFEspecial(proyecto)" role="button">PDF</button>
             </td>
             <td>
@@ -264,8 +275,8 @@
             <td>
               <a href="http://localhost:8080/proyectoEspecial/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
-            <td *ngIf="proyecto.rendicionContable!=null">
-              <a href="http://localhost:8080/proyectoEspecial/uploads/arch/{{proyecto.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+            <td>
+              <a *ngIf="proyecto.rendicionContable!=null" href="http://localhost:8080/proyectoEspecial/uploads/arch/{{proyecto.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
         </tbody>
       </table>

@@ -62,8 +62,8 @@
       </div>
 
       <div class='form-group '>
-        <div class="col-sm-6">
-          <mat-form-field class="full-width">
+        <div class="col-sm-8">
+          <mat-form-field class="unidad-width">
             <input type="text" placeholder="Carrera" aria-label="listaDeCarreras" matInput [formControl]="autocompleteControlCarrera" [matAutocomplete]="autoCarrera">
             <mat-autocomplete #autoCarrera="matAutocomplete" [displayWith]="mostrarNombreCarrera" (optionSelected)="seleccionarCarrera($event)">
               <mat-option *ngFor="let carrera of carrerasFiltradas | async" [value]="carrera">

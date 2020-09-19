@@ -6,6 +6,7 @@ import { Socio } from './objetos/socio';
 import { Director } from './objetos/director';
 import { Actividad } from './objetos/actividad';
 import { ProyectoDeInvestigacion } from './objetos/proyectoInvestigacion';
+import { Comentario } from './objetos/comentario';
 
 
 
@@ -52,7 +53,6 @@ export class ProyectoBianual {
 
   rendicionContable: string;
 
-
-
+  listaDeComentarios: Comentario[] = [];
 
 }

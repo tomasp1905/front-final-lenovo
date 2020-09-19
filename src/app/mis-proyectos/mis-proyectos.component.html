@@ -15,12 +15,13 @@
       <table class="table table-bordered table-striped text-center" *ngIf="proyectosBianuales?.length > 0">
         <thead>
           <tr>
-            <th>TÍTULO DEL PROYECTO</th>
+            <th>NOMBRE PROYECTO</th>
             <th>ESTADO</th>
             <th>VER DETALLE COMPLETO</th>
+            <th>COMENTARIOS</th>
             <th>EDITAR ACTIVIDADES</th>
-            <th>INFORME FINAL</th>
             <th>RENDICIÓN CONTABLE</th>
+            <th>INFORME FINAL</th>
           </tr>
         </thead>
         <tbody>
@@ -28,16 +29,19 @@
             <td>{{proyecto.titulo}}</td>
             <td>{{proyecto.estado}}</td>
             <td>
-              <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">VER</button>
             </td>
-            <td  *ngIf="(proyecto.estado == 'Activo') || (proyecto.estado == 'No Autorizado') || (proyecto.estado == 'Autorizado')">
-              <button class="btn btn-outline-info" [routerLink]="['/ver-proyecto-bianual', proyecto.id]" role="button">EDITAR</button>
+            <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos', proyecto.id]" role="button">VER</button>
             </td>
-            <td *ngIf="proyecto.estado == 'Activo'">
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdp1_-g55r1F_YUhR-oY6HcOxGLUz082eidAUTYTdx55FWq8g/viewform" target="_blank">COMPLETAR INFORME</a>
+            <td>
+              <button *ngIf="(proyecto.estado == 'Activo') || (proyecto.estado == 'No Autorizado') || (proyecto.estado == 'Autorizado')" class="btn btn-warning" [routerLink]="['/ver-proyecto-bianual', proyecto.id]" role="button">EDITAR</button>
             </td>
-            <td *ngIf="proyecto.estado == 'Activo'">
-              <button class="btn btn-outline-info" [routerLink]="['/proyecto-bianual/rendicion-contable', proyecto.id]" role="button">SUBIR ARCHIVO</button>
+            <td >
+              <button *ngIf="proyecto.estado == 'Activo'" class="btn btn-outline-success" [routerLink]="['/proyecto-bianual/rendicion-contable', proyecto.id]" role="button">SUBIR ARCHIVO</button>
+            </td>
+            <td>
+              <a *ngIf="proyecto.estado == 'Activo'" href="https://docs.google.com/forms/d/e/1FAIpQLSdp1_-g55r1F_YUhR-oY6HcOxGLUz082eidAUTYTdx55FWq8g/viewform" target="_blank">COMPLETAR INFORME</a>
             </td>
         </tbody>
       </table>
@@ -59,12 +63,13 @@
       <table class="table table-bordered table-striped text-center" *ngIf="proyectosEspeciales?.length > 0">
         <thead>
           <tr>
-            <th>TÍTULO DEL PROYECTO</th>
+            <th>NOMBRE PROYECTO</th>
             <th>ESTADO</th>
             <th>VER DETALLE COMPLETO</th>
-            <th>EDITAR PROYECTO</th>
-            <th>INFORME FINAL</th>
+            <th>COMENTARIOS</th>
+            <th>EDITAR ACTIVIDADES</th>
             <th>RENDICIÓN CONTABLE</th>
+            <th>INFORME FINAL</th>
           </tr>
         </thead>
         <tbody>
@@ -72,16 +77,19 @@
             <td>{{proyecto.titulo}}</td>
             <td>{{proyecto.estado}}</td>
             <td>
-              <button class="btn btn-outline-info" (click)="abrirModalEspecial(proyecto)" role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)="abrirModalEspecial(proyecto)" role="button">VER</button>
             </td>
-            <td *ngIf="(proyecto.estado == 'Activo') || (proyecto.estado == 'No Autorizado') || (proyecto.estado == 'Autorizado')">
-              <button class="btn btn-outline-info" [routerLink]="['/ver-proyecto-especial', proyecto.id]" role="button">EDITAR</button>
+            <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyecto.id]" role="button">VER</button>
             </td>
-            <td *ngIf="proyecto.estado == 'Activo'">
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdDM1rO5FS1VzvUusOIPz6i77gJdWkseeHT8hqLJWPXswN0qQ/viewform" target="_blank">COMPLETAR INFORME</a>
+            <td>
+              <button *ngIf="(proyecto.estado == 'Activo') || (proyecto.estado == 'No Autorizado') || (proyecto.estado == 'Autorizado')" class="btn btn-warning" [routerLink]="['/ver-proyecto-especial', proyecto.id]" role="button">EDITAR</button>
             </td>
-            <td *ngIf="proyecto.estado == 'Activo'">
-              <button class="btn btn-outline-info" [routerLink]="['/proyecto-especial/rendicion-contable', proyecto.id]" role="button">SUBIR ARCHIVO</button>
+            <td>
+              <button *ngIf="(proyecto.estado == 'Activo')" class="btn btn-outline-success" [routerLink]="['/proyecto-especial/rendicion-contable', proyecto.id]" role="button">SUBIR ARCHIVO</button>
+            </td>
+            <td>
+              <a *ngIf="(proyecto.estado == 'Activo')" href="https://docs.google.com/forms/d/e/1FAIpQLSdDM1rO5FS1VzvUusOIPz6i77gJdWkseeHT8hqLJWPXswN0qQ/viewform" target="_blank">COMPLETAR INFORME</a>
             </td>
         </tbody>
       </table>
@@ -103,12 +111,13 @@
       <table class="table table-bordered table-striped text-center" *ngIf="proyectosBienestar?.length > 0">
         <thead>
           <tr>
-            <th>TÍTULO DEL PROYECTO</th>
+            <th>NOMBRE PROYECTO</th>
             <th>ESTADO</th>
             <th>VER DETALLE COMPLETO</th>
-            <th>EDITAR PROYECTO</th>
-            <th>INFORME FINAL</th>
+            <th>COMENTARIOS</th>
+            <th>EDITAR ACTIVIDADES</th>
             <th>RENDICIÓN CONTABLE</th>
+            <th>INFORME FINAL</th>
           </tr>
         </thead>
         <tbody>
@@ -116,16 +125,19 @@
             <td>{{proyecto.titulo}}</td>
             <td>{{proyecto.estado}}</td>
             <td>
-              <button class="btn btn-outline-info" (click)="abrirModalBienestar(proyecto)" role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)="abrirModalBienestar(proyecto)" role="button">VER</button>
             </td>
-            <td *ngIf="(proyecto.estado == 'Activo') || (proyecto.estado == 'No Autorizado') || (proyecto.estado == 'Autorizado')">
-              <button class="btn btn-outline-info" [routerLink]="['/ver-proyecto-bienestar', proyecto.id]" role="button">EDITAR</button>
+            <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyecto.id]" role="button">VER</button>
             </td>
-            <td *ngIf="proyecto.estado == 'Activo'">
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSc3dDEmJ7eNFaiT4PUKYE2rSyAEyVfNnpYF52HPwcUN_XOzOQ/viewform" target="_blank">COMPLETAR INFORME</a>
+            <td >
+              <button *ngIf="(proyecto.estado == 'Activo') || (proyecto.estado == 'No Autorizado') || (proyecto.estado == 'Autorizado')" class="btn btn-warning" [routerLink]="['/ver-proyecto-bienestar', proyecto.id]" role="button">EDITAR</button>
             </td>
-            <td *ngIf="proyecto.estado == 'Activo'">
-              <button class="btn btn-outline-info" [routerLink]="['/proyecto-bienestar/rendicion-contable', proyecto.id]" role="button">SUBIR ARCHIVO</button>
+            <td >
+              <button *ngIf="proyecto.estado == 'Activo'" class="btn btn-outline-success" [routerLink]="['/proyecto-bienestar/rendicion-contable', proyecto.id]" role="button">SUBIR ARCHIVO</button>
+            </td>
+            <td>
+              <a *ngIf="(proyecto.estado == 'Activo')" href="https://docs.google.com/forms/d/e/1FAIpQLSc3dDEmJ7eNFaiT4PUKYE2rSyAEyVfNnpYF52HPwcUN_XOzOQ/viewform" target="_blank">COMPLETAR INFORME</a>
             </td>
         </tbody>
       </table>
@@ -147,12 +159,13 @@
       <table class="table table-bordered table-striped text-center" *ngIf="programasEstables?.length > 0">
         <thead>
           <tr>
-            <th>TÍTULO DEL PROGRAMA</th>
+            <th>NOMBRE PROGRAMA</th>
             <th>ESTADO</th>
             <th>VER DETALLE COMPLETO</th>
+            <th>COMENTARIOS</th>
             <th>EDITAR ACTIVIDADES</th>
-            <th>INFORME FINAL</th>
             <th>RENDICIÓN CONTABLE</th>
+            <th>INFORME FINAL</th>
           </tr>
         </thead>
         <tbody>
@@ -160,16 +173,19 @@
             <td>{{programaEstable.titulo}}</td>
             <td>{{programaEstable.estado}}</td>
             <td>
-              <button class="btn btn-outline-info" (click)="abrirModalEstable(programaEstable)" role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)="abrirModalEstable(programaEstable)" role="button">VER</button>
             </td>
-            <td *ngIf="(programaEstable.estado == 'Activo') || (programaEstable.estado == 'No Autorizado') || (programaEstable.estado == 'Autorizado')">
-              <button class="btn btn-outline-info" [routerLink]="['/ver-programa-estable', programaEstable.id]" role="button">EDITAR</button>
+            <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programa.id]" role="button">VER</button>
             </td>
-            <td *ngIf="programaEstable.estado == 'Activo'">
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSfjc05fe8c4QREdAuYBY8SixeWA-XtDgMiW5f9aA7S2zJnseg/viewform" target="_blank">COMPLETAR INFORME</a>
+            <td>
+              <button *ngIf="(programaEstable.estado == 'Activo') || (programaEstable.estado == 'No Autorizado') || (programaEstable.estado == 'Autorizado')" class="btn btn-warning" [routerLink]="['/ver-programa-estable', programaEstable.id]" role="button">EDITAR</button>
             </td>
-            <td *ngIf="programaEstable.estado == 'Activo'">
-              <button class="btn btn-outline-info" [routerLink]="['/programa-estable/rendicion-contable', programaEstable.id]" role="button">SUBIR ARCHIVO</button>
+            <td>
+              <button  *ngIf="programaEstable.estado == 'Activo'" class="btn btn-outline-info" [routerLink]="['/programa-estable/rendicion-contable', programaEstable.id]" role="button">SUBIR ARCHIVO</button>
+            </td>
+            <td>
+              <a *ngIf="programaEstable.estado == 'Activo'" href="https://docs.google.com/forms/d/e/1FAIpQLSfjc05fe8c4QREdAuYBY8SixeWA-XtDgMiW5f9aA7S2zJnseg/viewform" target="_blank">COMPLETAR INFORME</a>
             </td>
         </tbody>
       </table>

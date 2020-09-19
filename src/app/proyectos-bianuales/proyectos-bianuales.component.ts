@@ -266,7 +266,7 @@ export class ProyectosBianualesComponent implements OnInit {
     this.insumoRequeridoTexto = '';
     this.fechaInicioTexto = '';
     this.fechaFinalizacionTexto = '';
-    //console.log(this.proyectoBianual)
+    // console.log(this.proyectoBianual.listaDeActividades)
 
   }
 

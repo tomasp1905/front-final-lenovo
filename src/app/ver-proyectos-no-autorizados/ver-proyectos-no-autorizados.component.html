@@ -15,9 +15,10 @@
       <table class="table table-bordered table-striped text-center" *ngIf="proyectosBianuales?.length > 0">
         <thead>
           <tr>
-            <th>TÍTULO DEL PROYECTO</th>
+            <th>NOMBRE PROYECTO</th>
             <th>FECHA DE CREACIÓN DEL PROYECTO</th>
             <th>VER DETALLE COMPLETO</th>
+            <th>COMENTARIOS</th>
             <th>AUTORIZAR PROYECTO</th>
           </tr>
         </thead>
@@ -27,6 +28,9 @@
             <td>{{proyecto.fechaDeCreacion | date:"longDate"}}</td>
             <td>
               <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">DETALLE</button>
+            </td>
+            <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos', proyecto.id]" role="button">VER</button>
             </td>
             <td>
               <button class="btn btn-success" (click)="autorizarBianual(proyecto)" role="button">AUTORIZAR</button>
@@ -55,10 +59,11 @@
       <table class="table table-bordered table-striped text-center" *ngIf="programasEstables?.length > 0">
         <thead>
           <tr>
-            <th>TÍTULO DEL PROGRAMA</th>
-            <th>FECHA DE CREACIÓN DEL PROGRAMA</th>
+            <th>NOMBRE PROGRAMA</th>
+            <th>FECHA DE CREACIÓN DEL PROYECTO</th>
             <th>VER DETALLE COMPLETO</th>
-            <th>AUTORIZAR PROGRAMA</th>
+            <th>COMENTARIOS</th>
+            <th>AUTORIZAR PROYECTO</th>
           </tr>
         </thead>
         <tbody>
@@ -67,6 +72,9 @@
             <td>{{programaEstable.fechaDeCreacion | date:"longDate"}}</td>
             <td>
               <button class="btn btn-outline-info" (click)="abrirModalEstable(programaEstable)" role="button">DETALLE</button>
+            </td>
+            <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programaEstable.id]" role="button">VER</button>
             </td>
             <td>
               <button class="btn btn-success" (click)="autorizarEstable(programaEstable)" role="button">AUTORIZAR</button>
@@ -95,9 +103,10 @@
       <table class="table table-bordered table-striped text-center" *ngIf="proyectosBienestar?.length > 0">
         <thead>
           <tr>
-            <th>TÍTULO DEL PROYECTO</th>
+            <th>NOMBRE PROYECTO</th>
             <th>FECHA DE CREACIÓN DEL PROYECTO</th>
             <th>VER DETALLE COMPLETO</th>
+            <th>COMENTARIOS</th>
             <th>AUTORIZAR PROYECTO</th>
           </tr>
         </thead>
@@ -107,6 +116,9 @@
             <td>{{proyectoBienestar.fechaDeCreacion | date:"longDate"}}</td>
             <td>
               <button class="btn btn-outline-info" (click)="abrirModalBienestar(proyectoBienestar)" role="button">DETALLE</button>
+            </td>
+            <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyectoBienestar.id]" role="button">VER</button>
             </td>
             <td>
               <button class="btn btn-success" (click)="autorizarBienestar(proyectoBienestar)" role="button">AUTORIZAR</button>
@@ -135,9 +147,10 @@
       <table class="table table-bordered table-striped text-center" *ngIf="proyectosEspeciales?.length > 0">
         <thead>
           <tr>
-            <th>TÍTULO DEL PROYECTO</th>
+            <th>NOMBRE PROYECTO</th>
             <th>FECHA DE CREACIÓN DEL PROYECTO</th>
             <th>VER DETALLE COMPLETO</th>
+            <th>COMENTARIOS</th>
             <th>AUTORIZAR PROYECTO</th>
           </tr>
         </thead>
@@ -147,6 +160,9 @@
             <td>{{proyectoEspecial.fechaDeCreacion | date:"longDate"}}</td>
             <td>
               <button class="btn btn-outline-info" (click)="abrirModalEspecial(proyectoEspecial)" role="button">DETALLE</button>
+            </td>
+            <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyectoEspecial.id]" role="button">VER</button>
             </td>
             <td>
               <button class="btn btn-success" (click)="autorizarEspecial(proyectoEspecial)" role="button">AUTORIZAR</button>

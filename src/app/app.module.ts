@@ -77,6 +77,10 @@ import { DetalleEstableMisProyectosComponent } from './mis-proyectos/detalle-est
 import { DetalleBienestarMisProyectosComponent } from './mis-proyectos/detalle-bienestar-mis-proyectos/detalle-bienestar-mis-proyectos.component';
 import { DetalleEspecialMisProyectosComponent } from './mis-proyectos/detalle-especial-mis-proyectos/detalle-especial-mis-proyectos.component';
 import { ReporteComponent } from './reporte/reporte.component';
+import { ComentariosProyectosComponent } from './ver-proyectos-no-autorizados/comentarios-proyectos/comentarios-proyectos.component';
+import { ComentariosProgramaEstableComponent } from './ver-proyectos-no-autorizados/comentarios-programa-estable/comentarios-programa-estable.component';
+import { ComentariosProyectosBienestarComponent } from './ver-proyectos-no-autorizados/comentarios-proyectos-bienestar/comentarios-proyectos-bienestar.component';
+import { ComentariosProyectosEspecialesComponent } from './ver-proyectos-no-autorizados/comentarios-proyectos-especiales/comentarios-proyectos-especiales.component';
 
 
 
@@ -113,6 +117,10 @@ const routes: Routes = [
   { path: 'programa-estable/rendicion-contable/:id', component: RendicionContableEstableComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   { path: 'proyecto-bienestar/rendicion-contable/:id', component: RendicionContableBienestarComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   {path: 'reporte' , component: ReporteComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_ADMIN'] } },
+  {path: 'comentarios-proyectos/:id', component: ComentariosProyectosComponent },
+  {path: 'comentarios-programas-estables/:id', component: ComentariosProgramaEstableComponent },
+  {path: 'comentarios-proyectos-bienestar/:id', component: ComentariosProyectosBienestarComponent },
+  {path: 'comentarios-proyectos-especiales/:id', component: ComentariosProyectosEspecialesComponent }
 
 
 
@@ -180,7 +188,11 @@ const routes: Routes = [
     DetalleEstableMisProyectosComponent,
     DetalleBienestarMisProyectosComponent,
     DetalleEspecialMisProyectosComponent,
-    ReporteComponent
+    ReporteComponent,
+    ComentariosProyectosComponent,
+    ComentariosProgramaEstableComponent,
+    ComentariosProyectosBienestarComponent,
+    ComentariosProyectosEspecialesComponent
   ],
   imports: [
     BrowserModule,

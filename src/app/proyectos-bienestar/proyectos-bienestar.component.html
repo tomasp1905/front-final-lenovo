@@ -51,7 +51,7 @@
 
         <div class='form-group row' *ngIf="!proyectoBienestar.id">
           <div class="col-9">
-            <mat-form-field class="full-width-prioridad">
+            <mat-form-field class="unidad-width">
               <input type="text" placeholder="Añadir Temática" aria-label="listaDeTematicas" matInput [formControl]="autocompleteControlTematica" [matAutocomplete]="autoTematicas">
               <mat-autocomplete #autoTematicas="matAutocomplete" [displayWith]="mostrarNombreTematica" (optionSelected)="seleccionarTematica($event)">
                 <mat-option *ngFor="let tematica of tematicasFiltradas | async" [value]="tematica">
@@ -116,7 +116,7 @@
         <!--AUTOCOMPLETE PARA CARRERAS -->
         <div class='form-group row' *ngIf="!proyectoBienestar.id">
           <div class="col-9">
-            <mat-form-field class="full-width">
+            <mat-form-field class="unidad-width">
               <input type="text" placeholder="Añadir Carrera" aria-label="listaDeCarreras" matInput [formControl]="autocompleteControlCarrera" [matAutocomplete]="autoCarrera">
               <mat-autocomplete #autoCarrera="matAutocomplete" [displayWith]="mostrarNombreCarrera" (optionSelected)="seleccionarCarrera($event)">
                 <mat-option *ngFor="let carrera of carrerasFiltradas | async" [value]="carrera">
