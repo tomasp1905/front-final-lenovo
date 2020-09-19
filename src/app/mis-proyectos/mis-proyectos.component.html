@@ -182,7 +182,7 @@
               <button *ngIf="(programaEstable.estado == 'Activo') || (programaEstable.estado == 'No Autorizado') || (programaEstable.estado == 'Autorizado')" class="btn btn-warning" [routerLink]="['/ver-programa-estable', programaEstable.id]" role="button">EDITAR</button>
             </td>
             <td>
-              <button  *ngIf="programaEstable.estado == 'Activo'" class="btn btn-outline-info" [routerLink]="['/programa-estable/rendicion-contable', programaEstable.id]" role="button">SUBIR ARCHIVO</button>
+              <button  *ngIf="programaEstable.estado == 'Activo'" class="btn btn-outline-success" [routerLink]="['/programa-estable/rendicion-contable', programaEstable.id]" role="button">SUBIR ARCHIVO</button>
             </td>
             <td>
               <a *ngIf="programaEstable.estado == 'Activo'" href="https://docs.google.com/forms/d/e/1FAIpQLSfjc05fe8c4QREdAuYBY8SixeWA-XtDgMiW5f9aA7S2zJnseg/viewform" target="_blank">COMPLETAR INFORME</a>
