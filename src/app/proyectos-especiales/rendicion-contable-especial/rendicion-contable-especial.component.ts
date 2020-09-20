@@ -35,7 +35,8 @@ export class RendicionContableEspecialComponent implements OnInit {
   seleccionarRendicion(event){
     this.rendicionSeleccionada = event.target.files[0];
     this.progreso = 0;
-    swal.fire('Rendicion contable seleccionada','Haga click ahora en "Subir Archivo"', 'success');
+    this.subirRendicion();
+    swal.fire('Rendicion contable seleccionada correctamente','Archivo subido con éxito', 'success');
     //console.log(this.rendicionSeleccionada);
   }
 
@@ -47,7 +48,7 @@ export class RendicionContableEspecialComponent implements OnInit {
       }else if(event.type === HttpEventType.Response){
         let response:any = event.body;
         this.proyectoEspecial = response.proyectoEspecial as ProyectoEspecial;
-        swal.fire('La rendicion contable se cargó correctamente','Archivo subido con éxito', 'success');
+        //swal.fire('La rendicion contable se cargó correctamente','Archivo subido con éxito', 'success');
         this.router.navigate(['/ver-mis-proyectos']);
       }
     })

@@ -35,7 +35,8 @@ export class PresupuestoComponent implements OnInit {
   seleccionarPresupuesto(event){
     this.presupuestoSeleccionado = event.target.files[0];
     this.progreso = 0;
-    swal.fire('Presupuesto seleccionado','Haga click ahora en "Subir Archivo"', 'success');
+    this.subirPresupuesto()
+    swal.fire('Presupuesto seleccionado correctamente','Archivo subido con éxito', 'success');
     //console.log(this.presupuestoSeleccionado);
   }
 
@@ -47,7 +48,7 @@ export class PresupuestoComponent implements OnInit {
       }else if(event.type === HttpEventType.Response){
         let response:any = event.body;
         this.proyectoBianual = response.proyectoBianual as ProyectoBianual;
-        swal.fire('El presupuesto se cargó correctamente','Archivo subido con éxito', 'success');
+        //swal.fire('El presupuesto se cargó correctamente','Archivo subido con éxito', 'success');
         this.router.navigate(['/elegir-proyecto']);
       }
     })

@@ -81,6 +81,7 @@ import { ComentariosProyectosComponent } from './ver-proyectos-no-autorizados/co
 import { ComentariosProgramaEstableComponent } from './ver-proyectos-no-autorizados/comentarios-programa-estable/comentarios-programa-estable.component';
 import { ComentariosProyectosBienestarComponent } from './ver-proyectos-no-autorizados/comentarios-proyectos-bienestar/comentarios-proyectos-bienestar.component';
 import { ComentariosProyectosEspecialesComponent } from './ver-proyectos-no-autorizados/comentarios-proyectos-especiales/comentarios-proyectos-especiales.component';
+import { RepositorioArchivosComponent } from './repositorio-archivos/repositorio-archivos.component';
 
 
 
@@ -93,18 +94,18 @@ const routes: Routes = [
   { path: 'proyecto-bienestar', component: ProyectosBienestarComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   { path: 'programa-estable', component: ProgramasEstablesComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_ADMIN'] } },
   { path: 'proyecto-especial', component: ProyectosEspecialesComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  { path: 'ver-proyectos-activos', component: VerProyectosComponent},
-  { path: 'ver-proyecto-bianual/:id', component: ProyectosBianualesComponent },
-  { path: 'ver-programa-estable/:id', component: ProgramasEstablesComponent },
-  { path: 'ver-proyecto-bienestar/:id', component: ProyectosBienestarComponent },
-  { path: 'ver-proyecto-especial/:id', component: ProyectosEspecialesComponent },
+  { path: 'ver-proyectos-activos', component: VerProyectosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_ADMIN'] } },
+  { path: 'ver-proyecto-bianual/:id', component: ProyectosBianualesComponent , canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  { path: 'ver-programa-estable/:id', component: ProgramasEstablesComponent , canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  { path: 'ver-proyecto-bienestar/:id', component: ProyectosBienestarComponent , canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  { path: 'ver-proyecto-especial/:id', component: ProyectosEspecialesComponent , canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   { path: 'proyecto-bianual/presupuesto/:id', component: PresupuestoComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   { path: 'programa-estable/presupuesto/:id', component: PresupuestoEstableComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   { path: 'proyecto-bienestar/presupuesto/:id', component: PresupuestoBienestarComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   { path: 'proyecto-especial/presupuesto/:id', component: PresupuestoEspecialComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
-  { path: 'ver-proyectos-finalizados', component: VerProyectosFinalizadosComponent },
-  { path: 'ver-proyectos-no-autorizados', component: VerProyectosNoAutorizadosComponent },
-  { path: 'ver-proyectos-autorizados', component: VerProyectosAutorizadosComponent },
+  { path: 'ver-proyectos-finalizados', component: VerProyectosFinalizadosComponent , canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_ADMIN'] } },
+  { path: 'ver-proyectos-no-autorizados', component: VerProyectosNoAutorizadosComponent , canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_ADMIN'] } },
+  { path: 'ver-proyectos-autorizados', component: VerProyectosAutorizadosComponent , canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_ADMIN'] } },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'ver-usuarios', component: VerUsuariosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_ADMIN'] } },
@@ -117,13 +118,11 @@ const routes: Routes = [
   { path: 'programa-estable/rendicion-contable/:id', component: RendicionContableEstableComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   { path: 'proyecto-bienestar/rendicion-contable/:id', component: RendicionContableBienestarComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
   {path: 'reporte' , component: ReporteComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_ADMIN'] } },
-  {path: 'comentarios-proyectos/:id', component: ComentariosProyectosComponent },
-  {path: 'comentarios-programas-estables/:id', component: ComentariosProgramaEstableComponent },
-  {path: 'comentarios-proyectos-bienestar/:id', component: ComentariosProyectosBienestarComponent },
-  {path: 'comentarios-proyectos-especiales/:id', component: ComentariosProyectosEspecialesComponent }
-
-
-
+  {path: 'comentarios-proyectos/:id', component: ComentariosProyectosComponent , canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  {path: 'comentarios-programas-estables/:id', component: ComentariosProgramaEstableComponent , canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  {path: 'comentarios-proyectos-bienestar/:id', component: ComentariosProyectosBienestarComponent , canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  {path: 'comentarios-proyectos-especiales/:id', component: ComentariosProyectosEspecialesComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
+  {path: 'repositorio-archivos', component: RepositorioArchivosComponent, canActivate: [AuthGuard, RoleGuard], data: { role: ['ROLE_USER', 'ROLE_ADMIN'] } },
 
 ];
 
@@ -192,7 +191,8 @@ const routes: Routes = [
     ComentariosProyectosComponent,
     ComentariosProgramaEstableComponent,
     ComentariosProyectosBienestarComponent,
-    ComentariosProyectosEspecialesComponent
+    ComentariosProyectosEspecialesComponent,
+    RepositorioArchivosComponent
   ],
   imports: [
     BrowserModule,
