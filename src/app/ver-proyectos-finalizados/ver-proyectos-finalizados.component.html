@@ -26,10 +26,10 @@
             <td>{{proyecto.titulo}}</td>
             <td>{{proyecto.fechaDeFinalizacion | date:"longDate"}}</td>
             <td>
-              <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos', proyecto.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos', proyecto.id]" role="button">DETALLE</button>
             </td>
         </tbody>
       </table>
@@ -66,10 +66,10 @@
             <td>{{programaEstable.titulo}}</td>
             <td>{{programaEstable.fechaDeFinalizacion | date:"longDate"}}</td>
             <td>
-              <button class="btn btn-outline-info" (click)="abrirModalEstable(programaEstable)" role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)="abrirModalEstable(programaEstable)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programaEstable.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programaEstable.id]" role="button">DETALLE</button>
             </td>
         </tbody>
       </table>
@@ -106,10 +106,10 @@
             <td>{{proyectoBienestar.titulo}}</td>
             <td>{{proyectoBienestar.fechaDeFinalizacion | date:"longDate"}}</td>
             <td>
-              <button class="btn btn-outline-info" (click)="abrirModalBienestar(proyectoBienestar)" role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)="abrirModalBienestar(proyectoBienestar)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyectoBienestar.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyectoBienestar.id]" role="button">DETALLE</button>
             </td>
         </tbody>
       </table>
@@ -146,10 +146,10 @@
             <td>{{proyectoEspecial.titulo}}</td>
             <td>{{proyectoEspecial.fechaDeFinalizacion | date:"longDate"}}</td>
             <td>
-              <button class="btn btn-outline-info" (click)="abrirModalEspecial(proyectoEspecial)" role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)="abrirModalEspecial(proyectoEspecial)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyectoEspecial.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyectoEspecial.id]" role="button">DETALLE</button>
             </td>
         </tbody>
       </table>

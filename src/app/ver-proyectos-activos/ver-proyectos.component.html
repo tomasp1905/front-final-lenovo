@@ -45,7 +45,7 @@
               <button class="btn btn-outline-info" (click)=abrirModalSinteticoBianual(proyecto) role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos', proyecto.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos', proyecto.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button class="btn btn-outline-danger" (click)="generar(proyecto)" role="button">PDF</button>
@@ -117,7 +117,7 @@
               <button class="btn btn-outline-info" (click)=abrirModalProgramaEstableSintetico(programa) role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programa.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programa.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button class="btn btn-outline-danger" (click)="generarPDFEstable(programa)" role="button">PDF</button>
@@ -183,13 +183,13 @@
             <td>{{proyecto.titulo}}</td>
             <td>{{proyecto.fechaDeInicio | date:"longDate"}}</td>
             <td>
-              <button class="btn btn-outline-info" (click)=abrirModalProyectoBienestar(proyecto) role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)=abrirModalProyectoBienestar(proyecto) role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" (click)=abrirModalProyectoBienestarSintetico(proyecto) role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)=abrirModalProyectoBienestarSintetico(proyecto) role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyecto.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyecto.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button class="btn btn-outline-danger" (click)="generarPDFBienestar(proyecto)" role="button">PDF</button>
@@ -261,7 +261,7 @@
               <button class="btn btn-outline-info" (click)=abrirModalProyectoEspecialSintetico(proyecto) role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyecto.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyecto.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button class="btn btn-outline-danger" (click)="generarPDFEspecial(proyecto)" role="button">PDF</button>

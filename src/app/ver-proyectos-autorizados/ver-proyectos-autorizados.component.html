@@ -30,7 +30,7 @@
               <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos', proyecto.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos', proyecto.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button class="btn btn-success" (click)="activarBianual(proyecto)" role="button">ACTIVAR</button>
@@ -74,7 +74,7 @@
               <button class="btn btn-outline-info" (click)="abrirModalEstable(programaEstable)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programaEstable.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programaEstable.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button class="btn btn-success" (click)="activarEstable(programaEstable)" role="button">ACTIVAR</button>
@@ -118,7 +118,7 @@
               <button class="btn btn-outline-info" (click)="abrirModalBienestar(proyectoBienestar)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyectoBienestar.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyectoBienestar.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button class="btn btn-success" (click)="activarBienestar(proyectoBienestar)" role="button">ACTIVAR</button>
@@ -159,10 +159,10 @@
             <td>{{proyectoEspecial.titulo}}</td>
             <td>{{proyectoEspecial.fechaDeAutorizacion | date:"longDate"}}</td>
             <td>
-              <button class="btn btn-outline-info" (click)="abrirModalEspecial(proyectoEspecial)" role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)="abrirModalEspecial(proyectoEspecial)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyectoEspecial.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyectoEspecial.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button class="btn btn-success" (click)="activarEspecial(proyectoEspecial)" role="button">ACTIVAR</button>
