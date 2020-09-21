@@ -18,6 +18,8 @@
             <th>NOMBRE PROYECTO</th>
             <th>FECHA DE FINALIZACIÓN</th>
             <th>VER DETALLE COMPLETO</th>
+            <th>PRESUPUESTO</th>
+            <th>RENDICIÓN CONTABLE</th>
             <th>COMENTARIOS</th>
           </tr>
         </thead>
@@ -27,6 +29,12 @@
             <td>{{proyecto.fechaDeFinalizacion | date:"longDate"}}</td>
             <td>
               <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">VER</button>
+            </td>
+            <td>
+              <a href="http://localhost:8080/proyectoBianual/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+            </td>
+            <td>
+              <a *ngIf="proyecto.rendicionContable!=null" href="http://localhost:8080/proyectoBianual/uploads/arch/{{proyecto.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
             <td>
               <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos', proyecto.id]" role="button">DETALLE</button>
@@ -58,6 +66,8 @@
             <th>NOMBRE PROGRAMA</th>
             <th>FECHA DE FINALIZACIÓN</th>
             <th>VER DETALLE COMPLETO</th>
+            <th>PRESUPUESTO</th>
+            <th>RENDICIÓN CONTABLE</th>
             <th>COMENTARIOS</th>
           </tr>
         </thead>
@@ -67,6 +77,12 @@
             <td>{{programaEstable.fechaDeFinalizacion | date:"longDate"}}</td>
             <td>
               <button class="btn btn-outline-info" (click)="abrirModalEstable(programaEstable)" role="button">VER</button>
+            </td>
+            <td>
+              <a href="http://localhost:8080/programaEstable/uploads/arch/{{programaEstable.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+            </td>
+            <td>
+              <a *ngIf="programa.rendicionContable!=null" href="http://localhost:8080/programaEstable/uploads/arch/{{programaEstable.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
             <td>
               <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programaEstable.id]" role="button">DETALLE</button>
@@ -98,6 +114,8 @@
             <th>NOMBRE PROYECTO</th>
             <th>FECHA DE FINALIZACIÓN</th>
             <th>VER DETALLE COMPLETO</th>
+            <th>PRESUPUESTO</th>
+            <th>RENDICIÓN CONTABLE</th>
             <th>COMENTARIOS</th>
           </tr>
         </thead>
@@ -107,6 +125,12 @@
             <td>{{proyectoBienestar.fechaDeFinalizacion | date:"longDate"}}</td>
             <td>
               <button class="btn btn-outline-info" (click)="abrirModalBienestar(proyectoBienestar)" role="button">VER</button>
+            </td>
+            <td>
+              <a href="http://localhost:8080/proyectoBienestar/uploads/arch/{{proyectoBienestar.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+            </td>
+            <td>
+              <a *ngIf="proyecto.rendicionContable!=null" href="http://localhost:8080/proyectoBienestar/uploads/arch/{{proyectoBienestar.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
             <td>
               <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyectoBienestar.id]" role="button">DETALLE</button>
@@ -138,6 +162,8 @@
             <th>NOMBRE PROYECTO</th>
             <th>FECHA DE FINALIZACIÓN</th>
             <th>VER DETALLE COMPLETO</th>
+            <th>PRESUPUESTO</th>
+            <th>RENDICIÓN CONTABLE</th>
             <th>COMENTARIOS</th>
           </tr>
         </thead>
@@ -147,6 +173,12 @@
             <td>{{proyectoEspecial.fechaDeFinalizacion | date:"longDate"}}</td>
             <td>
               <button class="btn btn-outline-info" (click)="abrirModalEspecial(proyectoEspecial)" role="button">VER</button>
+            </td>
+            <td>
+              <a href="http://localhost:8080/proyectoEspecial/uploads/arch/{{proyectoEspecial.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+            </td>
+            <td>
+              <a *ngIf="proyecto.rendicionContable!=null" href="http://localhost:8080/proyectoEspecial/uploads/arch/{{proyectoEspecial.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
             <td>
               <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyectoEspecial.id]" role="button">DETALLE</button>

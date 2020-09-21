@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpEvent, HttpRequest, HttpClient } from '@angular/common/http';
+import { HttpEvent, HttpRequest, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Repositorio } from './repositorio';
 import { map } from 'rxjs/operators';
@@ -13,6 +13,8 @@ export class RepositorioArchivosService {
   private urlEndPointUpload: string = 'http://localhost:8080/plantillas';
   private urlEndPointEliminar: string = 'http://localhost:8080/plantillas/uploads/arch';
   private urlEndPointVerArchivos: string = 'http://localhost:8080/plantillas/uploads/arch/verTodosLosArchivos';
+
+  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
 
   constructor(private http: HttpClient, private router:Router) { }
 
@@ -34,7 +36,7 @@ export class RepositorioArchivosService {
 
   eliminarArchivo(archivo:string){
     console.log("entro al servicio con el archivo "+ archivo)
-    return this.http.delete<Repositorio>(`${this.urlEndPointEliminar}/${archivo}`)
+    return this.http.delete(`${this.urlEndPointEliminar}/${archivo}`, {headers: this.httpHeaders})
   }
 
 

@@ -18,6 +18,7 @@
             <th>NOMBRE PROYECTO</th>
             <th>FECHA DE CREACIÓN DEL PROYECTO</th>
             <th>VER DETALLE COMPLETO</th>
+            <th>PRESUPUESTO</th>
             <th>COMENTARIOS</th>
             <th>AUTORIZAR PROYECTO</th>
           </tr>
@@ -27,10 +28,13 @@
             <td>{{proyecto.titulo}}</td>
             <td>{{proyecto.fechaDeCreacion | date:"longDate"}}</td>
             <td>
-              <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos', proyecto.id]" role="button">VER</button>
+              <a href="http://localhost:8080/proyectoBianual/uploads/arch/{{proyecto.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+            </td>
+            <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos', proyecto.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button class="btn btn-success" (click)="autorizarBianual(proyecto)" role="button">AUTORIZAR</button>
@@ -62,6 +66,7 @@
             <th>NOMBRE PROGRAMA</th>
             <th>FECHA DE CREACIÓN DEL PROYECTO</th>
             <th>VER DETALLE COMPLETO</th>
+            <th>PRESUPUESTO</th>
             <th>COMENTARIOS</th>
             <th>AUTORIZAR PROYECTO</th>
           </tr>
@@ -71,10 +76,13 @@
             <td>{{programaEstable.titulo}}</td>
             <td>{{programaEstable.fechaDeCreacion | date:"longDate"}}</td>
             <td>
-              <button class="btn btn-outline-info" (click)="abrirModalEstable(programaEstable)" role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)="abrirModalEstable(programaEstable)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programaEstable.id]" role="button">VER</button>
+              <a href="http://localhost:8080/programaEstable/uploads/arch/{{programaEstable.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+            </td>
+            <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programaEstable.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button class="btn btn-success" (click)="autorizarEstable(programaEstable)" role="button">AUTORIZAR</button>
@@ -106,6 +114,7 @@
             <th>NOMBRE PROYECTO</th>
             <th>FECHA DE CREACIÓN DEL PROYECTO</th>
             <th>VER DETALLE COMPLETO</th>
+            <th>PRESUPUESTO</th>
             <th>COMENTARIOS</th>
             <th>AUTORIZAR PROYECTO</th>
           </tr>
@@ -115,10 +124,13 @@
             <td>{{proyectoBienestar.titulo}}</td>
             <td>{{proyectoBienestar.fechaDeCreacion | date:"longDate"}}</td>
             <td>
-              <button class="btn btn-outline-info" (click)="abrirModalBienestar(proyectoBienestar)" role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)="abrirModalBienestar(proyectoBienestar)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyectoBienestar.id]" role="button">VER</button>
+              <a href="http://localhost:8080/proyectoBienestar/uploads/arch/{{proyectoBienestar.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+            </td>
+            <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyectoBienestar.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button class="btn btn-success" (click)="autorizarBienestar(proyectoBienestar)" role="button">AUTORIZAR</button>
@@ -150,6 +162,7 @@
             <th>NOMBRE PROYECTO</th>
             <th>FECHA DE CREACIÓN DEL PROYECTO</th>
             <th>VER DETALLE COMPLETO</th>
+            <th>PRESUPUESTO</th>
             <th>COMENTARIOS</th>
             <th>AUTORIZAR PROYECTO</th>
           </tr>
@@ -159,10 +172,13 @@
             <td>{{proyectoEspecial.titulo}}</td>
             <td>{{proyectoEspecial.fechaDeCreacion | date:"longDate"}}</td>
             <td>
-              <button class="btn btn-outline-info" (click)="abrirModalEspecial(proyectoEspecial)" role="button">DETALLE</button>
+              <button class="btn btn-outline-info" (click)="abrirModalEspecial(proyectoEspecial)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyectoEspecial.id]" role="button">VER</button>
+              <a href="http://localhost:8080/proyectoEspecial/uploads/arch/{{proyectoEspecial.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+            </td>
+            <td>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyectoEspecial.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button class="btn btn-success" (click)="autorizarEspecial(proyectoEspecial)" role="button">AUTORIZAR</button>
