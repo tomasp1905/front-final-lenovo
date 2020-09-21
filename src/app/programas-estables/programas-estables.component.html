@@ -210,6 +210,26 @@
               </div>
             </div>
 
+            <div class="form-group row" *ngIf="!programaEstable.id">
+
+              <label>Tipo de Miembro:</label>
+
+              <div class="col-2">
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="radio" name="tipo" id="docente" class="form-check-input" [(ngModel)]="tipoDeMiembroTexto" value="DOCENTE"> Docente
+                  </label>
+                </div>
+
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="radio" name="tipo" id="alumno" class="form-check-input" [(ngModel)]="tipoDeMiembroTexto" value="ALUMNO">Alumno
+                  </label>
+                </div>
+              </div>
+
+            </div>
+
 
             <div class="row">
               <div class="col-sm-6">
@@ -230,6 +250,7 @@
                   <th>Apellido</th>
                   <th>Clave</th>
                   <th>Facultad</th>
+                  <th>Tipo</th>
                 </tr>
               </thead>
               <tbody>
@@ -238,6 +259,7 @@
                   <td>{{miembro.apellido}}</td>
                   <td>{{miembro.clave}}</td>
                   <td>{{miembro.facultad}}</td>
+                  <td>{{miembro.tipoDeMiembro}}</td>
                 </tr>
               </tbody>
             </table>

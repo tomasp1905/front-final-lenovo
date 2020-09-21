@@ -40,6 +40,7 @@ export class ProyectosBienestarComponent implements OnInit {
   public apellidoMiembroTexto: string = '';
   public claveMiembroTexto: string = '';
   public facultadMiembroTexto: string = '';
+  public tipoDeMiembroTexto: string = '';
 
   public tipoDeActividadTexto: string = '';
   public indicadorDeResultadoTexto: string = '';
@@ -196,11 +197,13 @@ export class ProyectosBienestarComponent implements OnInit {
     miembro.apellido= this.apellidoMiembroTexto;
     miembro.clave = this.claveMiembroTexto;
     miembro.facultad = this.facultadMiembroTexto;
+    miembro.tipoDeMiembro = this.tipoDeMiembroTexto;
     this.proyectoBienestar.miembros.push(miembro);
     this.nombreMiembroTexto= '';
     this.apellidoMiembroTexto = '';
     this.claveMiembroTexto = '';
     this.facultadMiembroTexto ='';
+    this.tipoDeMiembroTexto = '';
     //console.log(this.proyectoBienestar)
   }
 

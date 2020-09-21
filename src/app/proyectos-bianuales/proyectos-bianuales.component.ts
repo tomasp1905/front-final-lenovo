@@ -45,6 +45,7 @@ export class ProyectosBianualesComponent implements OnInit {
   public apellidoMiembroTexto: string = '';
   public claveMiembroTexto: string = '';
   public facultadMiembroTexto: string = '';
+  public tipoDeMiembroTexto: string = '';
 
   public institucionSocioTexto: string = '';
   public domicilioSocioTexto: string = '';
@@ -212,11 +213,14 @@ export class ProyectosBianualesComponent implements OnInit {
     miembro.apellido = this.apellidoMiembroTexto;
     miembro.clave = this.claveMiembroTexto;
     miembro.facultad = this.facultadMiembroTexto;
+    miembro.tipoDeMiembro = this.tipoDeMiembroTexto;
     this.proyectoBianual.miembros.push(miembro);
+    // console.log(miembro);
     this.nombreMiembroTexto = '';
     this.apellidoMiembroTexto = '';
     this.claveMiembroTexto = '';
     this.facultadMiembroTexto = '';
+    this.tipoDeMiembroTexto = '';
   }
 
   eliminarMiembro(): void {

@@ -37,6 +37,7 @@ export class ProyectosEspecialesComponent implements OnInit {
   public apellidoMiembroTexto: string = '';
   public claveMiembroTexto: string = '';
   public facultadMiembroTexto: string = '';
+  public tipoDeMiembroTexto: string = '';
 
   public institucionSocioTexto: string = '';
   public domicilioSocioTexto: string = '';
@@ -157,11 +158,13 @@ export class ProyectosEspecialesComponent implements OnInit {
     miembro.apellido= this.apellidoMiembroTexto;
     miembro.clave = this.claveMiembroTexto;
     miembro.facultad = this.facultadMiembroTexto;
+    miembro.tipoDeMiembro = this.tipoDeMiembroTexto;
     this.proyectoEspecial.miembros.push(miembro);
     this.nombreMiembroTexto= '';
     this.apellidoMiembroTexto = '';
     this.claveMiembroTexto = '';
     this.facultadMiembroTexto ='';
+    this.tipoDeMiembroTexto = '';
     //console.log(this.proyectoEspecial)
   }
 

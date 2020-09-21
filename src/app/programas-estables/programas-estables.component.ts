@@ -40,6 +40,7 @@ export class ProgramasEstablesComponent implements OnInit {
   public apellidoMiembroTexto: string = '';
   public claveMiembroTexto: string = '';
   public facultadMiembroTexto: string = '';
+  public tipoDeMiembroTexto: string = '';
 
   public institucionSocioTexto: string = '';
   public domicilioSocioTexto: string = '';
@@ -202,11 +203,13 @@ export class ProgramasEstablesComponent implements OnInit {
     miembro.apellido= this.apellidoMiembroTexto;
     miembro.clave = this.claveMiembroTexto;
     miembro.facultad = this.facultadMiembroTexto;
+    miembro.tipoDeMiembro = this.tipoDeMiembroTexto;
     this.programaEstable.miembros.push(miembro);
     this.nombreMiembroTexto= '';
     this.apellidoMiembroTexto = '';
     this.claveMiembroTexto = '';
     this.facultadMiembroTexto ='';
+    this.tipoDeMiembroTexto = '';
     //console.log(this.programaEstable)
   }
 
