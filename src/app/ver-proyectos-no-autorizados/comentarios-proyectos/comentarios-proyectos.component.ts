@@ -50,7 +50,8 @@ export class ComentariosProyectosComponent implements OnInit {
     // console.log(this.proyectoBianual.id)
     this.comentariosProyectosService.updateComentarioBianualNoAutorizado(this.proyectoBianual)
       .subscribe(proyectoBianual => {
-        swal.fire('Comentarios actualizado', `El Proyecto ${this.proyectoBianual.titulo} se actualizó con éxito`, 'success');
+        // swal.fire('Comentarios actualizado', `El Proyecto ${this.proyectoBianual.titulo} se actualizó con éxito`, 'success');
+        window.location.reload();
       }
       )
   }

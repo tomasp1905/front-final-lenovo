@@ -306,7 +306,8 @@ export class ProyectosBianualesComponent implements OnInit {
   updateBianual(): void {
     this.proyectoBianualService.update(this.proyectoBianual)
       .subscribe(proyectoBianual => {
-        swal.fire('Proyecto actualizado', `El Proyecto ${this.proyectoBianual.titulo} se actualizó con éxito`, 'success');
+        // swal.fire('Proyecto actualizado', `El Proyecto ${this.proyectoBianual.titulo} se actualizó con éxito`, 'success');
+        window.location.reload();
       }
       )
   }

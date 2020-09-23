@@ -137,7 +137,7 @@ export class ReporteComponent implements OnInit {
             if(resultadoContador > 0){
            this.resultadoFiltro = response;
            this.generarPdf();
-           swal.fire('Filtro aplicado con éxito', 'Ahora haga click en el botón GENERAR PDF', 'success')
+           swal.fire('Filtro aplicado con éxito', 'Se descargará a continuación el PDF', 'success')
           } else {
            swal.fire('Filtro aplicado con éxito','No existen resultados para esta búsqueda.', 'error')
           }

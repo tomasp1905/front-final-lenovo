@@ -48,7 +48,8 @@ export class ComentariosProgramaEstableComponent implements OnInit {
   updateComentario(): void {
     this.comentariosProyectosService.updateComentarioEstableNoAutorizado(this.programaEstable)
       .subscribe(programaEstable => {
-        swal.fire('Comentarios actualizados', `El Programa ${this.programaEstable.titulo} se actualizó con éxito`, 'success');
+        // swal.fire('Comentarios actualizados', `El Programa ${this.programaEstable.titulo} se actualizó con éxito`, 'success');
+        window.location.reload();
       }
       )
   }

@@ -294,7 +294,8 @@ export class ProgramasEstablesComponent implements OnInit {
   updateEstable(): void {
     this.programaEstableService.update(this.programaEstable)
       .subscribe(programaEstable => {
-        swal.fire('Programa actualizado', `El programa ${this.programaEstable.titulo} se actualizó con éxito`, 'success');
+        // swal.fire('Programa actualizado', `El programa ${this.programaEstable.titulo} se actualizó con éxito`, 'success');
+        window.location.reload();
        //console.log(this.programaEstable)
       }
       )

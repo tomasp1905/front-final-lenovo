@@ -259,7 +259,8 @@ export class ProyectosBienestarComponent implements OnInit {
   updateBienestar(): void {
     this.proyectoBinestarService.update(this.proyectoBienestar)
       .subscribe(proyectoBienestar => {
-        swal.fire('Proyecto actualizado', `El Proyecto ${this.proyectoBienestar.titulo} se actualizó con éxito`, 'success');
+        // swal.fire('Proyecto actualizado', `El Proyecto ${this.proyectoBienestar.titulo} se actualizó con éxito`, 'success');
+        window.location.reload();
         //console.log(this.proyectoBienestar)
       }
       )

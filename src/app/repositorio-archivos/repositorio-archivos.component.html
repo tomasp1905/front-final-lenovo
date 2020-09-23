@@ -1,77 +1,74 @@
 <div class="estilo">
 
-<div class="card text-white bg-dark mb-3 animated fadeIn" *ngIf="authService.hasRole('ROLE_ADMIN')">
-  <div class="card-header">CARGAR ARCHIVO</div>
-  <div class="card-body">
+  <div class="card text-white bg-dark mb-3 animated fadeIn" *ngIf="authService.hasRole('ROLE_ADMIN')">
+    <div class="card-header">CARGAR ARCHIVO</div>
+    <div class="card-body">
 
-    <div class="container">
-      <div class="row">
+      <div class="container">
+        <div class="row">
 
-        <div class="col-sm">
-          <div class="input-group mb-3">
-            <div class="custom-file">
-              <input (change)="seleccionarArchivoRepo($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
-              <label class="custom-file-label" for="inputGroupFile04">Seleccionar archivo</label>
-            </div>
-            <!-- <div class="input-group-append">
+          <div class="col-sm">
+            <div class="input-group mb-3">
+              <div class="custom-file">
+                <input (change)="seleccionarArchivoRepo($event)" type="file" class="custom-file-input" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04">
+                <label class="custom-file-label" for="inputGroupFile04">Seleccionar archivo</label>
+              </div>
+              <!-- <div class="input-group-append">
               <button (click)="subirArchivoRepo()" class="btn btn-primary" type="button" id="inputGroupFileAddon04">Subir archivo</button>
             </div> -->
-          </div>
-
-          <div *ngIf="progreso >0 " class="progress" style="height:40px;">
-            <div class="progress-bar progress-bar-striped" role="progressbar" [ngStyle]="{width:progreso+'%'}" attr.aria-valuenow="{{progreso}}" aria-valuemin="0" aria-valuemax="100">
-              {{progreso}}%
             </div>
+
+            <div *ngIf="progreso >0 " class="progress" style="height:40px;">
+              <div class="progress-bar progress-bar-striped" role="progressbar" [ngStyle]="{width:progreso+'%'}" attr.aria-valuenow="{{progreso}}" aria-valuemin="0" aria-valuemax="100">
+                {{progreso}}%
+              </div>
+            </div>
+
           </div>
 
         </div>
-
       </div>
+
     </div>
-
   </div>
-</div>
 
-<div class="animated fadeIn cardcss card border-primary mb-3">
-  <div class="card-header bg-transparent border-info">
-    <h5 align="center">LISTADO DE ARCHIVOS EN LA PLATAFORMA</h5>
-  </div>
-  <div class="card-body text-primary">
-
-    <div *ngIf="repositorios?.length == 0" class="alert alert-info">
-      No hay archivos cargados
+  <div class="animated fadeIn cardcss card border-primary mb-3">
+    <div class="card-header bg-transparent border-info">
+      <h5 align="center">LISTADO DE ARCHIVOS EN LA PLATAFORMA</h5>
     </div>
+    <div class="card-body text-primary">
 
-    <table class="table table-bordered table-striped text-center" *ngIf="repositorios?.length > 0">
-      <thead>
-        <tr>
-          <th>NOMBRE ARCHIVO</th>
-          <th>DESCARGAR</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let repositorio of repositorios">
-          <td>{{repositorio.archivo}}</td>
-          <td>
-            <a href="http://localhost:8080/plantillas/uploads/arch/{{repositorio.archivo}}" target='_blank' title="Ver archivo">DESCARGAR</a>
-          </td>
-          <!-- <td>
-            <a href="http://localhost:8080/plantillas/uploadss/arch/{{repositorio.archivo}}" target='_blank'>ELIMINAR</a>
-          </td> -->
-          <td>
-            <button class="btn btn-danger btn-sm" type="button" (click)="eliminarArchivo(repositorio.archivo)">X</button>
-          </td>
-      </tbody>
-    </table>
+      <div *ngIf="repositorios?.length == 0" class="alert alert-info">
+        No hay archivos cargados
+      </div>
 
+      <table class="table table-bordered table-striped text-center" *ngIf="repositorios?.length > 0">
+        <thead>
+          <tr>
+            <th>NOMBRE ARCHIVO</th>
+            <th>DESCARGAR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let repositorio of repositorios">
+            <td>{{repositorio.archivo}}</td>
+            <td>
+              <a href="http://localhost:8080/plantillas/uploads/arch/{{repositorio.archivo}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+            </td>
+            <!-- <td>
+              <button class="btn btn-danger btn-sm" type="button" (click)="eliminarArchivo(repositorio.archivo)">X</button>
+            </td> -->
+        </tbody>
+      </table>
+
+    </div>
   </div>
-</div>
 
-<div class="row">
-  <div class="col-sm-6">
-    <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button">VOLVER ATRÁS</button>
+  <div class="row">
+    <div class="col-sm-6">
+      <button class="boton btn btn-primary" [routerLink]="['/elegir-proyecto']" role="button">VOLVER ATRÁS</button>
+    </div>
   </div>
-</div>
 
 
 </div>

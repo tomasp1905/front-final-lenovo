@@ -48,7 +48,8 @@ export class ComentariosProyectosEspecialesComponent implements OnInit {
   updateComentario(): void {
     this.comentariosProyectosService.updateComentarioEspecialNoAutorizado(this.proyectoEspecial)
       .subscribe(proyectoBienestar => {
-        swal.fire('Comentarios actualizado', `El Programa ${this.proyectoEspecial.titulo} se actualizó con éxito`, 'success');
+        // swal.fire('Comentarios actualizado', `El Programa ${this.proyectoEspecial.titulo} se actualizó con éxito`, 'success');
+        window.location.reload();
       }
       )
   }

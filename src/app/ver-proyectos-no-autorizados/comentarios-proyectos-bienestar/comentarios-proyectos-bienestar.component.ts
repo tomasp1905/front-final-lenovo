@@ -48,7 +48,8 @@ export class ComentariosProyectosBienestarComponent implements OnInit {
   updateComentario(): void {
     this.comentariosProyectosService.updateComentarioBienestarNoAutorizado(this.proyectoBienestar)
       .subscribe(proyectoBienestar => {
-        swal.fire('Comentarios actualizado', `El Programa ${this.proyectoBienestar.titulo} se actualizó con éxito`, 'success');
+        // swal.fire('Comentarios actualizado', `El Programa ${this.proyectoBienestar.titulo} se actualizó con éxito`, 'success');
+        window.location.reload();
       }
       )
   }

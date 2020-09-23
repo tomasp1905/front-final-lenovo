@@ -200,7 +200,7 @@
             <div class="form-group row">
               <label for="claveM" class="col-form-label">Clave:</label>
               <div class="col-sm-3">
-                <input type="text" class="form-control" [(ngModel)]="claveMiembroTexto" #claveM="ngModel" name="claveM" pattern="^[0-9]*$" minlength="7" [class.is-invalid]="claveM.invalid">
+                <input type="number" class="form-control" [(ngModel)]="claveMiembroTexto" #claveM="ngModel" name="claveM" minlength="7" [class.is-invalid]="claveM.invalid">
                 <small *ngIf="claveM.invalid" class="form-text text-danger animated fadeIn">Campo inválido</small>
               </div>
             </div>
@@ -328,7 +328,7 @@
             <div class="form-group row">
               <label for="telefono" class="col-form-label">Teléfono contacto:</label>
               <div class="col-sm-3">
-                <input type="text" class="form-control" name="telefono" [class.is-invalid]="telefono.invalid" [(ngModel)]="telefonoSocioTexto" #telefono="ngModel"  pattern="^[0-9]*$"   style="width:363px">
+                <input type="number" class="form-control" name="telefono" [class.is-invalid]="telefono.invalid" [(ngModel)]="telefonoSocioTexto" #telefono="ngModel"  pattern="^[0-9]*$"   style="width:363px">
                 <small *ngIf="telefono.invalid" class="form-text text-danger animated fadeIn">Ingrese solo campos numéricos</small>
               </div>
             </div>

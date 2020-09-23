@@ -4,6 +4,8 @@ import { HttpEvent, HttpRequest, HttpClient, HttpHeaders } from '@angular/common
 import { Router } from '@angular/router';
 import { Repositorio } from './repositorio';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,33 +13,47 @@ import { map } from 'rxjs/operators';
 export class RepositorioArchivosService {
 
   private urlEndPointUpload: string = 'http://localhost:8080/plantillas';
-  private urlEndPointEliminar: string = 'http://localhost:8080/plantillas/uploads/arch';
+  private urlEndPointEliminar: string = 'http://localhost:8080/plantillas/delete';
   private urlEndPointVerArchivos: string = 'http://localhost:8080/plantillas/uploads/arch/verTodosLosArchivos';
 
-  private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'})
+  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' })
 
-  constructor(private http: HttpClient, private router:Router) { }
+  baseUrlEliminar = environment.baseUrlEliminar;
 
-  getArchivos():Observable<Repositorio[]>{
+
+  constructor(private http: HttpClient, private router: Router) { }
+
+
+  getArchivos(): Observable<Repositorio[]> {
     return this.http.get(this.urlEndPointVerArchivos).pipe(
-      map(response =>{
+      map(response => {
         let respositorios = response as Repositorio[];
         return respositorios;
       })
     )
   }
 
-  subirArchivoRepo(archivo: File):Observable<HttpEvent<{}>> {
+  subirArchivoRepo(archivo: File): Observable<HttpEvent<{}>> {
     let formData = new FormData();
     formData.append("archivo", archivo);
-    const req = new HttpRequest ('POST',`${this.urlEndPointUpload}/upload`,formData)
+    const req = new HttpRequest('POST', `${this.urlEndPointUpload}/upload`, formData)
     return this.http.request(req);
   }
 
-  eliminarArchivo(archivo:string){
-    console.log("entro al servicio con el archivo "+ archivo)
-    return this.http.delete(`${this.urlEndPointEliminar}/${archivo}`, {headers: this.httpHeaders})
+  eliminarArchivo(archivo:string) {
+    console.log("Se envia al back lo siguiente: " + this.urlEndPointEliminar + "/" + archivo)
+      return this.http.get(`${this.urlEndPointEliminar}/${archivo}`)
   }
+
+  // eliminarArchivo(id:number){
+  //   return this.http.get(`${this.baseUrlEliminar}/${id}`);
+  // }
+
+
+
+  //private urlEndPointEliminar: string = 'http://localhost:8080/plantillas/uploads/arch';
+
+  //console.log --> Se envia al back lo siguiente: http://localhost:8080/plantillas/uploads/arch/290
 
 
 

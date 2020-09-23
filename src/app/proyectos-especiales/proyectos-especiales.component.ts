@@ -246,7 +246,8 @@ export class ProyectosEspecialesComponent implements OnInit {
   updateEspecial(): void {
     this.proyectoEspecialService.update(this.proyectoEspecial)
       .subscribe(proyectoEspecial => {
-        swal.fire('Proyecto actualizado', `El Proyecto ${this.proyectoEspecial.titulo} se actualizó con éxito`, 'success');
+        // swal.fire('Proyecto actualizado', `El Proyecto ${this.proyectoEspecial.titulo} se actualizó con éxito`, 'success');
+        window.location.reload();
        //console.log(this.proyectoEspecial)
       }
       )
