@@ -5,6 +5,8 @@ import { RepositorioArchivosService } from './repositorio-archivos.service';
 import swal from 'sweetalert2';
 import { HttpEventType, HttpClient } from '@angular/common/http';
 import { AuthService } from '../usuarios/auth.service';
+import { Observable } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-repositorio-archivos',
@@ -16,6 +18,8 @@ export class RepositorioArchivosComponent implements OnInit {
   progreso: number = 0;
   repositorio: Repositorio = new Repositorio();
   repositorios: Repositorio[];
+
+  fileInfos: Observable<any>;
 
   constructor(private activatedRouter: ActivatedRoute, private router: Router,
     private repositorioArchivosService: RepositorioArchivosService, private authService: AuthService) { }
@@ -48,13 +52,49 @@ export class RepositorioArchivosComponent implements OnInit {
       })
   }
 
-  // eliminarArchivo(id:number): void {
-  //   this.repositorioArchivosService.eliminarArchivo(id);
+
+  // eliminarArchivo(archivo: string) {
+  //   this.repositorioArchivosService.eliminarArchivo(archivo).subscribe(res => {
+  //   this.fileInfos = this.repositorioArchivosService.getArchivos();
+  //   window.location.reload();
+  //   });
   // }
 
-  eliminarArchivo(archivo:string): void {
-    this.repositorioArchivosService.eliminarArchivo(archivo);
+  eliminarArchivo(archivo: string): void {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
+
+    swalWithBootstrapButtons.fire({
+      title: '¿Está seguro?',
+      text: `¿Seguro que desea establecer eliminar el archivo?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, seguro',
+      cancelButtonText: 'No, cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        this.repositorioArchivosService.eliminarArchivo(archivo).subscribe(res => {
+           this.fileInfos = this.repositorioArchivosService.getArchivos();
+            // this.usuariosAdmin = this.usuariosAdmin.filter(usu => usu !== usuario)
+            // swalWithBootstrapButtons.fire(
+            //   '¡Rol Admin establecido!',
+            //   `El usuario con clave ${usuario.username} es Admin`,
+            //   'success'
+            // )
+            window.location.reload();
+          }
+        )
+      }
+    })
   }
+
+
 
 
 

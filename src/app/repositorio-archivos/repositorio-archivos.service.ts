@@ -13,12 +13,13 @@ import { environment } from 'src/environments/environment';
 export class RepositorioArchivosService {
 
   private urlEndPointUpload: string = 'http://localhost:8080/plantillas';
-  private urlEndPointEliminar: string = 'http://localhost:8080/plantillas/delete';
+  // private urlEndPointEliminar: string = 'http://localhost:8080/plantillas/delete';
   private urlEndPointVerArchivos: string = 'http://localhost:8080/plantillas/uploads/arch/verTodosLosArchivos';
 
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' })
 
   baseUrlEliminar = environment.baseUrlEliminar;
+  private server = environment.API_URL;
 
 
   constructor(private http: HttpClient, private router: Router) { }
@@ -40,20 +41,16 @@ export class RepositorioArchivosService {
     return this.http.request(req);
   }
 
-  eliminarArchivo(archivo:string) {
-    console.log("Se envia al back lo siguiente: " + this.urlEndPointEliminar + "/" + archivo)
-      return this.http.get(`${this.urlEndPointEliminar}/${archivo}`)
-  }
-
-  // eliminarArchivo(id:number){
-  //   return this.http.get(`${this.baseUrlEliminar}/${id}`);
+  // eliminarArchivo(archivo:string) {
+  //   console.log("Se envia al back lo siguiente: " + this.urlEndPointEliminar + "/" + archivo)
+  //     return this.http.get(`${this.urlEndPointEliminar}/${archivo}`)
   // }
-
-
-
   //private urlEndPointEliminar: string = 'http://localhost:8080/plantillas/uploads/arch';
-
   //console.log --> Se envia al back lo siguiente: http://localhost:8080/plantillas/uploads/arch/290
+
+  eliminarArchivo(archivo: string){
+    return this.http.get(`${this.urlEndPointUpload}/delete/${archivo}`);
+  }
 
 
 

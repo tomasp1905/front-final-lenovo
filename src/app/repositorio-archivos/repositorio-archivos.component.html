@@ -55,9 +55,9 @@
             <td>
               <a href="http://localhost:8080/plantillas/uploads/arch/{{repositorio.archivo}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
-            <!-- <td>
-              <button class="btn btn-danger btn-sm" type="button" (click)="eliminarArchivo(repositorio.archivo)">X</button>
-            </td> -->
+            <td>
+              <button *ngIf="authService.hasRole('ROLE_ADMIN')" class="btn btn-danger btn-sm" type="button" (click)="eliminarArchivo(repositorio.archivo)">X</button>
+            </td>
         </tbody>
       </table>
 
