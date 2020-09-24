@@ -230,7 +230,7 @@
 
             <div class="row">
               <div class="col-sm-6">
-                <button class="boton btn btn-primary" role="button" (click)='agregarMiembro()'>Agregar nuevo miembro</button>
+                <button class="boton btn btn-primary" role="button" (click)='agregarMiembro()' *ngIf="nombreMiembroTexto && apellidoMiembroTexto && claveMiembroTexto && facultadMiembroTexto && tipoDeMiembroTexto ">Agregar nuevo miembro</button>
               </div>
             </div>
 
@@ -312,20 +312,13 @@
               </div>
             </div>
 
-            <!-- <div class="form-group row">
+            <div class="form-group row">
               <label for="telefono" class="col-form-label">Teléfono contacto:</label>
               <div class="col-sm-3">
                 <input type="number" class="form-control" [(ngModel)]="telefonoSocioTexto" name="telefono">
               </div>
-            </div> -->
-
-            <div class="form-group row">
-              <label for="telefono" class="col-form-label">Teléfono contacto:</label>
-              <div class="col-sm-3">
-                <input type="number" class="form-control" name="telefono" [class.is-invalid]="telefono.invalid" [(ngModel)]="telefonoSocioTexto" #telefono="ngModel" pattern="^[0-9]*$" style="width:363px">
-                <small *ngIf="telefono.invalid" class="form-text text-danger animated fadeIn">Ingrese solo campos numéricos</small>
-              </div>
             </div>
+
 
             <div class="form-group row">
               <label for="email" class="col-form-label">Email contacto:</label>
@@ -338,7 +331,7 @@
 
             <div class="row">
               <div class="col-sm-6">
-                <button class="boton btn btn-primary" role="button" (click)='agregarSocio()'>Agregar Socio</button>
+                <button class="boton btn btn-primary" role="button" (click)='agregarSocio()' *ngIf="institucionSocioTexto && domicilioSocioTexto && descripcionSocioTexto && nombreSocioTexto && apellidoSocioTexto && telefonoSocioTexto && emailSocioTexto">Agregar Socio</button>
               </div>
             </div>
 

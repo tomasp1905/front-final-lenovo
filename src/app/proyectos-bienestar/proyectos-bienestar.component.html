@@ -223,7 +223,7 @@
 
             <div class="row">
               <div class="col-sm-6">
-                <button class="boton btn btn-primary" role="button" (click)='agregarMiembro()'>Agregar nuevo miembro</button>
+                <button class="boton btn btn-primary" role="button" (click)='agregarMiembro()' *ngIf="nombreMiembroTexto && apellidoMiembroTexto && claveMiembroTexto && facultadMiembroTexto && tipoDeMiembroTexto ">Agregar nuevo miembro</button>
               </div>
             </div>
 
