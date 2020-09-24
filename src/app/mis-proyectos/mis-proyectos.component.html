@@ -32,7 +32,7 @@
               <button class="btn btn-outline-info" (click)="abrirModalBianual(proyecto)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos', proyecto.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos', proyecto.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button *ngIf="(proyecto.estado == 'Activo') || (proyecto.estado == 'No Autorizado') || (proyecto.estado == 'Autorizado')" class="btn btn-warning" [routerLink]="['/ver-proyecto-bianual', proyecto.id]" role="button">EDITAR</button>
@@ -80,7 +80,7 @@
               <button class="btn btn-outline-info" (click)="abrirModalEspecial(proyecto)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyecto.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyecto.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button *ngIf="(proyecto.estado == 'Activo') || (proyecto.estado == 'No Autorizado') || (proyecto.estado == 'Autorizado')" class="btn btn-warning" [routerLink]="['/ver-proyecto-especial', proyecto.id]" role="button">EDITAR</button>
@@ -128,7 +128,7 @@
               <button class="btn btn-outline-info" (click)="abrirModalBienestar(proyecto)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyecto.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyecto.id]" role="button">DETALLE</button>
             </td>
             <td >
               <button *ngIf="(proyecto.estado == 'Activo') || (proyecto.estado == 'No Autorizado') || (proyecto.estado == 'Autorizado')" class="btn btn-warning" [routerLink]="['/ver-proyecto-bienestar', proyecto.id]" role="button">EDITAR</button>
@@ -176,7 +176,7 @@
               <button class="btn btn-outline-info" (click)="abrirModalEstable(programaEstable)" role="button">VER</button>
             </td>
             <td>
-              <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programaEstable.id]" role="button">VER</button>
+              <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programaEstable.id]" role="button">DETALLE</button>
             </td>
             <td>
               <button *ngIf="(programaEstable.estado == 'Activo') || (programaEstable.estado == 'No Autorizado') || (programaEstable.estado == 'Autorizado')" class="btn btn-warning" [routerLink]="['/ver-programa-estable', programaEstable.id]" role="button">EDITAR</button>

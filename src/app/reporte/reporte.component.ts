@@ -117,7 +117,7 @@ export class ReporteComponent implements OnInit {
 
       this.reporteService.generatePdf(filtroConResultado).subscribe((data: Blob) => {
         var blob = new Blob([data], { type: 'application/pdf' });
-        saveAs(blob, 'Filtros.pdf');
+        saveAs(blob, 'ResultadoFiltro.pdf');
         })
         this.limpiarFiltro();
   }

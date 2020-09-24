@@ -188,20 +188,13 @@
               </div>
             </div>
 
-            <!-- <div class="form-group row">
+            <div class="form-group row">
               <label for="claveM" class="col-form-label">Clave:</label>
               <div class="col-sm-3">
                 <input type="number" class="form-control" [(ngModel)]="claveMiembroTexto" name="claveM">
               </div>
-            </div> -->
-
-            <div class="form-group row">
-              <label for="claveM" class="col-form-label">Clave:</label>
-              <div class="col-sm-3">
-                <input type="text" class="form-control" [(ngModel)]="claveMiembroTexto" #claveM="ngModel" name="claveM" pattern="^[0-9]*$" minlength="7" [class.is-invalid]="claveM.invalid">
-                <small *ngIf="claveM.invalid" class="form-text text-danger animated fadeIn">Campo inválido</small>
-              </div>
             </div>
+
 
             <div class="form-group row">
               <label for="facultadM" class="col-form-label">Facultad o Área:</label>
@@ -617,7 +610,7 @@
 
         <div class="row">
           <div class="col-sm-6">
-            <button class="boton btn btn-primary" role="button" (click)='crearProyecto()' *ngIf="!programaEstable.id else elseBlock" [disabled]="!proyectoForm.form.valid">CREAR PROYECTO</button>
+            <button class="boton btn btn-primary" role="button" (click)='crearProyecto()' *ngIf="!programaEstable.id else elseBlock" [disabled]="!proyectoForm.form.valid">CREAR PROGRAMA</button>
 
             <ng-template #elseBlock>
               <button class="boton btn btn-primary" role="button" (click)='updateEstable()' [disabled]="!proyectoForm.form.valid">EDITAR</button>

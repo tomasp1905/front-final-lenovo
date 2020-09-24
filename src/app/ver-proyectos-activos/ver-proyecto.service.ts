@@ -106,7 +106,7 @@ public generar(id:number): any {
     this.http.get(`${this.urlEndPointGenerarPDFBianual}/${id}`, { responseType: 'blob' }).subscribe(
         (response) => {
             var blob = new Blob([response], { type: mediaType });
-            saveAs(blob, 'reporte.pdf');
+            saveAs(blob, 'Proyecto.pdf');
         },
         e => { throwError(e); }
     );
@@ -133,7 +133,7 @@ public generarPDFEstable(id:number): any {
     this.http.get(`${this.urlEndPointGenerarPDFEstable}/${id}`, { responseType: 'blob' }).subscribe(
         (response) => {
             var blob = new Blob([response], { type: mediaType });
-            saveAs(blob, 'reporte.pdf');
+            saveAs(blob, 'Programa.pdf');
         },
         e => { throwError(e); }
     );
@@ -159,7 +159,7 @@ public generarPDFBienestar(id:number): any {
     this.http.get(`${this.urlEndPointGenerarPDFBienestar}/${id}`, { responseType: 'blob' }).subscribe(
         (response) => {
             var blob = new Blob([response], { type: mediaType });
-            saveAs(blob, 'reporte.pdf');
+            saveAs(blob, 'Proyecto.pdf');
         },
         e => { throwError(e); }
     );
@@ -184,7 +184,7 @@ public generarPDFEspecial(id:number): any {
     this.http.get(`${this.urlEndPointGenerarPDFEspecial}/${id}`, { responseType: 'blob' }).subscribe(
         (response) => {
             var blob = new Blob([response], { type: mediaType });
-            saveAs(blob, 'reporte.pdf');
+            saveAs(blob, 'Proyecto.pdf');
         },
         e => { throwError(e); }
     );
