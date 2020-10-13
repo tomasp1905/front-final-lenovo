@@ -82,7 +82,7 @@
               <a href="http://localhost:8080/programaEstable/uploads/arch/{{programaEstable.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
             <td>
-              <a *ngIf="programa.rendicionContable!=null" href="http://localhost:8080/programaEstable/uploads/arch/{{programaEstable.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+              <a *ngIf="programaEstable.rendicionContable!=null" href="http://localhost:8080/programaEstable/uploads/arch/{{programaEstable.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
             <td>
               <button class="btn btn-outline-info" [routerLink]="['/comentarios-programas-estables', programaEstable.id]" role="button">DETALLE</button>
@@ -130,7 +130,7 @@
               <a href="http://localhost:8080/proyectoBienestar/uploads/arch/{{proyectoBienestar.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
             <td>
-              <a *ngIf="proyecto.rendicionContable!=null" href="http://localhost:8080/proyectoBienestar/uploads/arch/{{proyectoBienestar.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+              <a *ngIf="proyectoBienestar.rendicionContable!=null" href="http://localhost:8080/proyectoBienestar/uploads/arch/{{proyectoBienestar.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
             <td>
               <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-bienestar', proyectoBienestar.id]" role="button">DETALLE</button>
@@ -178,7 +178,7 @@
               <a href="http://localhost:8080/proyectoEspecial/uploads/arch/{{proyectoEspecial.presupuesto}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
             <td>
-              <a *ngIf="proyecto.rendicionContable!=null" href="http://localhost:8080/proyectoEspecial/uploads/arch/{{proyectoEspecial.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
+              <a *ngIf="proyectoEspecial.rendicionContable!=null" href="http://localhost:8080/proyectoEspecial/uploads/arch/{{proyectoEspecial.rendicionContable}}" target='_blank' title="Ver archivo">DESCARGAR</a>
             </td>
             <td>
               <button class="btn btn-outline-info" [routerLink]="['/comentarios-proyectos-especiales', proyectoEspecial.id]" role="button">DETALLE</button>

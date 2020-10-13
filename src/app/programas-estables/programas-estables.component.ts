@@ -276,7 +276,7 @@ export class ProgramasEstablesComponent implements OnInit {
       subscribe(response => {
         this.programaEstable.fechaDeCreacion = new Date();
         this.router.navigate(['/programa-estable/presupuesto', response.id]);
-        swal.fire('Proyecto creado con éxito', `Proyecto ${this.programaEstable.titulo}`, 'success')
+        swal.fire('Programa creado con éxito', `Programa ${this.programaEstable.titulo}`, 'success')
         //console.log(this.programaEstable);
       })
   }
